@@ -1,5 +1,8 @@
 ---
 title: Deploy Stagger Option
+nav_text: Deploy Stagger
+category: extras
+order: 16
 ---
 
 ## Overview

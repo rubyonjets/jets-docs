@@ -1,5 +1,7 @@
 ---
 title: Filters
+category: extras
+order: 4
 ---
 
 Filters are methods that are run before or after a controller action.

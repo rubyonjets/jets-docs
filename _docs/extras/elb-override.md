@@ -1,5 +1,8 @@
 ---
 title: ELB Server Override Flag for jets server
+nav_text: ELB Override
+category: extras
+order: 18
 ---
 
 ## Background
