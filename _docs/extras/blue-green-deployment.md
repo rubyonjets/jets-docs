@@ -1,5 +1,7 @@
 ---
 title: Blue-Green Deployment
+category: extras
+order: 12
 ---
 
 ## Background

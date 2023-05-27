@@ -1,5 +1,8 @@
 ---
 title: "Minimal Deploy IAM Policy: CLI"
+nav_text: CLI
+category: extras-iam
+order: 1
 ---
 
 Here's a summary of the commands:

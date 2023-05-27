@@ -1,5 +1,7 @@
 ---
 title: Error Handling
+category: extras
+order: 5
 ---
 
 Jets provides some error handling capabilities in controllers that can rescue errors that occur during the callbacks or action. This is done with the `rescue_from` method.
@@ -21,9 +23,9 @@ end
 ```ruby
 class PostsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :missing_post
-  
+
   # ...
-  
+
 private
   def missing_post
     render json: { message: "We could not find your post." }, status: 404

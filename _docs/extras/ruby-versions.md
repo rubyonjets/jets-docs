@@ -1,5 +1,7 @@
 ---
 title: Ruby Versions Support
+category: extras
+order: 1
 ---
 
 Jets supports Ruby 2.5 and Ruby 2.7. Patch variants of it should work.

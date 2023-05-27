@@ -117,36 +117,34 @@
           <li><a href="{% link _docs/shared-resources/functions.md %}">Shared Functions</a></li>
         </ul>
       </li>
-      <li>Extras
+      <li><a href="{% link _docs/extras.md %}">Extras</a>
         <ul>
-          <li><a href="{% link _docs/extras/ruby-versions.md %}">Ruby Versions</a></li>
-          <li><a href="{% link _docs/extras/assets-serving.md %}">Assets Serving</a>
+          {% assign docs = site.docs | where: "categories","extras" | sort:"order" %}
+          {% for doc in docs -%}
+          {% if doc.subcategory %}
+          <li><a href="{{ doc.url }}">{% if doc.nav_text %}{{ doc.nav_text }}{% else %}{{ doc.title }}{% endif %}</a>
             <ul>
-              <li><a href="{% link _docs/extras/assets/webpacker.md %}">Webpacker</a></li>
+              {% assign docs = site.docs | where: "categories",doc.subcategory | sort:"order" %}
+              {% for doc in docs -%}
+                {% if doc.subcategory %}
+                <li><a href="{{ doc.url }}">{% if doc.nav_text %}{{ doc.nav_text }}{% else %}{{ doc.title }}{% endif %}</a>
+                  <ul>
+                    {% assign docs = site.docs | where: "categories",doc.subcategory | sort:"order" %}
+                    {% for doc in docs -%}
+                    <li><a href="{{ doc.url }}">{% if doc.nav_text %}{{ doc.nav_text }}{% else %}{{ doc.title }}{% endif %}</a></li>
+                    {% endfor %}
+                  </ul>
+                </li>
+                {% else %}
+                <li><a href="{{ doc.url }}">{% if doc.nav_text %}{{ doc.nav_text }}{% else %}{{ doc.title }}{% endif %}</a></li>
+                {% endif %}
+              {% endfor %}
             </ul>
           </li>
-          <li><a href="{% link _docs/extras/upload-binary-files.md %}">Upload Binary Files</a></li>
-          <li><a href="{% link _docs/extras/action-filters.md %}">Action Filters</a></li>
-          <li><a href="{% link _docs/extras/rescue-from.md %}">Error Handling</a></li>
-          <li><a href="{% link _docs/extras/minimal-deploy-iam.md %}">Minimal Deploy IAM</a>
-            <ul>
-              <li><a href="{% link _docs/extras/minimal-deploy-iam/cli.md %}">CLI</a></li>
-              <li><a href="{% link _docs/extras/minimal-deploy-iam/console.md %}">Console</a></li>
-            </ul>
-          </li>
-          <li><a href="{% link _docs/extras/jetsignore.md %}">Jetsignore</a></li>
-          <li><a href="{% link _docs/extras/custom-inflections.md %}">Custom Inflections</a></li>
-          <li><a href="{% link _docs/extras/config-rules.md %}">Config Rules</a></li>
-          <li><a href="{% link _docs/extras/gem-layer.md %}">Gem Layer</a></li>
-          <li><a href="{% link _docs/extras/custom-lambda-layers.md %}">Custom Lambda Layers</a></li>
-          <li><a href="{% link _docs/extras/blue-green-deployment.md %}">Blue-Green Deployment</a></li>
-          <li><a href="{% link _docs/extras/rake-tasks.md %}">Rake Tasks</a></li>
-          <li><a href="{% link _docs/extras/codebuild.md %}">Continuous Integration</a></li>
-          <li><a href="{% link _docs/extras/deploy-with-mfa.md %}">Deploying with MFA</a></li>
-          <li><a href="{% link _docs/extras/deploy-stagger.md %}">Deploy Stagger</a></li>
-          <li><a href="{% link _docs/extras/internationalization.md %}">Internationalization</a></li>
-          <li><a href="{% link _docs/extras/elb-override.md %}">ELB Override</a></li>
-          <li><a href="{% link _docs/extras/upgrading.md %}">Upgrading Guide</a></li>
+          {% else %}
+          <li><a href="{{ doc.url }}">{% if doc.nav_text %}{{ doc.nav_text }}{% else %}{{ doc.title }}{% endif %}</a></li>
+          {% endif %}
+        {% endfor %}
         </ul>
       </li>
       <li><a href="{% link _docs/polymorphic-support.md %}">Polymorphic Functions</a>
@@ -179,7 +177,7 @@
     <h2>sidebar options:</h2>
     <ul class="list-unstyled">
       <li><a href="#" id="expand-all">expand all</a></li>
-      <li><a href="{{ site.gh_url }}/blob/master/{{ page.path }}" target="_blank">edit page</a></li>
+      <li><a href="{{ site.gh_url }}/blob/master/docs/{{ page.path }}" target="_blank">edit page</a></li>
     </ul>
   </div>
 </div>

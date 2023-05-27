@@ -1,5 +1,8 @@
 ---
 title: "Minimal Deploy IAM Policy: Console"
+nav_text: Console
+category: extras-iam
+order: 2
 ---
 
 You can also create policy, group, and user in AWS console.  Note, refer to the [CLI Instructions]({% link _docs/extras/minimal-deploy-iam/cli.md %}) for IAM policy examples.

@@ -1,5 +1,8 @@
 ---
 title: Jets Internationalization (I18n)
+nav_text: Internationalization
+category: extras
+order: 17
 ---
 
 This guide shows you how to set up simple internationalization with Jets.

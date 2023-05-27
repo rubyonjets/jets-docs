@@ -1,5 +1,9 @@
 ---
 title: Minimal Deploy IAM Policy
+nav_text: Minimal Deploy IAM
+category: extras
+subcategory: extras-iam
+order: 6
 ---
 
 The IAM user you use to run the `jets deploy` command needs a minimal set of IAM policies in order to deploy a Jets application. Here is a table of the baseline services needed:

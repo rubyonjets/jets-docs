@@ -1,5 +1,7 @@
 ---
 title: Jetsignore
+category: extras
+order: 7
 ---
 
 ## .jetsignore
