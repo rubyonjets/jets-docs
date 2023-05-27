@@ -143,3 +143,10 @@ If then deploy another app with the same `domain.name` but a different `domain.b
 
     coolapp.com/accounts => root of jets app 1
     coolapp.com/api      => root of jets app 2
+
+## Considerations/Cavaets
+
+When using Custom Domains, Jets manages these resources via CloudFormation: APIGW Custom Domain and the associated Route53 record
+
+* If you make manual changes to the Custom Domain, this can confuse CloudFormation and prevent it from managing or deploying the Custom Resource properly.  You can get CloudFormation back in "sync" deleting the Custom Domain setting in the Jets `config/application.rb`, deploying it to delete it on the CloudFormation side. Then you'll need to also delete the APIGW Custom Domain resource manually. That gets things back in sync.
+* The same goes for the Route53 Record managed by Jets and CloudFormation. You can use the same trick of deleting it from the Jets `config/application.rb` and manually deleting the route53 record. That syncs back up the state so you can deploy again.
