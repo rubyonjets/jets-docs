@@ -2,17 +2,17 @@
 title: Env Extra
 ---
 
-Jets has the concept of extra environments. This can be controlled by the `JETS_ENV_EXTRA` variable.  By setting `JETS_ENV_EXTRA` you can create additional identical environments.
+Jets has the concept of extra environments. This can be controlled by the `JETS_EXTRA` variable.  By setting `JETS_EXTRA` you can create additional identical environments.
 
     jets deploy # first environment demo-dev
-    JETS_ENV_EXTRA=2 jets deploy # creates a demo-dev-2 environment
+    JETS_EXTRA=2 jets deploy # creates a demo-dev-2 environment
 
-The `JETS_ENV_EXTRA` can also be set in the `config/application.rb` file:
+The `JETS_EXTRA` can also be set in the `config/application.rb` file:
 
 ```ruby
 Jets.application.configure do
   # ...
-  config.env_extra = 2 # can also set this with JETS_ENV_EXTRA
+  config.extra = 2 # can also set this with JETS_EXTRA
 end
 ```
 
@@ -20,8 +20,8 @@ Interestingly, since AWS Lambda pricing is based on usage. These extra environme
 
 ## Precedence
 
-1. JETS_ENV_EXTRA - takes the highest precedence
-2. `config/application.rb` env_extra setting - takes lower precedence
+1. JETS_EXTRA - takes the highest precedence
+2. `config/application.rb` extra setting - takes lower precedence
 
 ## Blue-Green Deployments
 

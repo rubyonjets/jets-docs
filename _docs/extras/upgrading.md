@@ -123,13 +123,13 @@ Here's a typical in-place deploy:
 
 ## Blue-Green Deployment
 
-For a blue-green deployment, you use `JETS_ENV_EXTRA` to create a brand new Jets environment. You then switch to it and destroy the old environment. First, create the new environment:
+For a blue-green deployment, you use `JETS_EXTRA` to create a brand new Jets environment. You then switch to it and destroy the old environment. First, create the new environment:
 
     cd demo # your project
     bundle update
-    JETS_ENV_EXTRA=2 jets deploy # creates an additional jets environment for your app
+    JETS_EXTRA=2 jets deploy # creates an additional jets environment for your app
 
-Then update the Gateway API Custom Domain to point to the newly deployed `JETS_ENV_EXTRA=2` environment.
+Then update the Gateway API Custom Domain to point to the newly deployed `JETS_EXTRA=2` environment.
 
 ### Gateway API Custom Domain
 

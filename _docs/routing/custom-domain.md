@@ -38,7 +38,7 @@ By default, the domain name is a subdomain with `Jets.project_namespace` as the 
 
     #{Jets.project_namespace}.coolapp.com = demo-dev.coolapp.com
 
-When `JETS_ENV_EXTRA=1` is set the values looks like this:
+When `JETS_EXTRA=1` is set the values looks like this:
 
     #{Jets.project_namespace}.coolapp.com = demo-dev-1.coolapp.com
 
@@ -57,7 +57,7 @@ If you change the API Gateway [domain endpoint_type](https://docs.aws.amazon.com
 * Going from REGIONAL to EDGE results in about **10 minutes** of unavailability. That's about how long it takes API Gateway to create the CloudFront Edge endpoint.
 * Going from EDGE to REGIONAL results in about **30 seconds** of unavailability. That's about how long it takes API Gateway to create the Regional endpoint.
 
-If you need to switch this and avoid downtime, you will need to do a manual blue-green deployment by creating a new environment with `JETS_ENV_EXTRA`.
+If you need to switch this and avoid downtime, you will need to do a manual blue-green deployment by creating a new environment with `JETS_EXTRA`.
 
 ## Routes Deployment
 

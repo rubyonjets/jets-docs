@@ -20,7 +20,7 @@ For the most part, Jets auto blue-green deployments suffice.  Manual blue-green 
 
 This is where Jets and AWS Lambda power shines. We simply create another [extra environment]({% link _docs/env-extra.md %}) and switch to it to do a manual blue-green deployment.  Here are the steps:
 
-1. Create another environment by deploying with `JETS_ENV_EXTRA`.
+1. Create another environment by deploying with `JETS_EXTRA`.
 2. Test it to your heart's content
 3. Switch the API Gateway Custom Domain over to the new stack
 4. Delete the old environment
