@@ -24,8 +24,8 @@ end
 **Notes:**
 
 * Important: Only use the Custom Runtime Layer for testing. It may be removed at any time in the future.
-* AWS seems close according to this [GitHub Issues Thread: Ruby 3.x support #636](https://github.com/boltops-tools/jets/issues/636).
 * Once AWS releases the Ruby 3.2 runtime officially, you should use that instead.
+* AWS seems close according to this [GitHub Issues Thread: Ruby 3.x support #636](https://github.com/boltops-tools/jets/issues/636).
 * This note may already be outdated, and AWS has already released 3.2 support.
 
 ## Custom Runtime for Different Regions
