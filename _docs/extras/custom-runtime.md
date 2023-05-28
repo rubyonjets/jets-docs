@@ -56,3 +56,7 @@ To deploy, you should switch to Ruby 3.2 before deploying. Jets packages up gems
 
     rbenv local 3.2.2
     jets deploy
+
+## What Happens When AWS Releases Ruby 3.2
+
+When AWS releases the official Ruby 3.2 runtime, Jets v4 should support it as-is. You just have to remove the Custom Runtime layer `config.lambda.layers` configuration in [config/application.rb](https://rubyonjets.com/docs/extras/custom-runtime/) and `jets deploy` again. That'll swap out the Custom Runtime with the Official Runtime. That's how it's supposed to work 😄
