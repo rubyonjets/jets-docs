@@ -16,7 +16,7 @@ The following table summarizes the releases and upgrade paths.
 
 Version | Notes | Blue-Green? | Run jets upgrade?
 --- | --- | --- | ---
-4.0.0 | Ruby 3.2 Support was added in this release. Upgrading notes only applies to if you're switching to the Ruby 3.2 Runtime. And most of it will be making sure your app can run on Ruby 3.2. | No | No
+4.0.0 | Ruby 3.2 Support was added in this release. Upgrading notes only applies to if you're switching to the Ruby 3.2 Runtime. And most of it will be making sure your app can run on Ruby 3.2. The reason a blue-green deploy might be required is because of [PreheatJob: fix function lookups and iam function permission #645](https://github.com/boltops-tools/jets/pull/645). If you're using the [iam_polices]({% link _docs/iam-policies.md %}), it'll require a blue-green deployment. | Depends | No
 3.0.14 | Using @rubyonjets/ujs-compat. Will need to make some manual changes. See details below. Manually changes are not needed for newly generated projects. | No | No
 3.0.12 | Using @rails/ujs. Will need to make some manual changes. See details below. Manually changes are not needed for newly generated projects. | No | No
 3.0.0 | Added Ruby 2.7 support. Use Serverless Gems for binary gems. | No | No
