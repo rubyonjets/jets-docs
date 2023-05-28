@@ -31,7 +31,7 @@ app/models  | Contains model definitions, usually classes that interact with a d
 app/shared  | Contains shared resources. Refer to [Shared Resources]({% link _docs/shared-resources.md %}).
 app/views  | Contains view code, usually HTML pages and forms.
 bin  | Contains helper executables.
-config  | Contains configuration files for databases, routes, webpacker, etc.  Application-wide configurations are set in [config/application.rb]({% link _docs/app-config.md %}).
+config  | Contains configuration files for databases, routes, webpacker, etc.  Application-wide configurations are set in [config/application.rb]({% link _docs/config.md %}).
 config/environments | Contains environment-specific application-wide configurations (`development.rb`, `production.rb`, etc).
 db  | Contains database migrations. ActiveRecord migrations live under `db/migrate` and the Dynamodb migrations are in `db/dynamodb`.
 public  | Contains static files meant to be served "as-is".

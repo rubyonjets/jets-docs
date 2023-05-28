@@ -35,7 +35,7 @@ Even though `public/assets` and `public/images` files are uploaded and served fo
 
 ## Configure Settings
 
-You can override the setting and configure the folders with the [Application Configuration]({% link _docs/app-config.md %}).
+You can override the setting and configure the folders with the [Application Configuration]({% link _docs/config.md %}).
 
 ```ruby
 Jets.application.configure do

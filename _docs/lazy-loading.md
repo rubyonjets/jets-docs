@@ -29,7 +29,7 @@ These links cover AWS Lambda performance and cold starts a little further:
 
 ## Configuration
 
-To configure lazy loading set the `config.ruby.lazy_load` as part of the [Application Configuration]({% link _docs/app-config.md %}).
+To configure lazy loading set the `config.ruby.lazy_load` as part of the [Application Configuration]({% link _docs/config.md %}).
 
 config/environments/production.rb:
 

@@ -115,7 +115,7 @@ end
 
 ## Deploying
 
-Jets will automatically upload images in `public/packs` to s3 by default. See the `assets.folders` setting at [Config References]({% link _docs/app-config/reference.md %}).  Jets has also decorated the `image_pack_tag` so assets will be served from the s3 bucket.  Running:
+Jets will automatically upload images in `public/packs` to s3 by default. See the `assets.folders` setting at [Config References]({% link _docs/config/reference.md %}).  Jets has also decorated the `image_pack_tag` so assets will be served from the s3 bucket.  Running:
 
     jets deploy
 
