@@ -5,6 +5,12 @@ category: extras
 order: 19
 ---
 
+**Update 6/7/2023**: AWS has released the official Ruby 3.2 Runtime, see the [AWS Blog Post](https://aws.amazon.com/blogs/compute/ruby-3-2-runtime-now-available-in-aws-lambda/). These docs are kept around for posterity and may be removed in the future.
+
+Also see [Upgrade Docs]({% link _docs/extras/upgrading.md %}) for upgrading.
+
+---
+
 To test Ruby 3.2 before of the official AWS Lambda release of Ruby 3.2 support, a [Custom Lambda Runtime](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html) can be used. This doc also serves as an example of how to configure your own Custom Runtime with Jets.
 
 ## Configure
