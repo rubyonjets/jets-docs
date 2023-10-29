@@ -9,7 +9,7 @@ reference: true
 
 ## Description
 
-Cleans CloudWatch log groups assocated with app.
+Cleans CloudWatch log groups assocated with app
 
 Essentially removes the CloudWatch groups assocated with the app. Lambda requests re-create the log groups so this is pretty safe to do.
 
@@ -17,11 +17,5 @@ Essentially removes the CloudWatch groups assocated with the app. Lambda request
 
     jets log:clean
 
-## Options
 
-```
-    [--noop], [--no-noop]  # noop or dry-run mode
-    [--mute], [--no-mute]  # mute output
-y, [--yes], [--no-yes]     # bypass are you sure prompt
-```
 

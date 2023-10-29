@@ -1,5 +1,9 @@
 ---
 title: Application Configuration
+nav_text: Config
+category: top-level
+subcategory: config
+order: 5
 ---
 
 You can set application-wide configurations in the `config/application.rb` file. You can configure global things like project_name, autoload_paths, function timeout, memory size, etc. Example:
@@ -11,7 +15,6 @@ Jets.application.configure do
   config.project_name = "demo"
 
   # config.prewarm.rate = '30 minutes' # default is '30 minutes'
-  # config.prewarm.concurrency = 1 # default is 1
   # config.autoload_paths = []
 
   config.function.timeout = 30

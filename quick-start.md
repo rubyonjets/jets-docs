@@ -1,5 +1,6 @@
 ---
 title: Quick Start
+category: archive
 ---
 
 In a hurry? No problem!  Here's a quick start to get going.

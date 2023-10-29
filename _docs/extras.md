@@ -1,5 +1,8 @@
 ---
 title: Extras
+category: top-level
+subcategory: extras
+order: 16
 ---
 
 Extras Docs:

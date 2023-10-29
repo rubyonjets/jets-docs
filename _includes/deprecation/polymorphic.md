@@ -1,0 +1,1 @@
+**Important**: Since Jets v5, Polymorphic support is no longer supported with Controllers. It is supported in other types of classes like Jobs though. The reason it is no longer supported in Controllers is because only one Lambda Function is used for Jets Controllers in Jets v5. The docs below will be updated in time.

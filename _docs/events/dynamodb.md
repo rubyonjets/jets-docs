@@ -1,6 +1,7 @@
 ---
 title: DynamoDB Events
 categories: events
+order: 3
 ---
 
 Jets supports [DynamoDB Stream Events](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.Lambda.html) as a Lambda trigger. When items in your DynamoDB tables are modified, it will trigger a Lambda function to run.  The Lambda function has access to the record data via `event`.
@@ -10,6 +11,8 @@ Jets supports [DynamoDB Stream Events](https://docs.aws.amazon.com/amazondynamod
 ## Example
 
 Here is an example connecting an existing DynamoDB table's stream to a Lambda function in a [Job]({% link _docs/jobs.md %})
+
+app/jobs/clerk_job.rb
 
 ```ruby
 class ClerkJob < ApplicationJob
@@ -91,3 +94,6 @@ Here's a screenshot of the event in the CloudWatch Log console.
 
 Jets generates an IAM policy for the Lambda function associated with the DynamoDB event that allows the permissions needed.  You can control and override the IAM policy with normal [IAM Policies]({% link _docs/iam-policies.md %}) if required, though.
 
+## Related
+
+* [Dynomite find_all_with_stream_event]({% link _docs/database/dynamodb/querying/find-with-event.md %})

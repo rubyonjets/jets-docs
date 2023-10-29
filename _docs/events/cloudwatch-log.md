@@ -1,11 +1,14 @@
 ---
 title: CloudWatch Log Events
 categories: events
+order: 1
 ---
 
 Jets supports [CloudWatch Log Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/SubscriptionFilters.html#LambdaFunctionExample). This allows you to have a Lambda function run when your CloudWatch Log Group receives log data.  You can access the data via `event` and `log_event`.
 
 <div class="video-box"><div class="video-container"><iframe src="https://www.youtube.com/embed/m7HeS8yRcCE" frameborder="0" allowfullscreen=""></iframe></div></div>
+
+app/jobs/log_job.rb
 
 ```ruby
 class LogJob < ApplicationJob

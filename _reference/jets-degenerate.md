@@ -5,11 +5,11 @@ reference: true
 
 ## Usage
 
-    jets degenerate [type] [args]
+    jets degenerate
 
 ## Description
 
-Destroys things like scaffolds.
+Opposite of generate. Removes the generated code.
 
 This piggy backs off of the [rails scaffold destroy](https://guides.rubyonrails.org/command_line.html#rails-destroy).
 
@@ -28,9 +28,5 @@ This piggy backs off of the [rails scaffold destroy](https://guides.rubyonrails.
           remove      app/helpers/posts_helper.rb
     $
 
-## Options
 
-```
-[--noop], [--no-noop]  
-```
 

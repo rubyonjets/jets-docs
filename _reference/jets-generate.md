@@ -5,11 +5,11 @@ reference: true
 
 ## Usage
 
-    jets generate [type] [args]
+    jets generate
 
 ## Description
 
-Generates things like scaffolds.
+Generate code
 
 This piggy backs off of the [rails scaffold generator](https://guides.rubyonrails.org/command_line.html#rails-generate).
 
@@ -40,9 +40,5 @@ ActiveRecord:
 
     active_record:application_record
 
-## Options
 
-```
-[--noop], [--no-noop]  
-```
 

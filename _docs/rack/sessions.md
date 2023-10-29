@@ -1,5 +1,7 @@
 ---
 title: Sessions
+category: rack
+order: 2
 ---
 
 You can use sessions to store data between requests. To use sessions use the `session` helper. Example:

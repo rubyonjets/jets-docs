@@ -1,5 +1,7 @@
 ---
 title: Authorizer Helpers
+category: authorizers
+order: 1
 ---
 
 The Authorizer Lambda function must return a response that conforms to the [Amazon API Gateway Lambda Authorizer Output](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-lambda-authorizer-output.html).  Jets provides some Authorizer Helpers to help generate the policy document response. Here's a simple complete example:
@@ -10,8 +12,8 @@ class MainAuthorizer < ApplicationAuthorizer
     name: "MyAuthorizer",
   )
   def protect
-    resource = event[:methodArn] # IE: arn:aws:execute-api:us-west-2:112233445566:f0ivxw7nkl/dev/GET/posts
-    build_policy(resource, "current_user")
+    method_arn = event[:methodArn] # IE: arn:aws:execute-api:us-west-2:112233445566:f0ivxw7nkl/dev/GET/posts
+    build_policy(method_arn, "current_user")
   end
 end
 ```
@@ -22,8 +24,8 @@ The `build_policy` helper has different forms. Here's the simplest form:
 
 ```ruby
 def protect
-  resource = event[:methodArn] # IE: arn:aws:execute-api:us-west-2:112233445566:f0ivxw7nkl/dev/GET/posts
-  build_policy(resource, "current_user")
+  method_arn = event[:methodArn] # IE: arn:aws:execute-api:us-west-2:112233445566:f0ivxw7nkl/dev/GET/posts
+  build_policy(method_arn, "current_user")
 end
 ```
 
@@ -51,8 +53,8 @@ You can add `context` and `usage_identifier_key` as the 3rd and 4th parameters a
 
 ```ruby
 def protect
-  resource = event[:methodArn] # IE: arn:aws:execute-api:us-west-2:112233445566:f0ivxw7nkl/dev/GET/posts
-  build_policy(resource, "current_user", { string_key: "value" }, "usage-key" )
+  method_arn = event[:methodArn] # IE: arn:aws:execute-api:us-west-2:112233445566:f0ivxw7nkl/dev/GET/posts
+  build_policy(method_arn, "current_user", { string_key: "value" }, "usage-key" )
 end
 ```
 
@@ -86,7 +88,7 @@ The `build_policy` method also takes a hash in its generalized form. Here's an e
 class MainAuthorizer < ApplicationAuthorizer
   authorizer(name: "MyAuthorizer")
   def protect
-    resource = event[:methodArn] # IE: arn:aws:execute-api:us-west-2:112233445566:f0ivxw7nkl/dev/GET/posts
+    method_arn = event[:methodArn] # IE: arn:aws:execute-api:us-west-2:112233445566:f0ivxw7nkl/dev/GET/posts
     build_policy(
       principal_id: "current_user",
       policy_document: {
@@ -94,7 +96,7 @@ class MainAuthorizer < ApplicationAuthorizer
         statement: [
           action: "execute-api:Invoke",
           effect: "Allow",
-          resource: resource,
+          resource: method_arn,
         ],
       },
       context: {

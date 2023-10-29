@@ -5,11 +5,11 @@ reference: true
 
 ## Usage
 
-    jets dbconsole
+    jets dbconsole [options]
 
 ## Description
 
-Starts DB REPL console.
+Starts DB REPL console
 
 This is like running the psql command with the `config/database.yml` values and set for you.
 
@@ -21,9 +21,15 @@ This is like running the psql command with the `config/database.yml` values and 
 
     demo_dev=>
 
+
 ## Options
 
 ```
-[--noop], [--no-noop]  
+-e,   [--environment=ENVIRONMENT]                    # Specifies the environment to run this dbconsole under (test/development/production).
+-p,   [--include-password], [--no-include-password]  # Automatically provide the password from database.yml
+      [--mode=MODE]                                  # Automatically put the sqlite3 database in the specified mode (html, list, line, column).
+                                                     # Possible values: html, list, line, column
+      [--header], [--no-header]                      
+--db, [--database=DATABASE]                          # Specifies the database to use.
 ```
 

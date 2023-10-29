@@ -155,7 +155,7 @@ Finally, create a user and add the user to IAM group. Here's an example:
 
 ## Additional IAM Permissions
 
-The baseline IAM policy above might not include all the permissions required depending on what your Jets application does. For example, if you are using [AWS Config Rules]({% link _docs/extras/config-rules.md %}) or [Custom Resources]({% link _docs/custom-resources.md %}), then you would need to add permissions specific to those resources. This is why an IAM group is recommended.  You simply have to update the group policies.
+The baseline IAM policy above might not include all the permissions required depending on what your Jets application does. For example, if you are using [AWS Config Rules]({% link _docs/extras/config-rules.md %}) or [Custom Resources]({% link _docs/custom.md %}), then you would need to add permissions specific to those resources. This is why an IAM group is recommended.  You simply have to update the group policies.
 
 Here's how you add a managed IAM policy that provides the AWS Config Rule permissions:
 

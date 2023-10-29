@@ -4,9 +4,9 @@ title: IAM Policies
 
 Jets provides several ways to finely control the IAM policies associated with your Lambda functions. Here are the ways and their precedence:
 
-1. Function-specific IAM policy: highest precedence
-2. Class-wide IAM policy
-3. Application-wide IAM policy: lowest precedence
+{% include iam/precedence.md %}
+
+{% include iam/cfn-setting.md %}
 
 ## Function specific IAM policy
 
@@ -42,6 +42,8 @@ Jets.application.configure do |config|
   config.iam_policy = ["logs"]
 end
 ```
+
+{% include functions/controllers-vs-jobs.md type="IAM Policies" %}
 
 ## IAM Policies Inheritance
 
@@ -93,13 +95,13 @@ Jets.application.configure do |config|
     {
       action: ["dynamodb:*"],
       effect: "Allow",
-      resource: "arn:aws:dynamodb:#{Jets.aws.region}:#{Jets.aws.account}:table/#{Jets.project_namespace}-*",
+      resource: "arn:aws:dynamodb:#{Jets.aws.region}:#{Jets.aws.account}:table/#{Jets.project_namespace}*",
     }
   ]
 end
 ```
 
-This **adds** to the Jets default application IAM policy. This is useful because the default application IAM policy is dynamically calculated depending on what the resources are being provisioned.  For example, using [Shared Resources]({% link _docs/shared-resources.md %}) will add CloudFormation read permissions.
+This **adds** to the Jets default application IAM policy. This is useful because the default application IAM policy is dynamically calculated depending on what the resources are being provisioned.  For example, using [Shared Resources]({% link _docs/custom/shared-resources.md %}) will add CloudFormation read permissions.
 
 ## Application-wide: Override Entirely
 
@@ -118,6 +120,21 @@ end
 ```
 
 Note, be careful using this advanced technique because it will override the IAM default policy entirely. It could prevent the Jets application from working right because it doesn't have enough permissions. You must make sure that the policy has the right permissions.
+
+## IAM DSL Multiple Calls
+
+When you call `iam_policy` multiple times, it appends permissions for that specific function. Example:
+
+```ruby
+iam_policy("s3")
+iam_policy("sns")
+```
+
+The same as:
+
+```ruby
+iam_policy("s3", "sns")
+```
 
 ## IAM Policy Definition Styles
 
@@ -227,7 +244,16 @@ The expanded IAM Policy documents gets included into the CloudFormation template
 * [AWS IAM Policies and Permissions docs](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#access_policies-json)
 * [CloudFormation IAM Policy reference docs](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html)
 
+## One Lambda For All Conrollers
+
+When using [config.cfn.build.controllers = "one_lambda_for_all_controllers"]({% link _docs/config/cfn.md %}), Jets builds only a single Lambda Function instead of many. Hence the `iam_policy` definitions cannot be applied at the individual function level. There is only a single Lambda Function.
+
+In this case, Jets will print and warning and tell you to either use the Application-wide IAM policy in `config/application.rb`. You also define your IAM policy at the `ApplicationController`.
+
+## One Lambda Per Conroller
+
+When using [config.cfn.build.controllers = "one_lambda_per_controller"]({% link _docs/config/cfn.md %}), Jets builds Lambda Function for each controller. Hence the `iam_policy` definitions cannot be applied at the individual function level. You can use the `class_iam_policy` though.
+
 ## Lambda Function vs User Deploy IAM Policies
 
 The IAM Policies docs on this page refer to the IAM policy associated with your **Lambda Execution Role**. These permissions control what AWS resources your Lambda functions have access to.  This is different from the IAM role you use to deploy a Jets application, which is typically your IAM User permissions. If you are looking for the minimal IAM Policy to deploy a Jets application for your IAM user, check out [Minimal Deploy IAM Policy]({% link _docs/extras/minimal-deploy-iam.md %}).
-

@@ -1,6 +1,7 @@
 ---
 title: SNS Events
 categories: events
+order: 7
 ---
 
 Jets supports [SNS Events](https://docs.aws.amazon.com/lambda/latest/dg/with-sns-example.html) as a Lambda trigger. So you can send a message to an SNS topic and it triggers a Lambda function to run.  The Lambda function has access to the message data via `event`.
@@ -20,12 +21,14 @@ We'll cover each of them:
 
 Here is an example connecting an existing SNS topic to a Lambda function in a [Job]({% link _docs/jobs.md %})
 
+app/jobs/messenger_job.rb
+
 ```ruby
-class HardJob < ApplicationJob
+class MessengerJob < ApplicationJob
   class_timeout 30 # must be less than or equal to the SNS Topic default timeout
   sns_event "hello-topic"
-  def dig
-    puts "dig event #{JSON.dump(event)}"
+  def deliver
+    puts "deliver event #{JSON.dump(event)}"
   end
 end
 ```
@@ -70,7 +73,7 @@ Note, SNS Topics managed by Jets are deleted when you delete the Jets applicatio
 
 ## Generated Shared SNS Topic
 
-Jets can also support creating a shared SNS Topic via a [Shared Resource]({% link _docs/shared-resources.md %}). Here's how you create the SNS Topic as a shared resource:
+Jets can also support creating a shared SNS Topic via a [Shared Resource]({% link _docs/custom/shared-resources.md %}). Here's how you create the SNS Topic as a shared resource:
 
 app/shared/resources/topic.rb:
 

@@ -1,5 +1,8 @@
 ---
 title: Controller Spec
+nav_text: Controller
+category: testing
+order: 1
 ---
 
 Here's a simple example of a controller spec.

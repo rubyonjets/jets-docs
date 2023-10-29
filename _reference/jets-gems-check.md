@@ -5,11 +5,11 @@ reference: true
 
 ## Usage
 
-    jets gems:check
+    jets gems:check [options]
 
 ## Description
 
-Check if pre-built Lambda gems are available from the sources.
+Check if precompiled Lambda gems are available
 
 Check if pre-built Lambda gems are available from the gems source. You can configure the gem in config/application.rb:
 
@@ -17,6 +17,7 @@ Check if pre-built Lambda gems are available from the gems source. You can confi
     Jets.application.configure do
       config.gems.source = "https://api.serverlessgems.com/api/v1"
     end
+
 
 ## Options
 

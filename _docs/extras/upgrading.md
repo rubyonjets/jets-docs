@@ -4,26 +4,29 @@ category: extras
 order: 19
 ---
 
-Upgrading Jets to some releases might require some extra changes.  For example, the Jets project structure can change. Or some version require a manual blue-green deployment.  This page provides a summary of the releases requiring some upgrade work.
+Upgrading Jets to some releases might require some extra changes. For example, the Jets project structure can change. Or some version require a manual blue-green deployment. This page provides a summary of the releases requiring some upgrade work.
 
 ## Upgrade Command
 
-A `jets upgrade` command is provided to help with upgrades.  The command is designed to be idempotent. This means it is safe to run repeatedly and will only upgrade the files and structure if needed.  Before running the command, it is recommended to back up your project first just in case though. This usually can be done by committing any unsaved changes to git.
+**Important**: The `jets upgrade` command was removed out Jets is a huge release and covered in this blog post: [](standalone [jets-upgrade go](https://github.com/rubyonjets/jets-upgrade) )command.
+
+A `jets-upgrade go` command is provided to help with upgrades. The command is designed to be idempotent. This means it is safe to run repeatedly and will only upgrade the files and structure if needed. Before running the command, it is recommended to back up your project first, just in case. This usually can be done by committing any unsaved changes to git.
 
 ## Upgrading Releases
 
 The following table summarizes the releases and upgrade paths.
 
-Version | Notes | Blue-Green? | Run jets upgrade?
+Version | Notes | Blue-Green? | Run jets-upgrade?
 --- | --- | --- | ---
+5.0.0 | Major Jets Architecture changes. Running `jets-upgrade go` attempts to update your jets 4 to jets 5. It should get you 80% of the way there on simple projects. On more complex projects, there will definitely be more manual effort. | Depends | Yes
 4.0.0 | Ruby 3.2 Support was added in this release. Upgrading notes only applies to if you're switching to the Ruby 3.2 Runtime. And most of it will be making sure your app can run on Ruby 3.2. The reason a blue-green deploy might be required is because of [PreheatJob: fix function lookups and iam function permission #645](https://github.com/boltops-tools/jets/pull/645). If you're using the [iam_polices]({% link _docs/iam-policies.md %}), it'll require a blue-green deployment. | Depends | No
 3.0.14 | Using @rubyonjets/ujs-compat. Will need to make some manual changes. See details below. Manually changes are not needed for newly generated projects. | No | No
 3.0.12 | Using @rails/ujs. Will need to make some manual changes. See details below. Manually changes are not needed for newly generated projects. | No | No
 3.0.0 | Added Ruby 2.7 support. Use Serverless Gems for binary gems. | No | No
 2.1.1 | Change `config.extra_autoload_paths` to `config.autoload_paths` | No | Yes
-2.0.0 | Add csrf forgery protection. The `jets upgrade` commands updates your code with the csrf logic. New apps generated with `jets new` does this already. The routes `namespace` behavior also changed.  Use `prefix` if you prefer the old behavior.  | No | Yes
+2.0.0 | Add csrf forgery protection. The `jets upgrade` commands updates your code with the csrf logic. New apps generated with `jets new` does this already. The routes `namespace` behavior also changed. Use `prefix` if you prefer the old behavior.  | No | Yes
 1.4.11 | Removed vendor/dynomite gem. Must add dynomite to Gemfile now. New apps generated with `jets new` does this.  | No | Yes
-1.3.0 | Official AWS Ruby Support added.  Removed longer needed `config.ruby.lazy_load` feature. | No | No
+1.3.0 | Official AWS Ruby Support added. Removed longer needed `config.ruby.lazy_load` feature. | No | No
 1.2.0 | Set default `config.api.binary_media_types` to `multipart/form-data` to handle binary support.  | No | No
 1.1.0 | Added `Jets.boot` to `config.ru`. You can run the `jets upgrade` command to add it. | No | Yes
 1.0.0 | Added `config/environments` files. You can use the `jets upgrade` command. Going from 0.10.0 to 1.0.0 does not required a blue-green deploy. But if you're going from before 0.10.0, then you will need a blue-green deploy. | Yes | No
@@ -33,6 +36,14 @@ Version | Notes | Blue-Green? | Run jets upgrade?
 ## Upgrade Details
 
 The following section provides a little more detail on each version upgrade. Note, not all versions required more details.
+
+### 5.0.0
+
+Jets 5 is a huge release and is covered in this blog post: [Jets 5: Improvements Galore](https://blog.boltops.com/2023/12/05/jets-5-improvements-galore/)
+
+Surprisingly, despite so many changes, a blue-green deployment is not required. This is because the lambda functions collapse into a single one without AWS resource conflicts. Also, the APIGW Resource Methods collapsing down would typically cause an AWS resource conflict, but Jets 5 Route Change detection is smart enough to detect this and provision a new APIGW REST API automatically. If, for some reason, this change detection does not work, you can also for a new APIGW to be created with `JETS_API_REPLACE=1` jets deploy. However, I have found that it's unnecessary. The docs note that a blue-green deployment is "Depends" just in case there is some scenario we haven't tested for.
+
+For the Jets 5 upgrade, you should use the new [jets-upgrade](https://github.com/rubyonjets/jets-upgrade) tool. It should get you pretty far.
 
 ### 3.0.14
 
@@ -65,13 +76,13 @@ This gets you on Rails UJS, which is has better support for javascript interacti
 
 ### 2.0.0
 
-* csrf forgery protection added. Need to add `csrf_meta_tags` to the layout for js based non-get calls. Also need to update the stock `crud.js`. And update the `config/application.rb` and with `default_protect_from_forgery = false` when in api mode.  The `jets upgrade` command does this for you.
-* Note: The `jets upgrade` command does not update your `form_tag` to the newer `form_with` helper. The `jets generate scaffold` does, though.  Recommend generating a scaffold, comparing the form tags and upgrading as it makes sense. The current `form_tag` though includes authenticity_token so you can leave your forms as-is if needed.
+* csrf forgery protection added. Need to add `csrf_meta_tags` to the layout for js based non-get calls. Also need to update the stock `crud.js`. And update the `config/application.rb` and with `default_protect_from_forgery = false` when in api mode. The `jets upgrade` command does this for you.
+* Note: The `jets upgrade` command does not update your `form_tag` to the newer `form_with` helper. The `jets generate scaffold` does, though. Recommend generating a scaffold, comparing the form tags and upgrading as it makes sense. The current `form_tag` though includes authenticity_token so you can leave your forms as-is if needed.
 * The routes `namespace` behavior changed. Use the `prefix` method now if you prefer the old behavior. Otherwise, you must move your controllers to modules matching the namespace.
 
 ### 1.4.11
 
-* Remove vendor/dynomite. Add dynomite to your Gemfile now if you are using `app/models/application_item.rb`. The `jets new` command has been updated to do this.  Run `jets upgrade` to upgrade.
+* Remove vendor/dynomite. Add dynomite to your Gemfile now if you are using `app/models/application_item.rb`. The `jets new` command has been updated to do this. Run `jets upgrade` to upgrade.
 
 ### 1.3.0
 
@@ -82,8 +93,8 @@ This gets you on Rails UJS, which is has better support for javascript interacti
 
 Some notable changes for version 1.2.0:
 
-* For binary support, the API Gateway binary_media_types settings needs to have `multipart/form-data`.  With this version, automated blue-green deployments was introduced. So Jets will do an automated blue-green deployment as part of adding the `multipart/form-data` binary_media_types.
-* Jets also added managed custom domains for vanity endpoints. This requires an additional minimal Route53 IAM permission. This is noted in [Minimal Deploy IAM]({% link _docs/extras/minimal-deploy-iam.md %}).  You will have to add this permission to your IAM deploy permission.
+* For binary support, the API Gateway binary_media_types settings needs to have `multipart/form-data`. With this version, automated blue-green deployments was introduced. So Jets will do an automated blue-green deployment as part of adding the `multipart/form-data` binary_media_types.
+* Jets also added managed custom domains for vanity endpoints. This requires an additional minimal Route53 IAM permission. This is noted in [Minimal Deploy IAM]({% link _docs/extras/minimal-deploy-iam.md %}). You will have to add this permission to your IAM deploy permission.
 
 ### 1.0.1
 
@@ -91,7 +102,7 @@ The `jets upgrade` command was introduced here. You can use it to upgrade the co
 
 ### 0.10.0
 
-In this version, the managed `Jets::WelcomeController` was removed. This means you'll have to update your `config/routes.rb`.  Replace:
+In this version, the managed `Jets::WelcomeController` was removed. This means you'll have to update your `config/routes.rb`. Replace:
 
 ```ruby
 root "jets/welcome#index"
@@ -107,11 +118,11 @@ You can use the `jets upgrade` command to automatically update the `config/route
 
 ## Reasons
 
-The reason a blue-green deployment sometimes required is that enough of Jets has changed where a regular CloudFormation stack update rolls back.  An example is in `v0.9.0`, Jets changes a few of the CloudFormation logical ids. In this case, CloudFormation fails to create Lambda functions with the same name and switch over to them because the Lambda functions already exist with their old logical ids. If you're seeing the CloudFormation stack rollback after upgrading, you might want to try a manual [blue-green deployment]({% link _docs/extras/blue-green-deployment.md %}).  Below are some additional notes on blue-green deployments.
+The reason a blue-green deployment sometimes required is that enough of Jets has changed where a regular CloudFormation stack update rolls back. An example is in `v0.9.0`, Jets changes a few of the CloudFormation logical ids. In this case, CloudFormation fails to create Lambda functions with the same name and switch over to them because the Lambda functions already exist with their old logical ids. If you're seeing the CloudFormation stack rollback after upgrading, you might want to try a manual [blue-green deployment]({% link _docs/extras/blue-green-deployment.md %}). Below are some additional notes on blue-green deployments.
 
 It is easy to do a blue-green deployment with Jets, and you will only need to do a blue-green deployment once after upgrading Jets for that version. Once done, you can normally deploy again.
 
-**Important**: With blue-green deployments, the API Gateway endpoint will **change**. Any applications referencing the endpoint will need to be updated.  For this reason, it is recommended to use an API Gateway Custom Domain, so you do not have to update the endpoint in the future.
+**Important**: With blue-green deployments, the API Gateway endpoint will **change**. Any applications referencing the endpoint will need to be updated. For this reason, it is recommended to use an API Gateway Custom Domain, so you do not have to update the endpoint in the future.
 
 ## In-Place Deploy
 

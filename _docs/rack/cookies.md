@@ -1,5 +1,7 @@
 ---
 title: Cookies
+category: rack
+order: 3
 ---
 
 You can set cookies with the `cookies` helper.  Example:

@@ -16,10 +16,19 @@
     </div>
 
     <div class="container-fluid">
-      <h1>{{ page.title }}</h1>
+      <h1 id="{{ page.title | slugify }}">{{ page.title }}</h1>
       {{ content }}
     </div>
   </div>
+
+
+  <div id="page-menu" class="page-menu">
+    <div class="page-menu-content">
+      <p class="text-uppercase">In this section:</p>
+      <ul></ul>
+    </div>
+  </div>
+
 </div>
 
 {% endif %}

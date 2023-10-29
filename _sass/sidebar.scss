@@ -44,6 +44,45 @@
   }
 }
 
+.page-menu {
+  width: 317px;
+  min-width: 317px;
+  background-color: #fff;
+  padding: 30px;
+  display: none;
+  @include transition-all;
+  @media (max-width: 1300px) {
+    display: none !important;
+  }
+
+  &-content {
+    position: sticky;
+    top: 20px;
+  }
+
+  p {
+    // color: $gray4;
+    margin-bottom: 10px;
+  }
+
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  li {
+    padding-left: 0;
+    margin-bottom: 8px;
+
+    a {
+      // color: #000;
+      // &:hover {
+      //   border-bottom-color: #000;
+      // }
+    }
+  }
+}
+
 .content-nav {
   margin: 0;
   padding: 0;
