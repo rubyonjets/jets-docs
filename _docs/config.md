@@ -12,7 +12,6 @@ Jets.application.configure do
 
   # config.prewarm.rate = '30 minutes' # default is '30 minutes'
   # config.prewarm.concurrency = 1 # default is 1
-  # config.extra = 2 # change also set this with JETS_EXTRA
   # config.autoload_paths = []
 
   config.function.timeout = 30

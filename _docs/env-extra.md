@@ -7,15 +7,6 @@ Jets has the concept of extra environments. This can be controlled by the `JETS_
     jets deploy # first environment demo-dev
     JETS_EXTRA=2 jets deploy # creates a demo-dev-2 environment
 
-The `JETS_EXTRA` can also be set in the `config/application.rb` file:
-
-```ruby
-Jets.application.configure do
-  # ...
-  config.extra = 2 # can also set this with JETS_EXTRA
-end
-```
-
 Interestingly, since AWS Lambda pricing is based on usage. These extra environments cost you pretty much nothing. They're literally free until you exceed the [free tier](https://aws.amazon.com/free/).  Create 10 extra Development, Staging or UAT environments if you need them 🎉
 
 ## Precedence
