@@ -13,7 +13,6 @@ Jets.application.configure do
   # ...
   config.prewarm.enable = true # default: enabled
   config.prewarm.rate = "30 minutes" # default: 30 minutes
-  config.prewarm.concurrency = 2 # default: 2
   config.prewarm.public_ratio = 3 # default: 3
   config.prewarm.rack_ratio = 5 # default: 5 # only with megamode
 end
@@ -46,7 +45,7 @@ torch | If concurrent is greater `1`, the torch job will concurrently call the `
 
 The `prewarm.public_ratio` activates extra prewarming for the internal `jets/public_controller.rb`.  The `jets/public_controller.rb` handles serving static files out of the `public` folder. The `prewarm.public_ratio` tells Jets to prewarm the public_controller's lambda function a little bit extra. You can tune the extra prewarming ratio higher or lower according to your needs.
 
-Note: Even though you can serve assets out of the public folder directly, it is recommended to use the `asset_path` helper which will serve these files out of s3 instead when the app is running on API Gateway and Lambda.  For more info about [Asset Serving]({% link _docs/extras/assets-serving.md %}) refer to the docs.
+Note: Even though you can serve assets out of the public folder directly, it is recommended to use the `asset_path` helper which will serve these files out of s3 instead when the app is running on API Gateway and Lambda.  For more info about [Asset Serving]({% link _docs/assets.md %}) refer to the docs.
 
 ## Rack Ratio
 

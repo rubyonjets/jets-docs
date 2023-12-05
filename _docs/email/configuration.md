@@ -1,8 +1,11 @@
 ---
 title: Email Configuration SMTP
+nav_text: Configure STMP
+category: email
+order: 1
 ---
 
-You can configure email with [initializers]({% link _docs/initializers.md %}).  Example:
+You can configure email with [initializers]({% link _docs/engines/initializers.md %}).  Example:
 
 config/environments/production.rb:
 
@@ -16,7 +19,7 @@ Jets.application.configure do
     port:            587,
     domain:          ENV['SMTP_DOMAIN'],
     authentication:  :login,
-    user_name:       ENV['SMTP_USER_NAME'],
+    user_name:       ENV['SMTP_USERNAME'],
     password:        ENV['SMTP_PASSWORD'],
     enable_starttls_auto: true
   }
@@ -30,7 +33,7 @@ We can configure the variables with [env files]({% link _docs/env-files.md %}). 
 ```sh
 SMTP_ADDRESS=email-smtp.us-west-2.amazonaws.com
 SMTP_DOMAIN=mydomain.com
-SMTP_USER_NAME=ABCASD5MXAIYXEXAMPLE
+SMTP_USERNAME=ABCASD5MXAIYXEXAMPLE
 SMTP_PASSWORD=ABCunGBKLUdbPdAH/FSxAi8eId99EyAOJz+mxEXAMPLE
 ```
 

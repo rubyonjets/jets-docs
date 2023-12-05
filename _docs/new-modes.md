@@ -12,7 +12,7 @@ The `jets new` command has 3 different modes: html, api, and job. Use the `--mod
 
 ## Mode Summary
 
-Here's a table that describes the different modes. It briefly covers when it may make sense to use one over the other. 
+Here's a table that describes the different modes. It briefly covers when it may make sense to use one over the other.
 
 Mode | Description
 --- | ---
@@ -71,6 +71,6 @@ With **Job** mode, a super lightweight structure is generated.  Job mode also de
 A notable option is the `--no-database` option.  If you have an app that does not require a database, it is useful to have `jets new` generate a skeleton app without a database configured.  Here's an example with api mode and no database:
 
     jets new api --mode api --no-database
-    
+
 Refer to the CLI reference [jets new](http://rubyonjets.com/reference/jets-new/) for more info.
 

@@ -10,7 +10,7 @@ Jets.application.routes.draw do
   post "posts", to: "posts#create"
   get  "posts/:id/edit", to: "posts#edit"
   put  "posts", to: "posts#update"
-  delete  "posts", to: "posts#delete"
+  delete  "posts", to: "posts#destroy"
 
   resources :comments # expands to the RESTful routes above
 
@@ -20,7 +20,9 @@ end
 
 You can check your routes in the API Gateway console:
 
-![Screenshot of generated API Gateway resources in the AWS Console](/img/quick-start/demo-api-gateway.png)
+![Screenshot of generated API Gateway resources in the AWS Console](https://img.boltops.com/tools/jets/routing/demo-api-gateway.png)
+
+Note: In Jets v5, only the minimal APIGW Methods are created. APIGW essentially acts like a proxy to the Jets routing engine which is more flexible.
 
 You can get your API Gateway endpoints from the API Gateway console, and test them with curl or postman. Example:
 
@@ -35,19 +37,18 @@ You can get your API Gateway endpoints from the API Gateway console, and test th
 Run the `jets routes` cli command to get a list of your routes.
 
     $ jets routes
-    +--------+----------------+--------------------+
-    |  Verb  |      Path      | Controller#action  |
-    +--------+----------------+--------------------+
-    | GET    | posts          | posts#index        |
-    | GET    | posts/new      | posts#new          |
-    | GET    | posts/:id      | posts#show         |
-    | POST   | posts          | posts#create       |
-    | GET    | posts/:id/edit | posts#edit         |
-    | PUT    | posts/:id      | posts#update       |
-    | DELETE | posts/:id      | posts#delete       |
-    | ANY    | *catchall      | jets/public#show   |
-    +--------+----------------+--------------------+
-    $
+    +-------------------+--------+--------------------+--------------------+
+    |    As (Prefix)    |  Verb  | Path (URI Pattern) | Controller#action  |
+    +-------------------+--------+--------------------+--------------------+
+    | posts             | GET    | /posts             | posts#index        |
+    | posts             | POST   | /posts             | posts#create       |
+    | new_post          | GET    | /posts/new         | posts#new          |
+    | edit_post         | GET    | /posts/:id/edit    | posts#edit         |
+    | post              | GET    | /posts/:id         | posts#show         |
+    | post              | PUT    | /posts/:id         | posts#update       |
+    | post              | PATCH  | /posts/:id         | posts#update       |
+    | post              | DELETE | /posts/:id         | posts#destroy      |
+    +-------------------+--------+--------------------+--------------------+
 
 ## Routing Guide
 

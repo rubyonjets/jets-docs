@@ -5,15 +5,10 @@ reference: true
 
 ## Usage
 
-    jets configure [TOKEN]
+    jets configure
 
 ## Description
 
 configure token and updates ~/.jets/config.yml
 
-## Options
-
-```
-[--noop], [--no-noop]  
-```
 

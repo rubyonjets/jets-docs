@@ -5,32 +5,36 @@ reference: true
 
 ## Usage
 
-    jets routes
+    jets routes [options]
 
 ## Description
 
-Print out your application routes.
+Print out your application routes
 
 ## Example
 
     $ jets routes
-    +--------+----------------+--------------------+
-    |  Verb  |      Path      | Controller#action  |
-    +--------+----------------+--------------------+
-    | GET    | posts          | posts#index        |
-    | GET    | posts/new      | posts#new          |
-    | GET    | posts/:id      | posts#show         |
-    | POST   | posts          | posts#create       |
-    | GET    | posts/:id/edit | posts#edit         |
-    | PUT    | posts/:id      | posts#update       |
-    | DELETE | posts/:id      | posts#delete       |
-    | ANY    | *catchall      | jets/public#show   |
-    +--------+----------------+--------------------+
-    $
+    +-------------------+--------+--------------------+--------------------+
+    |    As (Prefix)    |  Verb  | Path (URI Pattern) | Controller#action  |
+    +-------------------+--------+--------------------+--------------------+
+    | posts             | GET    | /posts             | posts#index        |
+    | posts             | POST   | /posts             | posts#create       |
+    | new_post          | GET    | /posts/new         | posts#new          |
+    | edit_post         | GET    | /posts/:id/edit    | posts#edit         |
+    | post              | GET    | /posts/:id         | posts#show         |
+    | post              | PUT    | /posts/:id         | posts#update       |
+    | post              | PATCH  | /posts/:id         | posts#update       |
+    | post              | DELETE | /posts/:id         | posts#destroy      |
+    +-------------------+--------+--------------------+--------------------+
+
 
 ## Options
 
 ```
-[--noop], [--no-noop]  
+-c, [--controller=CONTROLLER]  # Filter by a specific controller, e.g. PostsController or Admin::PostsController
+    [--format=FORMAT]          # Output formats: csv, equal, json, markdown, space, tab, table
+                               # Default: table
+-g, [--grep=GREP]              # Grep routes by a specific pattern
+-r, [--reject=REJECT]          # Reject filter routes by a specific pattern
 ```
 

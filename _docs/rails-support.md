@@ -1,5 +1,8 @@
 ---
 title: Rails Support
+category: top-level
+subcategory: rails
+order: 7
 ---
 
 {% include rails-update.md %}

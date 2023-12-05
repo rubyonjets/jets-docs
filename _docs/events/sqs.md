@@ -1,6 +1,7 @@
 ---
 title: SQS Events
 categories: events
+order: 8
 ---
 
 Jets supports [SQS Events](https://aws.amazon.com/blogs/aws/aws-lambda-adds-amazon-simple-queue-service-to-supported-event-sources/) as a Lambda trigger. So you can send a message to an SQS queue and it triggers a Lambda function to run.  The Lambda function has access to the message data via `event`.
@@ -19,12 +20,14 @@ We'll cover each of them:
 
 Here is an example connecting an existing SQS queue to a Lambda function in a [Job]({% link _docs/jobs.md %})
 
+app/jobs/waiter_job.rb
+
 ```ruby
-class HardJob < ApplicationJob
+class WaiterJob < ApplicationJob
   class_timeout 30 # must be less than or equal to the SQS queue default timeout
   sqs_event "hello-queue"
-  def dig
-    puts "dig event #{JSON.dump(event)}"
+  def order
+    puts "order event #{JSON.dump(event)}"
   end
 end
 ```
@@ -67,7 +70,7 @@ Note, SQS Queues managed by Jets are deleted when you delete the Jets applicatio
 
 ## Generated Shared SQS Queue
 
-Jets can also support creating a shared SQS Queue via a [Shared Resource]({% link _docs/shared-resources.md %}). Here's how you create the SQS queue as a shared resource:
+Jets can also support creating a shared SQS Queue via a [Shared Resource]({% link _docs/custom/shared-resources.md %}). Here's how you create the SQS queue as a shared resource:
 
 app/shared/resources/list.rb:
 

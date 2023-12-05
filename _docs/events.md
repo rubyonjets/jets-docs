@@ -1,5 +1,8 @@
 ---
 title: Events
+category: top-level
+subcategory: events
+order: 3
 ---
 
 Jets is also a powerful Glue Serverless Framework.

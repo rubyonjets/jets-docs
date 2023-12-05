@@ -5,11 +5,11 @@ reference: true
 
 ## Usage
 
-    jets delete
+    jets delete [options]
 
 ## Description
 
-Delete the Jets project and all its resources.
+Delete the Jets project and all its resources
 
 This deletes the all the contents in the internal s3 bucket that jets uses and the associated CloudFormation stacks.
 
@@ -34,12 +34,12 @@ You can bypass the are you sure prompt with the `--yes` flag.
 
     $ jets delete --yes
 
+
 ## Options
 
 ```
-y, [--yes], [--no-yes]     # Skip are you sure prompt.
+-y, [--yes], [--no-yes]    # Skip are you sure prompt.
     [--wait], [--no-wait]  # Wait for stack deletion to complete.
                            # Default: true
-    [--noop], [--no-noop]  
 ```
 

@@ -5,11 +5,11 @@ reference: true
 
 ## Usage
 
-    jets console [environment]
+    jets console [options]
 
 ## Description
 
-REPL console with Jets environment loaded.
+REPL console with Jets environment loaded
 
 ## Example
 
@@ -30,9 +30,10 @@ To use the remote values also in the `jets console` you can use the `JETS_ENV_RE
 
 More info at [Env Files](http://rubyonjets.com/docs/env-files/)
 
+
 ## Options
 
 ```
-[--noop], [--no-noop]  
+-e, [--environment=ENVIRONMENT]  # Specifies the environment to run this console under (test/development/production).
 ```
 

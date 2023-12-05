@@ -5,15 +5,15 @@ reference: true
 
 ## Usage
 
-    jets dynamodb:migrate [path]
+    jets dynamodb:migrate
 
 ## Description
 
-Runs migrations.
+Runs migrations
 
 ## Examples
 
-    jets dynamodb:migrate path/to/migration
-    jets dynamodb:migrate db/migrate/posts_migration.rb
+    jets dynamodb:migrate
+
 
 

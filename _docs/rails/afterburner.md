@@ -1,5 +1,8 @@
 ---
 title: Rails Support
+nav_text: Afterburner
+category: rails
+order: 1
 ---
 
 {% include rails-update.md %}

@@ -1,6 +1,7 @@
 ---
 title: CloudWatch Rule Events
 categories: events
+order: 2
 ---
 
 Jets supports [CloudWatch Event Rules](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/Create-CloudWatch-Events-Rule.html). This allows you to have a Lambda function run when there's a change to AWS resources.  Here's an extensive list of supported [Event Types](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/EventTypes.html).
@@ -10,6 +11,8 @@ Jets supports [CloudWatch Event Rules](https://docs.aws.amazon.com/AmazonCloudWa
 ## Example
 
 An example might be getting notified when an unwanted security group port gets opened.
+
+app/jobs/security_job.rb
 
 ```ruby
 class SecurityJob < ApplicationJob

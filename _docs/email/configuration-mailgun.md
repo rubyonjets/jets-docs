@@ -1,5 +1,8 @@
 ---
 title: Email Configuration Mailgun
+nav_text: Configure Mailgun
+category: email
+order: 2
 ---
 
 Here's an example on how to set up email with Mailgun.

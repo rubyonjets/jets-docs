@@ -1,5 +1,7 @@
 ---
 title: Mega Mode
+category: rails
+order: 2
 ---
 
 {% include rails-update.md %}

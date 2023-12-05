@@ -1,8 +1,13 @@
 ---
 title: Authorizers
+category: routing
+subcategory: authorizers
+order: 2
 ---
 
-Jets supports writing [Lambda Authorizers](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html).  You define them in the `app/authorizers` folder. Here's an example:
+**Note**: You may also want to consider more [Jets-based auth solutions]({% link _docs/auth.md %}) instead of APIGW Authorizers.
+
+Jets supports writing [Lambda Authorizers](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html). You define Lambda Authorizers in the `app/authorizers` folder. Here's an example:
 
 app/authorizers/main_authorizer.rb:
 
@@ -14,18 +19,19 @@ class MainAuthorizer < ApplicationAuthorizer
     type: :request, # valid values: token, cognito_user_pools, request. Jets upcases internally.
   )
   def protect
+    puts "event #{JSON.dump(event)}" # Example event payload https://bit.ly/3Nbr2Dp
     # Must conform to Amazon API Gateway Lambda Authorizer Output structure
     # https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-lambda-authorizer-output.html
     resource = event[:methodArn] # IE: arn:aws:execute-api:us-west-2:112233445566:ymy8tbxw7b/*/GET/my/path"
     {
-      "principalId" => "current_user_id", # replace with the current user id
-      "policyDocument" => {
-        "Version" => "2012-10-17",
-        "Statement" => [
+      principalId: "current_user_id", # replace with the current user id
+      policyDocument: {
+        Version: "2012-10-17",
+        Statement: [
           {
-            "Action" => "execute-api:Invoke",
-            "Effect" => "Allow",
-            "Resource" => resource
+            Action: "execute-api:Invoke",
+            Effect: "Allow",
+            Resource: resource
           }
         ]
       }
@@ -171,5 +177,5 @@ end
 
 ## Before Filters
 
-Note: You can also make use of [Before Filters]({% link _docs/extras/action-filters.md %}) to build your own custom authorization system instead of using API Gateway Authorizers.
+Note: You can also make use of [Before Filters]({% link _docs/extras/controller-callbacks.md %}) to build your own custom authorization system instead of using API Gateway Authorizers.
 

@@ -1,1 +1,1 @@
-Update 5/3/2021: Rails experimental support is currently broken. Instead of investing time to fixing this experiment, will consider leveraging container image support which is a better approach.
+Update 10/26/2023: The Rails experimental support has been broken for a while. It has been removed in Jets v5 to prepare for a version of Rails support that will be container based. There is currently no timeline. These docs are only kept around for posterity.

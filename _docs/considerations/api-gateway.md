@@ -1,5 +1,7 @@
 ---
 title: API Gateway Routes
+nav_text: API Gateway
+category: considerations
 ---
 
 Jets translates `config/routes.rb` definitions to API Gateway Resources: [Routing Overview](http://rubyonjets.com/docs/routing/). Essentially, API Gateway is the routing layer of a Jets application.  From the [AWS API Gateway](https://aws.amazon.com/api-gateway/) product page:
@@ -9,6 +11,8 @@ Jets translates `config/routes.rb` definitions to API Gateway Resources: [Routin
 As Jets leverages API Gateway, we should consider and understand the way API Gateway works, its limits, and its benefits.
 
 ## Sibling Variable Limit
+
+**Update 11/15/2023:** Jets v5 defaults to using a single APIGW Method that acts like a proxy. Jets handles routing. This resolves this variable sibling limit since Jets is not creating multiple APIGW Method resources.
 
 API Gateway allows the use of one variable path under a parent path. Here's an example with a variable of `:id` under the parent path `posts/`:
 
@@ -45,7 +49,7 @@ When you try to deploy this, it will fail with an error that looks something lik
     11:30:01PM UPDATE_FAILED AWS::CloudFormation::Stack ApiGateway Embedded stack arn:aws:cloudformation:us-west-2:112233445566:stack/demo-dev-ApiGateway-154WB3G5JW51D/9725de30-19e4-11e9-8459-0688a7bf983a was not successfully updated. Currently in UPDATE_ROLLBACK_IN_PROGRESS with reason: The following resource(s) ...
     $
 
-Going to the [CloudFormation console]({% link _docs/debugging/cloudformation.md %}) and clicking on the `ApiGateway Embedded stack` child stack allows you to see the error details:
+Going to the [CloudFormation console]({% link _docs/debug/cloudformation.md %}) and clicking on the `ApiGateway Embedded stack` child stack allows you to see the error details:
 
 > A sibling ({id}) of this resource already has a variable path part -- only one is allowed
 

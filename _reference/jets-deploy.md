@@ -5,11 +5,11 @@ reference: true
 
 ## Usage
 
-    jets deploy [environment]
+    jets deploy [options]
 
 ## Description
 
-Builds and deploys project to AWS Lambda.
+Builds and deploys project to AWS Lambda
 
 This builds the project and deploys it AWS Lambda. The deployment is mainly handled by CloudFormation.  To check on the status of the deploy you can also check the CloudFormation console.
 
@@ -18,7 +18,7 @@ This builds the project and deploys it AWS Lambda. The deployment is mainly hand
 ## Example
 
     $ jets deploy
-    Deploying to Lambda demo-dev environment...
+    Deploying stack demo-dev ...
     => Compling assets in current project directory
     => Copying current project directory to temporary build area: /tmp/jets/demo/app_root
     => Tidying project: removing ignored files to reduce package size.
@@ -44,9 +44,11 @@ This builds the project and deploys it AWS Lambda. The deployment is mainly hand
     API Gateway Endpoint: https://ewwnealfk0.execute-api.us-west-2.amazonaws.com/dev/
     $
 
+
 ## Options
 
 ```
-[--noop], [--no-noop]  
+-m, [--message=MESSAGE]          # Custom message to use for the deployment message
+-e, [--environment=ENVIRONMENT]  # Specifies the environment to run this deploy under (test/development/production).
 ```
 

@@ -5,11 +5,11 @@ reference: true
 
 ## Usage
 
-    jets runner
+    jets runner [options]
 
 ## Description
 
-Run Ruby code in the context of Jets app non-interactively.
+Run Ruby code in the context of Jets app non-interactively
 
 ## Examples
 
@@ -29,9 +29,32 @@ puts "hello world: #{Jets.env}"
     $ jets runner file://script.rb
     hello world: development
 
+
+Optionally pass in an argument on the command line:
+
+    Usage: jets runner file|Ruby code [args]
+
+The argument will be assigned to the `args` variable.
+
+Example:
+
+    $ jets runner 'puts "hello world with args: #{args}"' 123
+    hello world with args: 123
+
+
+Example with script.rb:
+
+```ruby
+puts "hello world with args: #{args}"
+```
+
+    $ jets runner file://script.rb 123
+    hello world with args: 123
+
+
 ## Options
 
 ```
-[--noop], [--no-noop]  
+-e, [--environment=ENVIRONMENT]  # Specifies the environment to run this runner under (test/development/production).
 ```
 

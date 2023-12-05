@@ -1,6 +1,7 @@
 ---
 title: IoT Events
 categories: events
+order: 4
 ---
 
 Jets supports [IoT Events](https://aws.amazon.com/iot-events/). This allows you to have a Lambda function run when IoT data is received.  You provide a SQL statement to define an [IoT Topic Rule](https://docs.aws.amazon.com/iot/latest/developerguide/iot-rules.html).  You can access the data via `event`.
@@ -15,6 +16,8 @@ Jets supports [IoT Events](https://aws.amazon.com/iot-events/). This allows you 
 
 At a minimum, you need to define the SQL statement to use query the Topic Rule. This is the simplest and recommended form.
 
+app/jobs/thermostat_job.rb
+
 ```ruby
 class ThermostatJob < ApplicationJob
   iot_event "SELECT * FROM 'my/topic'"
@@ -24,9 +27,13 @@ class ThermostatJob < ApplicationJob
 end
 ```
 
-The `iot_event` declaration creates an [AWS::IoT::TopicRule](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-topicrule.html).
+The `iot_event` declaration creates an [AWS::IoT::TopicRule](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-topicrule.html). You can find it in the IoT console under "Message routing/Rules":
 
-![](/img/docs/iot-topic-rule.png)
+![](https://img.boltops.com/tools/jets/events/iot/iot-topic-rules.png)
+
+Here's the rule details page:
+
+![](https://img.boltops.com/tools/jets/events/iot/iot-topic-rule-show-view.png)
 
 ## Complete Form: Control with Different Argument Types
 
@@ -57,9 +64,11 @@ The event payload received is whatever is sent by the device to [MQTT]( https://
 
 ![](/img/docs/mqtt-client.png)
 
-You can also test with the [aws iot-data publish](https://docs.aws.amazon.com/cli/latest/reference/iot-data/publish.html) cli:
+You can also test with the [aws iot-data publish](https://docs.aws.amazon.com/cli/latest/reference/iot-data/publish.html) cli. Note, you have to base64 encode the payload data. Example:
 
-    aws iot-data publish --topic my/topic --payload '{"message": "test"}'
+    aws iot-data publish --topic my/topic --payload $(echo '{"message": "test"}' | base64)
+
+
 
 You should see the data in the Lambda function's CloudWatch logs.
 

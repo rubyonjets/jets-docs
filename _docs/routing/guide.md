@@ -1,5 +1,7 @@
 ---
 title: Routing Guide
+category: routing
+order: 1
 ---
 
 {:.toc}
@@ -17,13 +19,14 @@ title: Routing Guide
 - [5. Nested Resources](#5-nested-resources)
 - [6. Resource Members and Collections](#6-resource-members-and-collections)
 - [7. Namespace](#7-namespace)
-- [8. Prefix](#8-prefix)
+- [8. Path](#8-path)
 - [9. Scope](#9-scope)
   * [9.1 prefix example](#91-prefix-example)
   * [9.2 as example](#92-as-example)
   * [9.3 module example](#93-module-example)
 - [10. Mount Rack Apps](#10-mount-rack-apps)
 - [11. Configuring Host](#11-configuring-host)
+- [12. Root](#12-root)
 
 ## 1. Introduction
 
@@ -103,7 +106,7 @@ Results in:
 Resources supports several options: module, prefix, as, controller.
 
 * module: adds a module name to the controller
-* prefix: adds a prefix to the path
+* path: adds a prefix to the path
 * as: changes the name of the generated helper methods
 * controller: changes controller that it maps to
 
@@ -134,7 +137,7 @@ Results in:
 **prefix example:**
 
 ```ruby
-resources :posts, prefix: "v1"
+resources :posts, path: "v1"
 ```
 
 Results in:
@@ -478,12 +481,12 @@ Namespacing affects:
 
 The `namespace` method uses a more general `scope` method. `namespace` is a `scope` declaration with the `as`, `prefix`, and `module` options set to the `namespace` value.
 
-## 8. Prefix
+## 8. Path Prefix
 
-If you only want to add a prefix to your resources paths, the `prefix` method can be used. Example:
+If you only want to add a path prefix to your resources paths, the `path` method can be used. Example:
 
 ```ruby
-prefix :admin do
+path :admin do
   resources :posts
 end
 ```
@@ -510,10 +513,10 @@ Results in:
 
 Scope is the more general method in the routes DSL. You can use it to set the `as`, `prefix`, and `module`. Some examples to help explain:
 
-### 9.1 prefix example
+### 9.1 path prefix example
 
 ```ruby
-scope prefix: :admin do
+scope path: :admin do
   get "posts", to: "posts#index"
 end
 ```
@@ -574,6 +577,8 @@ Only the controller module is affected.
 
 Jets supports mounting Rack applications. This allows you to run most Rack compatible on serverless with little effort. Example:
 
+config/routes.rb
+
 ```ruby
 Jets.application.routes.draw do
   mount RackApp, at: 'rack'  # app/racks/rack_app
@@ -586,9 +591,30 @@ More info: [Mount Rack Apps docs]({% link _docs/routing/mount.md %})
 
 The named routes `_url` methods, will infer the hostname from the request by default.  If you need to configure it explicitly, then you can with `config.helpers.host`. Example:
 
+config/application.rb
+
 ```ruby
 Jets.application.configure do
   config.helpers.host = "http://example.com:8888" # default is nil, which means it'll be inferred from the request
 end
 ```
 
+## 12. Root
+
+You can specify the root or homepage path with the `root` method.
+
+config/routes.rb
+
+```ruby
+Jets.application.routes.draw do
+  root to: "articles#index"
+end
+```
+
+You can also provide just a string to the `root` method:
+
+```ruby
+Jets.application.routes.draw do
+  root "home#index"
+end
+```

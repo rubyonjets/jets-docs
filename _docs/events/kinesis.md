@@ -1,6 +1,7 @@
 ---
 title: Kinesis Events
 categories: events
+order: 5
 ---
 
 Jets supports [Kinesis Events](https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html) as a Lambda trigger. You can use Lambda to process the data from Kinesis. The Lambda function has access to the stream data via `event` and `kinesis_data`.
@@ -10,6 +11,8 @@ Jets supports [Kinesis Events](https://docs.aws.amazon.com/lambda/latest/dg/with
 ## Example
 
 Here is an example connecting an existing Kinesis stream to a Lambda function in a [Job]({% link _docs/jobs.md %}).
+
+app/jobs/data_job.rb
 
 ```ruby
 class DataJob < ApplicationJob
@@ -46,9 +49,9 @@ You can also check that the Lambda function is connected to Kinesis via the [aws
 
 ## Send Test Data
 
-Here's an example of sending the data:
+Here's an example of sending the data. Note, you have to base64 encode the payload data.
 
-    aws kinesis put-record --stream-name my-stream --partition-key 1 --data "hello world"
+    aws kinesis put-record --stream-name my-stream --partition-key 1 --data $(echo "hello world" | base64)
 
 ## Event Payload
 

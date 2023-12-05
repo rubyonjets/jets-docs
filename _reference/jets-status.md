@@ -9,7 +9,7 @@ reference: true
 
 ## Description
 
-Shows the current status of the Jets app.
+Shows the current status of the Jets app
 
 The CloudFormation stack status info. Essentially the events of the CloudFormation stack since the last update. If the CloudFormation stack is currently updating, this will live tail the events logs.
 
@@ -26,9 +26,5 @@ The CloudFormation stack status info. Essentially the events of the CloudFormati
     05:23:25AM UPDATE_COMPLETE AWS::CloudFormation::Stack demo-dev
     $
 
-## Options
 
-```
-[--noop], [--no-noop]  
-```
 

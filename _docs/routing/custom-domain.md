@@ -1,5 +1,7 @@
 ---
 title: Custom Domain
+category: routing
+order: 4
 ---
 
 Jets can create and associate a route53 custom domain with the API Gateway endpoint.  Jets manages the vanity route53 endpoint that points to the API Gateway endpoint.  It adjusts the endpoint transparently without you having to update your endpoint if Jets determines that a new API Gateway Rest API needs to be created. The route53 record is also updated. Here's a table with some example values to explain:
@@ -68,7 +70,7 @@ Jets does what is necessary to deploy route changes. Sometimes this requires rep
 * A route variable at the same parent path has changed. IE: `get "/posts/:id", to: "/posts/#show"` to `get "/posts/:post_id", to: "/posts/#show"`
 * Routes have moved to different cloudformation stacks or "pages". With large apps that have 100+ routes, Jets must generate multiple stacks in order to stay under the [CloudFormation resource limits](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cloudformation-limits.html). Reordering routes with these large apps can trigger a change.
 
-Important: When a new API Gateway is deployed, the endpoint will change. This is one of the reasons why a Custom Domain is recommended to be set up, so the endpoint url remains the same.  Generally, the route change detection works well. If you need to force the creation of a brand new Rest API, you can use `JETS_REPLACE_API=1 jets deploy`.
+Important: When a new API Gateway is deployed, the endpoint will change. This is one of the reasons why a Custom Domain is recommended to be set up, so the endpoint url remains the same.  Generally, the route change detection works well. If you need to force the creation of a brand new Rest API, you can use `JETS_API_REPLACE=1 jets deploy`.
 
 ## HostedZoneId
 
@@ -119,12 +121,19 @@ This provides you full manual control over the DNS. You can deploy additional [e
 
 ## CloudFront Host
 
-When [CloudFront is configured with API Gateway](https://aws.amazon.com/premiumsupport/knowledge-center/api-gateway-cloudfront-distribution/), the Host header cannot is not passed to API Gateway. So the `request.host` your Jets app sees is the API Gateway Custom Domain. This will cause issues for methods like `redirect_to`.  To set the host you can:
+When [CloudFront is configured with API Gateway](https://aws.amazon.com/premiumsupport/knowledge-center/api-gateway-cloudfront-distribution/), the `Host` header cannot is not passed to API Gateway. So the `request.host` your Jets app sees is the API Gateway Custom Domain. This will cause issues for methods like `redirect_to`.  To set the host you can:
 
 1. Set the `config.app.domain` option.
 2. Configure the CloudFront distribution with a Host Header `origin`.
 
-Configuring either of these will set the host the app with "see".  The `config.app.domain` option takes the highest precedence.
+Configuring either of these will set the host the app with "see".  The `config.app.domain` option takes the highest precedence. Since it takes the highest precedence, the using the AWS generated APIGW endpoint `url_for` and `redirect_to` helpers method not have the APIGW state prefixed.
+
+Related Research:
+
+* [Forwarding CloudFront Host Header to API Gateway](https://stackoverflow.com/questions/39222208/forwarding-cloudfront-host-header-to-api-gateway)
+* [How to make CloudFront forward the Host or X-Forwarded-Host header to API Gateway](https://repost.aws/questions/QUcGTe5JT6QLqtF9zELETJuw/how-to-make-cloudfront-forward-the-host-or-x-forwarded-host-header-to-api-gateway)
+
+The links above explain that APIGW will not accept CloudFront will accept the `Host` header from CloudFront. It mentions a pass a "Host" is with a CloudFront  Lambda@Edge function. It's a bit of effort to set up, so Jets allows you to use `config.app.domain` instead for helpers like `redirect_to` to work as expected.
 
 ## Multiple Custom Domain Base Paths
 

@@ -11,9 +11,4 @@ reference: true
 
 Prints Jets version
 
-## Options
-
-```
-[--noop], [--no-noop]  
-```
 

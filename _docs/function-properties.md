@@ -13,11 +13,10 @@ Jets ultimately translate Ruby code into Lambda functions. Each [Lambda function
 Specific function properties are set right above the method definition like so:
 
 ```ruby
-class PostsController < ApplicationController
+class HardJob < ApplicationJob
   timeout 18 # function specific property for the index lambda function
-  def index
-    posts = Post.scan # should not use scan for production
-    render json: {action: "index", posts: posts}
+  def dig
+    puts "dig"
   end
 end
 ```
@@ -27,16 +26,15 @@ end
 Class-wide function properties set in the same class file and with a prefix of `class_`.
 
 ```ruby
-class PostsController < ApplicationController
+class HardJob < ApplicationJob
   class_timeout 22
   timeout 18 # function specific property for the index lambda function
-  def index
-    posts = Post.scan # should not use scan for production
-    render json: {action: "index", posts: posts}
+  def dig
+    puts "dig"
   end
 
-  def new
-    render json: params.merge(action: "new")
+  def lift
+    puts "lift"
   end
 end
 ```
@@ -63,17 +61,18 @@ Jets.application.configure do
 end
 ```
 
+{% include functions/controllers-vs-jobs.md type="properties" %}
+
 ## Function Properties Method
 
 In the above example, we use the `timeout` and `class_timeout` method to set function properties. These convenience methods delegate to the more general `properties` and `class_properties` methods respectively.  The general methods also allow you to change any property for the lambda function. So you could have done this also:
 
 ```ruby
-class PostsController < ApplicationController
+class HardJob < ApplicationJob
   class_properties(timeout: 22)
   properties(timeout: 18) # function specific property for the index lambda function
-  def index
-    posts = Post.scan # should not use scan for production
-    render json: {action: "index", posts: posts}
+  def dig
+    puts "dig"
   end
 end
 ```

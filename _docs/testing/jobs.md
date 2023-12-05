@@ -1,5 +1,8 @@
 ---
 title: Job Spec
+nav_text: Job
+category: testing
+order: 2
 ---
 
 Let's say you have a HardJob class:

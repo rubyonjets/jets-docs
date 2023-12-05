@@ -5,11 +5,11 @@ reference: true
 
 ## Usage
 
-    jets server
+    jets server [options]
 
 ## Description
 
-Runs a local server that mimics API Gateway for development.
+Runs a local server that mimics API Gateway for development
 
 The local server for mimics API Gateway and provides a way to test your app locally without deploying to AWS.
 
@@ -27,13 +27,21 @@ Start up server binding to host `0.0.0.0`:
 
     jets server --host 0.0.0.0
 
+
 ## Options
 
 ```
-[--port=PORT]          # use PORT
-                       # Default: 8888
-[--host=HOST]          # listen on HOST
-                       # Default: 127.0.0.1
-[--noop], [--no-noop]  
+-e, [--environment=ENVIRONMENT]              # Specifies the environment to run this server under (test/development/production).
+-p, [--port=port]                            # Runs Jets on the specified port - defaults to 8888.
+-b, [--binding=IP]                           # Binds Jets to the specified IP - defaults to 'localhost' in development and '0.0.0.0' in other environments'.
+-c, [--config=file]                          # Uses a custom rackup configuration.
+                                             # Default: config.ru
+-d, [--daemon], [--no-daemon]                # Runs server as a Daemon.
+                                             # Default: false
+-u, [--using=name]                           # Specifies the Rack server used to run the application (thin/puma/webrick).
+-P, [--pid=PID]                              # Specifies the PID file - defaults to tmp/pids/server.pid.
+-C, [--dev-caching], [--no-dev-caching]      # Specifies whether to perform caching in development.
+    [--early-hints], [--no-early-hints]      # Enables HTTP/2 early hints.
+    [--log-to-stdout], [--no-log-to-stdout]  # Whether to log to stdout. Enabled by default in development when not daemonized.
 ```
 
