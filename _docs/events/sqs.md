@@ -72,7 +72,7 @@ Note, SQS Queues managed by Jets are deleted when you delete the Jets applicatio
 
 Jets can also support creating a shared SQS Queue via a [Shared Resource]({% link _docs/custom/shared-resources.md %}). Here's how you create the SQS queue as a shared resource:
 
-app/shared/resources/list.rb:
+app/shared/resources/list.rb
 
 ```ruby
 class List < Jets::Stack
@@ -82,7 +82,7 @@ end
 
 You can reference the Shared Queue like so:
 
-app/jobs/hard_job.rb:
+app/jobs/hard_job.rb
 
 ```ruby
 class HardJob < ApplicationJob
@@ -103,7 +103,7 @@ Underneath the hood, Jets provisions resources via CloudFormation.  The use of `
 
 You can access the SQS url with the `lookup` method. The method is available to `Jets::Stack` subclasses like the `List` class here. Here's an example:
 
-app/jobs/postman_job.rb:
+app/jobs/postman_job.rb
 
 ```ruby
 class PostmanJob < ApplicationJob

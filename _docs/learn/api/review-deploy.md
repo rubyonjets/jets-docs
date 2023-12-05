@@ -5,7 +5,9 @@ category: learn-api
 order: 8
 ---
 
-Let's review what been deployed.
+{% include videos/learn/getting-started/api.md %}
+
+Let's review what has been deployed.
 
 ## CloudFormation Console
 
@@ -13,15 +15,15 @@ Jets leverages CloudFormation for deployment, so check the CloudFormation consol
 
 ![](https://img.boltops.com/tools/jets/learn/api/review-deploy-cloudformation-console.png)
 
-Jets creates a main parent `demo-dev` stack that in turn creates a few nested CloudFormation stacks. This solves the [CloudFormation quotas and limits](AWS CloudFormation quotas).  Here's a summary:
+Jets creates a main parent `demo-dev` stack that, in turn, creates a few nested CloudFormation stacks. This solves the [CloudFormation quotas and limits](AWS CloudFormation quotas). Here's a summary:
 
 * There are few stacks that manage the API Gateway resources. They start with `demo-dev-Api*`
-* There a stack that manages a PreheatJob, it starts with `demo-dev-JetsPreheatJob-*`
+* There is a stack that manages a PreheatJob, it starts with `demo-dev-JetsPreheatJob-*`
 * There is a stack that manages the controller, it starts with `demo-dev-JetsController-*`.
 
 ## API Gateway REST API
 
-If you look at CloudFormation stack `demo-dev-ApiGateway-*` Resources tab, you'll see the Rest API.
+If you look at the CloudFormation stack `demo-dev-ApiGateway-*` Resources tab, you'll see the Rest API.
 
 ![](https://img.boltops.com/tools/jets/learn/api/review-deploy-cloudformation-apigw.png)
 
@@ -39,7 +41,7 @@ Clicking on the Physical ID link takes you to the Lambda console. You can see th
 
 ![](https://img.boltops.com/tools/jets/learn/api/review-deploy-lambda-handler.png)
 
-The Lambda function handler is generated as part of `jets deploy`. The handler is the "point of entry" for Lambda and provides interface that Lambda expects.The code routes the request to the desired controller action.
+The Lambda function handler is generated as part of `jets deploy`. The handler is the "point of entry" for Lambda and provides the interface that Lambda expects. The code routes the request to the desired controller action.
 
 The `Jets.process` ultimately calls the `PostsController` action methods. You can open `app/controllers/posts_controller.rb` and see the code we created earlier.
 
@@ -49,7 +51,7 @@ Note: Jets v5 creates one APIGW Method and Lambda function for all controller ac
 
 ## Test Lambda Function
 
-Let's test Lambda function manually with the Lambda Console built-in Test functionality. For the event, you need a payload that mimics what the APIGW service would send to the Lambda function. Here's an minimal example:
+Let's test the Lambda function manually with the Lambda Console built-in Test functionality. For the event, you need a payload that mimics what the APIGW service would send to the Lambda function. Here's a minimal example:
 
 ```json
 {
@@ -65,7 +67,7 @@ After you click **Test**, you'll see a "Executing function: succeeded" message w
 
 ![](https://img.boltops.com/tools/jets/learn/api/review-deploy-test-lambda-manual.png)
 
-Clicking on the **logs** link takes you to the CloudWatch Logs Console. It shows all the Log Streams for the Log Group for the Lambda Function. Clicking **Search Log Group** is then filtering by 1m or 30m is an easy to to see the logs.
+Clicking on the **logs** link takes you to the CloudWatch Logs Console. It shows all the Log Streams for the Log Group for the Lambda Function. Clicking **Search Log Group** and filtering by 1m or 30m is an easy way to see the logs.
 
 ![](https://img.boltops.com/tools/jets/learn/api/review-deploy-lambda-test-logs.png)
 
@@ -75,12 +77,12 @@ Testing with the Lambda console is a bit of a pain because we need to figure out
 
 It's more traditional to test with curl. We'll go through a few examples.
 
-To get the APIGW endpoint you can use the `jets url` command.
+To get the APIGW endpoint, you can use the `jets url` command.
 
     ❯ jets url
     API Gateway Endpoint: https://2bmdurd1ra.execute-api.us-west-2.amazonaws.com/dev
 
-Grab that value store it in a variable
+Grab that value and store it in a variable
 
     ❯ export URL=https://2bmdurd1ra.execute-api.us-west-2.amazonaws.com/dev
 
@@ -104,11 +106,11 @@ We can now curl like so:
       }
     ]
 
-Note, the timestamps have been filtered out for conciseness.
+Note, the timestamps have been removed from the shown output for conciseness.
 
 ## Curl Commands Cheatsheet
 
-We can use the similar commands we use earlier with [Local Testing]({% link _docs/learn/api/local-testing.md %}#testing-with-curl). Here's an example data.json we can use:
+We can use the similar commands we used earlier with [Local Testing]({% link _docs/learn/api/local-testing.md %}#testing-with-curl). Here's an example data.json we can use:
 
 data.json
 
@@ -124,9 +126,9 @@ data.json
 
 Here's a cheatsheet of curl commands.
 
-    curl $URL/posts                           # posts#index
-    curl -X POST --data @data.json $URL/posts # posts#create
-    curl -X PUT --data @data.json $URL/posts  # posts#update
-    curl -X DELETE $URL/posts/3               # posts#destroy
+    curl $URL/posts                             # posts#index
+    curl -X POST --data @data.json $URL/posts   # posts#create
+    curl -X PUT --data @data.json $URL/posts/3  # posts#update
+    curl -X DELETE $URL/posts/3                 # posts#destroy
 
-Next, we'll make some updates to and do more testing.
+Next, we'll make some updates and do more testing.

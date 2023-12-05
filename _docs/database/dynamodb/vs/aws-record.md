@@ -18,7 +18,8 @@ class MyModel
   string_attr  :name, range_key: true
   boolean_attr :active, database_attribute_name: 'is_active_flag'
 end
-``
+```
+
 Dynomite:
 
 ```ruby
@@ -97,7 +98,7 @@ end
 post.save
 ```
 
-Believe Aws::Record saving notation seems is more lightweight. Validations were removed in [#17](https://github.com/aws/aws-sdk-ruby-record/pull/17) to reduce the scope of the library. So you do not get [Callbacks]({% link _docs/database/dynamodb/model/callbacks.md %}) and [Validations]({% link _docs/database/dynamodb/model/validations.md %}).
+The Aws::Record saving notation is more lightweight. Validations were removed in [#17](https://github.com/aws/aws-sdk-ruby-record/pull/17) to reduce the scope of the library. So you do not get [Callbacks]({% link _docs/database/dynamodb/model/callbacks.md %}) and [Validations]({% link _docs/database/dynamodb/model/validations.md %}).
 
 ## Batch Operations
 

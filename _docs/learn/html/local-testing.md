@@ -5,6 +5,8 @@ category: learn-html
 order: 5
 ---
 
+{% include videos/learn/getting-started/html.md %}
+
 {% include learn/seed.md %}
 
 ## Testing Index Listing
@@ -47,13 +49,13 @@ On the jets server side
 
 ### Test Delete
 
-Last, let's delete the post
+Last, let's delete the post.
 
 ![](https://img.boltops.com/tools/jets/learn/html/local-testing-posts-destroy.png)
 
 On the jets server side
 
-    Started DELETE "/posts/4" for 127.0.0.1 at 2023-10-28 14:44:20 +0000
+    Started DELETE "/posts/3" for 127.0.0.1 at 2023-10-28 14:44:20 +0000
     Processing PostsController#destroy
       Parameters: {"id":"3"}
     Completed Status Code 200 in 0.015s

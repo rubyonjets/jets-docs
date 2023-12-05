@@ -1,16 +1,19 @@
 ---
 title: Upgrading Guide
 category: extras
+subcategory: extras-upgrading
 order: 19
 ---
+
+{% include videos/upgrade/tool.md %}
 
 Upgrading Jets to some releases might require some extra changes. For example, the Jets project structure can change. Or some version require a manual blue-green deployment. This page provides a summary of the releases requiring some upgrade work.
 
 ## Upgrade Command
 
-**Important**: The `jets upgrade` command was removed out Jets is a huge release and covered in this blog post: [](standalone [jets-upgrade go](https://github.com/rubyonjets/jets-upgrade) )command.
+**Important**: The `jets upgrade` tool was removed out of Jets 5, and move to the [jets-upgrade go](https://github.com/rubyonjets/jets-upgrade) tool. Jets 5 is a huge release and covered in this blog post: [Ruby on Jets 5.0 Release: Improvements Galore](https://blog.boltops.com/2023/12/05/jets-5-improvements-galore/).
 
-A `jets-upgrade go` command is provided to help with upgrades. The command is designed to be idempotent. This means it is safe to run repeatedly and will only upgrade the files and structure if needed. Before running the command, it is recommended to back up your project first, just in case. This usually can be done by committing any unsaved changes to git.
+A `jets-upgrade go` command helps with upgrades. The command is designed to be idempotent. This means it is safe to run repeatedly and will only upgrade the files and structure if needed. Before running the command, it is recommended to back up your project first, just in case. This usually can be done by committing any unsaved changes to git.
 
 ## Upgrading Releases
 
@@ -18,8 +21,8 @@ The following table summarizes the releases and upgrade paths.
 
 Version | Notes | Blue-Green? | Run jets-upgrade?
 --- | --- | --- | ---
-5.0.0 | Major Jets Architecture changes. Running `jets-upgrade go` attempts to update your jets 4 to jets 5. It should get you 80% of the way there on simple projects. On more complex projects, there will definitely be more manual effort. | Depends | Yes
-4.0.0 | Ruby 3.2 Support was added in this release. Upgrading notes only applies to if you're switching to the Ruby 3.2 Runtime. And most of it will be making sure your app can run on Ruby 3.2. The reason a blue-green deploy might be required is because of [PreheatJob: fix function lookups and iam function permission #645](https://github.com/boltops-tools/jets/pull/645). If you're using the [iam_polices]({% link _docs/iam-policies.md %}), it'll require a blue-green deployment. | Depends | No
+5.0.0 | Major Jets Architecture changes. Running `jets-upgrade go` attempts to update your project from jets 4 to jets 5. It should get you 80% of the way there on simple projects. On more complex projects, there will definitely be more manual effort. Also see [Jets 5 Upgrading Notes]({% link _docs/extras/upgrading/jets-5.md %}) | Depends | Yes
+4.0.0 | Ruby 3.2 Support was added in this release. Upgrading notes only applies to if you're switching to the Ruby 3.2 Runtime. And most of it will be making sure your app can run on Ruby 3.2. The reason a blue-green deploy might be required is because of [PreheatJob: fix function lookups and iam function permission #645](https://github.com/rubyonjets/jets/pull/645). If you're using the [iam_polices]({% link _docs/iam-policies.md %}), it'll require a blue-green deployment. | Depends | No
 3.0.14 | Using @rubyonjets/ujs-compat. Will need to make some manual changes. See details below. Manually changes are not needed for newly generated projects. | No | No
 3.0.12 | Using @rails/ujs. Will need to make some manual changes. See details below. Manually changes are not needed for newly generated projects. | No | No
 3.0.0 | Added Ruby 2.7 support. Use Serverless Gems for binary gems. | No | No
@@ -39,11 +42,13 @@ The following section provides a little more detail on each version upgrade. Not
 
 ### 5.0.0
 
-Jets 5 is a huge release and is covered in this blog post: [Jets 5: Improvements Galore](https://blog.boltops.com/2023/12/05/jets-5-improvements-galore/)
+Jets 5 is a huge release and is covered in this blog post: [Ruby on Jets 5.0 Release: Improvements Galore](https://blog.boltops.com/2023/12/05/jets-5-improvements-galore/)
 
 Surprisingly, despite so many changes, a blue-green deployment is not required. This is because the lambda functions collapse into a single one without AWS resource conflicts. Also, the APIGW Resource Methods collapsing down would typically cause an AWS resource conflict, but Jets 5 Route Change detection is smart enough to detect this and provision a new APIGW REST API automatically. If, for some reason, this change detection does not work, you can also for a new APIGW to be created with `JETS_API_REPLACE=1` jets deploy. However, I have found that it's unnecessary. The docs note that a blue-green deployment is "Depends" just in case there is some scenario we haven't tested for.
 
 For the Jets 5 upgrade, you should use the new [jets-upgrade](https://github.com/rubyonjets/jets-upgrade) tool. It should get you pretty far.
+
+Also see [Jets 5 Upgrading Notes]({% link _docs/extras/upgrading/jets-5.md %})
 
 ### 3.0.14
 

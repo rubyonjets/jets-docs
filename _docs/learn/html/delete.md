@@ -5,7 +5,9 @@ category: learn-html
 order: 10
 ---
 
-Now that we've seen how to deploy a Jets project, let's clean up and delete the resources. To delete everything, run:
+{% include videos/learn/getting-started/html.md %}
+
+Now that we've seen how to deploy a Jets project let's clean up and delete the resources. To delete everything, run:
 
     jets delete
 
@@ -47,4 +49,4 @@ Type `y` and hit enter.
     Deleting CloudWatch logs
     Project demo-dev deleted!
 
-{% include learn/how-jets-deletes.md %}
+{% include learn/how-jets-deletes.md type="HTML" %}

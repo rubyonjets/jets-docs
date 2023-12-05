@@ -17,7 +17,7 @@ The Jets Examples uses the [Cody](https://cody.run/) tool to simplify creating a
 
 The [Jets Example](https://cody.run/docs/examples/jets/) shows how to set up 1 simple CodeBuild project that will run specs and then deploy the Jets application.
 
-There's also an additional example in the [separate-unit-and-deploy](https://github.com/boltops-tools/jets-codebuild/tree/separate-unit-and-deploy) branch in the GitHub repo that shows how to create 2 separate CodeBuild projects for unit tests and deployment. Some advantages:
+There's also an additional example in the [separate-unit-and-deploy](https://github.com/rubyonjets/jets-codebuild/tree/separate-unit-and-deploy) branch in the GitHub repo that shows how to create 2 separate CodeBuild projects for unit tests and deployment. Some advantages:
 
 * The projects are decoupled and you can run them separately.
 * Only the deploy project requires IAM access to create the AWS resources.

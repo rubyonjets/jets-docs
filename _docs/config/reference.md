@@ -38,7 +38,7 @@ function.ephemeral_storage.size | 512 | Lambda function default size of the /tmp
 function.memory_size | 1536 | Lambda function default memory size
 function.timeout | 30 | Lambda function default timeout
 pro.clean | false | Whether or not to always rebuild binary gems in the cache folder.
-pro.disable | false | Disable use of [Jets Pro]({% link _docs/pro.md %}) service. Disable access to pre-compiled binary gems. Note, this means you must build a custom lambda layer yourself. Also, disables the recording of deployments to Jet Pro dashboard.
+pro.disable | false | Disable use of [Jets Pro]({% link _docs/pro.md %}) service. Disable access to precompiled gems. Note, this means you must build a custom lambda layer yourself. Also, disables the recording of deployments to Jet Pro dashboard.
 helpers.host | nil | Override the host value use in the view helpers. IE: https://myurl.com:8888
 hot_reload | Defaults to true in development and false in other envs | Whether or not to hot reload
 ignore_paths | [] | Customize ignore paths. These paths will be ignored by the autoloader.
@@ -58,4 +58,4 @@ session.options | {} | Session storage options
 session.store | Rack::Session::Cookie | Session storage.  Note when accessing it use `session[:store]`` since ``.store` is an OrderedOptions method.
 time_zone | UTC | Time zone
 
-Here's also the [application/defaults.rb](https://github.com/boltops-tools/jets/blob/master/lib/jets/application/defaults.rb) source where these config options are defined.
+Here's also the [application/defaults.rb](https://github.com/rubyonjets/jets/blob/master/lib/jets/application/defaults.rb) source where these config options are defined.

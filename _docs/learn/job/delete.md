@@ -5,6 +5,8 @@ category: learn-job
 order: 10
 ---
 
+{% include videos/learn/getting-started/job.md %}
+
 Now that we've seen how to deploy a Jets project, let's clean up and delete the resources. To delete everything, run:
 
     jets delete
@@ -38,4 +40,4 @@ Type `y` and hit enter.
     Deleting CloudWatch logs
     Project demo-dev deleted!
 
-{% include learn/how-jets-deletes.md %}
+{% include learn/how-jets-deletes.md type="Job" %}

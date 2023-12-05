@@ -5,6 +5,11 @@ category: kingsman-howtos
 order: 10
 ---
 
+{% include videos/learn.md
+     url="ruby-on-jets-guide/lessons/kingsman-omniauth-github-with-ruby-on-jets"
+     img="https://learn-uploads.boltops.com/b1tczu3z9ary34dk4jv0csiwa5cb"
+     premium=true %}
+
 These docs show provide a cheatsheet with set up steps for OmniAuth with Kingsman and Jets.
 
 ## GitHub OAuth App
@@ -83,6 +88,7 @@ class User < ApplicationRecord
       user.password = Kingsman.friendly_token[0, 20]
     end
   end
+end
 ```
 
 ## Routes

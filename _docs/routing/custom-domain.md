@@ -4,12 +4,17 @@ category: routing
 order: 4
 ---
 
+{% include videos/learn.md
+     url="ruby-on-jets-guide/lessons/ruby-on-jets-custom-domains-api-gateway"
+     img="https://learn-uploads.boltops.com/y0psl5sam9t1nxqeeohuz02xhlwr"
+     premium=true %}
+
 Jets can create and associate a route53 custom domain with the API Gateway endpoint.  Jets manages the vanity route53 endpoint that points to the API Gateway endpoint.  It adjusts the endpoint transparently without you having to update your endpoint if Jets determines that a new API Gateway Rest API needs to be created. The route53 record is also updated. Here's a table with some example values to explain:
 
 Vanity Endpoint | API Gateway Endpoint | Jets Env Extra
 --- | --- | ---
-dev-demo.coolapp.com | a02oy4fs56.execute-api.us-west-2.amazonaws.com | (not set)
-dev-demo-2.coolapp.com | xyzoabc123.execute-api.us-west-2.amazonaws.com | 2
+demo-dev.coolapp.com | a02oy4fs56.execute-api.us-west-2.amazonaws.com | (not set)
+demo-dev-2.coolapp.com | xyzoabc123.execute-api.us-west-2.amazonaws.com | 2
 
 Here's a diagram also:
 

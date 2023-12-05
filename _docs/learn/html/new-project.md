@@ -5,16 +5,15 @@ category: learn-html
 order: 3
 ---
 
+{% include videos/learn/getting-started/html.md %}
+
 We'll use [jets new]({% link _reference/jets-new.md %}) to generate a new Jets project.
 
     jets new demo --mode html
 
-We're using the `--mode html` option to generate a Jets project designed for HTML apps. Note, the default mode is html so it's optionalin this case.
+We're using the `--mode html` option to generate a Jets project designed for HTML apps. Note that the default mode is HTML, so it's optional in this case.
 
     ❯ jets new demo
-          create
-          exist
-          create  .env.development
           create  .env
           create  .gitignore
           create  .rspec
@@ -50,7 +49,7 @@ We're using the `--mode html` option to generate a Jets project designed for HTM
           create  spec/fixtures/payloads/posts-show.json
           create  spec/spec_helper.rb
 
-The project structure is completely built for HTML mode. For more information about the folders see [Project Structure]({% link _docs/structure.md %}).
+For more information about the folders and files, see [Project Structure]({% link _docs/structure.md %}).
 
 ## Application Config
 
@@ -70,7 +69,7 @@ end
 
 The project_name will be used when we deploy this project. The project that is deployed will have the environment added, IE: `demo-dev`.
 
-You can override settings for each enviroment with the files in `config/environments`. Example:
+You can override settings for each environment with the files in `config/environments`. Example:
 
 config/environments/development.rb
 

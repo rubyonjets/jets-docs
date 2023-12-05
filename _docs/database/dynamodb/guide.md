@@ -5,6 +5,11 @@ category: dynamodb
 order: 1
 ---
 
+{% include videos/learn.md
+     url="ruby-on-jets-guide/lessons/dynomite-dynamodb-orm"
+     img="https://learn-uploads.boltops.com/ccdfxhk1w3m3bqk1muyk8ti631ue"
+     premium=false %}
+
 This learn guide shows you how to get started with Dynomite and Dynamodb.
 
 **Important**: Dynomite v2 requires Jets v5 and above.
@@ -41,7 +46,7 @@ If you do not yet have an `ApplicationItem` base model, you can generate one.
 
 Now update the `Post` class so it's an `ApplicationItem` instead of an `ApplicationRecord`.
 
-app/models/posts.rb
+app/models/post.rb
 
 ```ruby
 class Post < ApplicationItem

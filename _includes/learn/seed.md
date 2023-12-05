@@ -1,3 +1,9 @@
+## DB Migration
+
+Let's run the create the database and run the migration.
+
+    jets db:create db:migrate
+
 ## Seeding Data
 
 Let's create some seed data to help with first. Create this file:
@@ -24,7 +30,7 @@ Run `jets runner` to confirm that the records were created.
 
 ## Start Server
 
-You can test the API locally with `jets server`.
+You can test locally with `jets server`.
 
 Example:
 

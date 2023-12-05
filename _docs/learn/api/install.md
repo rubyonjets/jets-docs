@@ -5,4 +5,6 @@ category: learn-api
 order: 1
 ---
 
+{% include videos/learn/getting-started/api.md %}
+
 {% include learn/install.md mode="API" %}

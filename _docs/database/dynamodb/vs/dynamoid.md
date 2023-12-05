@@ -34,8 +34,6 @@ Both are [ActiveModel compatible]({% link _docs/database/dynamodb/model/activemo
 
 One difference is that Dynamoid is included as a module `Dynamoid::Document` whereas Dynomite classes inherit from `ApplicationItem`, which inherits from `Dynomite::Item`. This allows you to add common methods to the base abstract `ApplicationItem` class.
 
-Also, though now shown here,
-
 ## Querying
 
 Here's a cheatsheet to help compare the 2 ORMs querying abilities.
@@ -59,7 +57,7 @@ Address.scan_limit(5).start(address)
 Address.batch(100).each { |addr| addr.do_some_work && sleep(0.01) }
 Address.record_limit(10_000).batch(100).each { |addr| addr.do_some_work && sleep(0.01) } # Batch specified as part of a chain
 
-Address.find(address.id, consistent_read: true)  # Find an address, ensure the read is consistent.
+Address.find(address.id, consistent_read: true)  # Find an address and ensure the read is consistent.
 Address.where(city: 'Chicago').consistent.all    # Find all addresses where the city is Chicago, with a consistent read.
 
 User.where("created_at.gt": DateTime.now - 1.day).all
@@ -76,7 +74,7 @@ Product.find(category: "Electronics", sku: 101)
 Product.find_by(category: "Electronics", sku: 101)
 Product.find_by(category: "Electronics", sku: 101, name: "Smartphone", price: 500, stock_quantity: 50)
 
-# no need for a batch command since where returns a Lazy Enumberator
+# no need for a batch command since it returns a Lazy Enumerator
 Product.all.each { |product| do_some_work_with(product) }
 Product.each_page { |page| page.each |product| do_some_work_with(product) } }
 
@@ -96,7 +94,7 @@ Product.where(category: "Electronics").and.where.not("price.lt": 1000)
 Product.where(name: "Smartphone").or(name: "Laptop")
 ```
 
-Both libraries have several ways to query. The comparison syntax is similar. A key difference is that Dynomite uses `key_condition_expression`, and Dynamoid uses the now legacy `key_conditions`. A few additional querying expressions like `or` is supported by Dynomite.
+Both libraries have several ways to query. The comparison syntax is similar. A key difference is that Dynomite uses `key_condition_expression`, and Dynamoid uses the AWS legacy `key_conditions`. A few additional querying expressions like `or` is supported by Dynomite.
 
 Learn more: [Dynomite Querying Expressions]({% link _docs/database/dynamodb/querying/expressions.md %}).
 
@@ -144,11 +142,11 @@ If you start up a console and run a command that writes, the table is created ri
 
 The LSI, GSI, and capacity settings, like `read_capacity`, are created as part of that.
 
-The other way you can create the tables is with a rake task. Note, Rails automatically has this task via Rails Engines. With Jets, you need to load in your `Rakefile` with `load "dynamoid/tasks/database.rake"`
+The other way you can create the tables is with a rake task. Note that Rails automatically has this task via Rails Engines. With Jets, you need to load in your `Rakefile` with `load "dynamoid/tasks/database.rake"`
 
     rake dynamoid:create_tables
 
-The rake tasks loop through all the defined model classes to figure out which tables to create. Tables are created with table settings like GSIs initially but not synced afterward. Afterward, you can create the indexes with the API or console: [443](https://github.com/Dynamoid/dynamoid/issues/443), [263](https://github.com/Dynamoid/dynamoid/issues/263). You add an index and adjust your model code to match the index. If you follow the conventional naming of the index, it helps Dynamoid to use the index. Something like this:
+The rake tasks loop through all the defined model classes to determine which tables to create. Tables are created with table settings like GSIs initially but not synced afterward. Afterward, you can create the indexes with the API or console: [443](https://github.com/Dynamoid/dynamoid/issues/443), [263](https://github.com/Dynamoid/dynamoid/issues/263). You add an index and adjust your model code to match the index. If you follow the conventional naming of the index, it helps Dynamoid to use the index. Something like this:
 
 Dynamoid:
 
@@ -163,7 +161,7 @@ class User
 end
 ```
 
-Like Dynamoid, with Dynomite, you can modify table settings with the DynamoDB AWS console. Dynomite auto-discovers the table index information and uses the indexes available without any need to declare it the model at all, though.
+Like Dynamoid, with Dynomite, you can modify table settings with the DynamoDB AWS console. Dynomite auto-discovers the table index information and uses the indexes available without any need to declare it the model at all.
 
 You can also create migration files to create GSIs. Example:
 

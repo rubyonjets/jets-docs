@@ -5,6 +5,8 @@ category: learn-html
 order: 7
 ---
 
+{% include videos/learn/getting-started/html.md %}
+
 {% include learn/db-prereq.md %}
 
 ## Deploy

@@ -8,18 +8,18 @@ order: 22
 
 [Jets Pro](https://www.rubyonjets.com) is an paid service that provides additional features to Jets. It provides you with:
 
-* **Dashboard**: Provides an overview of deployed apps with a web browser.
+* **Dashboard**: An overview of deployed apps with a web browser.
 * **Release History**: See and audit your release history.
 * **Rollback Ability**: Rollback code when you need to.
 * **Gems**: Access to precompiled gems for AWS Lambda
 
 ## Dashboard
 
-Jets Pro also provides a dashboard that shows deployment history. It allows you to see clearly whenever your app is deployed. You can also manage your Jets Pro account and plan with it.
+Jets Pro provides a dashboard that shows release history. It allows you to see clearly whenever your app is deployed. You can also manage your Jets Pro account and plan with it.
 
 ## Release History
 
-You can also see your app history with the CLI.
+You can see your app history with the CLI.
 
     ❯ jets releases
     +---------+-----------------+--------------+---------------+

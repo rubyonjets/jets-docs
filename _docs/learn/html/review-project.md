@@ -5,6 +5,8 @@ category: learn-html
 order: 4
 ---
 
+{% include videos/learn/getting-started/html.md %}
+
 Let's explore the project code and write some app code.
 
 ## ApplicationController
@@ -18,11 +20,11 @@ class ApplicationController < Jets::Controller::Base
 end
 ```
 
-In general, all of your controllers will inherit from this `ApplicationController`.
+Generally, your controllers will inherit from `ApplicationController`.
 
 ## Create Posts Scaffold
 
-Let's create some code for posts resources. We'll generate some starter code again.
+Let's create some code so we can create posts. We'll generate it.
 
     ❯ jets generate scaffold post title:string body:text published:boolean
           invoke  active_record
@@ -74,6 +76,6 @@ class PostsController < ApplicationController
 end
 ```
 
-It's a controller with the basic CRUD methods. Jets will create one lambda function to handle requests for any of the controller methods.
+It's a controller with the basic CRUD actions. Jets will create one Lambda function to handle all controller requests.
 
 Next, we'll test the app locally.

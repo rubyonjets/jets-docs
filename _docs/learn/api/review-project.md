@@ -5,6 +5,8 @@ category: learn-api
 order: 4
 ---
 
+{% include videos/learn/getting-started/api.md %}
+
 Let's explore the project code and write some app code.
 
 ## ApplicationController
@@ -18,9 +20,9 @@ class ApplicationController < Jets::Controller::Base
 end
 ```
 
-In general, all of your controllers will inherit from this `ApplicationController`.
+Generally, your controllers will inherit from `ApplicationController`.
 
-## Create a API
+## Create an API
 
 Let's create some code for an API. We'll generate some starter code again.
 
@@ -34,7 +36,7 @@ Let's create some code for an API. We'll generate some starter code again.
           create    app/controllers/posts_controller.rb
           invoke    resource_route
 
-The generate code looks something like this:
+The generated code looks something like this:
 
 app/controllers/posts_controller.rb
 
@@ -93,6 +95,6 @@ class PostsController < ApplicationController
 end
 ```
 
-It's a controller with the basic CRUD methods. Jets will create one lambda function to handle requests for any of the controller methods.
+It's a controller with the basic CRUD methods. Jets will create one lambda function to handle all controller requests.
 
 Next, we'll test the API locally.

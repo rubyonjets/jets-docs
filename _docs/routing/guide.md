@@ -25,8 +25,7 @@ order: 1
   * [9.2 as example](#92-as-example)
   * [9.3 module example](#93-module-example)
 - [10. Mount Rack Apps](#10-mount-rack-apps)
-- [11. Configuring Host](#11-configuring-host)
-- [12. Root](#12-root)
+- [11. Root](#11-root)
 
 ## 1. Introduction
 
@@ -44,23 +43,20 @@ config/routes.rb:
 resources :posts
 ````
 
-Generates:
+Results in:
 
-```
-+-----------+--------+----------------+-------------------+
-|    As     |  Verb  |      Path      | Controller#action |
-+-----------+--------+----------------+-------------------+
-| posts     | GET    | posts          | posts#index       |
-| new_post  | GET    | posts/new      | posts#new         |
-| post      | GET    | posts/:id      | posts#show        |
-|           | POST   | posts          | posts#create      |
-| edit_post | GET    | posts/:id/edit | posts#edit        |
-|           | PUT    | posts/:id      | posts#update      |
-|           | POST   | posts/:id      | posts#update      |
-|           | PATCH  | posts/:id      | posts#update      |
-|           | DELETE | posts/:id      | posts#delete      |
-+-----------+--------+----------------+-------------------+
-```
+    +-------------+--------+--------------------+-------------------+
+    | As (Prefix) |  Verb  | Path (URI Pattern) | Controller#action |
+    +-------------+--------+--------------------+-------------------+
+    | posts       | GET    | /posts             | posts#index       |
+    | posts       | POST   | /posts             | posts#create      |
+    | new_post    | GET    | /posts/new         | posts#new         |
+    | edit_post   | GET    | /posts/:id/edit    | posts#edit        |
+    | post        | GET    | /posts/:id         | posts#show        |
+    | post        | PUT    | /posts/:id         | posts#update      |
+    | post        | PATCH  | /posts/:id         | posts#update      |
+    | post        | DELETE | /posts/:id         | posts#destroy     |
+    +-------------+--------+--------------------+-------------------+
 
 ### 2.1 only and except options
 
@@ -74,14 +70,12 @@ resources :posts, only: %w[index show]
 
 Results in:
 
-```
-+-------+------+-----------+-------------------+
-|  As   | Verb |   Path    | Controller#action |
-+-------+------+-----------+-------------------+
-| posts | GET  | posts     | posts#index       |
-| post  | GET  | posts/:id | posts#show        |
-+-------+------+-----------+-------------------+
-```
+    +-------------+------+--------------------+-------------------+
+    | As (Prefix) | Verb | Path (URI Pattern) | Controller#action |
+    +-------------+------+--------------------+-------------------+
+    | posts       | GET  | /posts             | posts#index       |
+    | post        | GET  | /posts/:id         | posts#show        |
+    +-------------+------+--------------------+-------------------+
 
 Here's an example with `except`:
 
@@ -91,15 +85,14 @@ resources :posts, except: %w[new delete edit update]
 
 Results in:
 
-```
-+-------+------+-----------+-------------------+
-|  As   | Verb |   Path    | Controller#action |
-+-------+------+-----------+-------------------+
-| posts | GET  | posts     | posts#index       |
-| post  | GET  | posts/:id | posts#show        |
-|       | POST | posts     | posts#create      |
-+-------+------+-----------+-------------------+
-```
+    +-------------+--------+--------------------+-------------------+
+    | As (Prefix) |  Verb  | Path (URI Pattern) | Controller#action |
+    +-------------+--------+--------------------+-------------------+
+    | posts       | GET    | /posts             | posts#index       |
+    | posts       | POST   | /posts             | posts#create      |
+    | post        | GET    | /posts/:id         | posts#show        |
+    | post        | DELETE | /posts/:id         | posts#destroy     |
+    +-------------+--------+--------------------+-------------------+
 
 ### 2.2 resources options
 
@@ -118,21 +111,18 @@ resources :posts, module: "admin"
 
 Results in:
 
-```
-+-----------+--------+----------------+--------------------+
-|    As     |  Verb  |      Path      | Controller#action  |
-+-----------+--------+----------------+--------------------+
-| posts     | GET    | posts          | admin/posts#index  |
-| new_post  | GET    | posts/new      | admin/posts#new    |
-| post      | GET    | posts/:id      | admin/posts#show   |
-|           | POST   | posts          | admin/posts#create |
-| edit_post | GET    | posts/:id/edit | admin/posts#edit   |
-|           | PUT    | posts/:id      | admin/posts#update |
-|           | POST   | posts/:id      | admin/posts#update |
-|           | PATCH  | posts/:id      | admin/posts#update |
-|           | DELETE | posts/:id      | admin/posts#delete |
-+-----------+--------+----------------+--------------------+
-```
+    +-------------+--------+--------------------+---------------------+
+    | As (Prefix) |  Verb  | Path (URI Pattern) |  Controller#action  |
+    +-------------+--------+--------------------+---------------------+
+    | posts       | GET    | /posts             | admin/posts#index   |
+    | posts       | POST   | /posts             | admin/posts#create  |
+    | new_post    | GET    | /posts/new         | admin/posts#new     |
+    | edit_post   | GET    | /posts/:id/edit    | admin/posts#edit    |
+    | post        | GET    | /posts/:id         | admin/posts#show    |
+    | post        | PUT    | /posts/:id         | admin/posts#update  |
+    | post        | PATCH  | /posts/:id         | admin/posts#update  |
+    | post        | DELETE | /posts/:id         | admin/posts#destroy |
+    +-------------+--------+--------------------+---------------------+
 
 **prefix example:**
 
@@ -142,21 +132,18 @@ resources :posts, path: "v1"
 
 Results in:
 
-```
-+-----------+--------+-------------------+-------------------+
-|    As     |  Verb  |       Path        | Controller#action |
-+-----------+--------+-------------------+-------------------+
-| posts     | GET    | v1/posts          | posts#index       |
-| new_post  | GET    | v1/posts/new      | posts#new         |
-| post      | GET    | v1/posts/:id      | posts#show        |
-|           | POST   | v1/posts          | posts#create      |
-| edit_post | GET    | v1/posts/:id/edit | posts#edit        |
-|           | PUT    | v1/posts/:id      | posts#update      |
-|           | POST   | v1/posts/:id      | posts#update      |
-|           | PATCH  | v1/posts/:id      | posts#update      |
-|           | DELETE | v1/posts/:id      | posts#delete      |
-+-----------+--------+-------------------+-------------------+
-```
+    +-------------+--------+--------------------+-------------------+
+    | As (Prefix) |  Verb  | Path (URI Pattern) | Controller#action |
+    +-------------+--------+--------------------+-------------------+
+    | posts       | GET    | /v1                | posts#index       |
+    | posts       | POST   | /v1                | posts#create      |
+    | new_post    | GET    | /v1/new            | posts#new         |
+    | edit_post   | GET    | /v1/:id/edit       | posts#edit        |
+    | post        | GET    | /v1/:id            | posts#show        |
+    | post        | PUT    | /v1/:id            | posts#update      |
+    | post        | PATCH  | /v1/:id            | posts#update      |
+    | post        | DELETE | /v1/:id            | posts#destroy     |
+    +-------------+--------+--------------------+-------------------+
 
 **as example:**
 
@@ -166,21 +153,18 @@ resources :posts, as: "articles"
 
 Results in:
 
-```
-+--------------+--------+----------------+-------------------+
-|      As      |  Verb  |      Path      | Controller#action |
-+--------------+--------+----------------+-------------------+
-| articles     | GET    | posts          | posts#index       |
-| new_article  | GET    | posts/new      | posts#new         |
-| article      | GET    | posts/:id      | posts#show        |
-|              | POST   | posts          | posts#create      |
-| edit_article | GET    | posts/:id/edit | posts#edit        |
-|              | PUT    | posts/:id      | posts#update      |
-|              | POST   | posts/:id      | posts#update      |
-|              | PATCH  | posts/:id      | posts#update      |
-|              | DELETE | posts/:id      | posts#delete      |
-+--------------+--------+----------------+-------------------+
-```
+    +--------------+--------+--------------------+-------------------+
+    | As (Prefix)  |  Verb  | Path (URI Pattern) | Controller#action |
+    +--------------+--------+--------------------+-------------------+
+    | articles     | GET    | /posts             | posts#index       |
+    | articles     | POST   | /posts             | posts#create      |
+    | new_article  | GET    | /posts/new         | posts#new         |
+    | edit_article | GET    | /posts/:id/edit    | posts#edit        |
+    | article      | GET    | /posts/:id         | posts#show        |
+    | article      | PUT    | /posts/:id         | posts#update      |
+    | article      | PATCH  | /posts/:id         | posts#update      |
+    | article      | DELETE | /posts/:id         | posts#destroy     |
+    +--------------+--------+--------------------+-------------------+
 
 **controller example:**
 
@@ -190,21 +174,18 @@ resources :posts, controller: "articles"
 
 Results in:
 
-```
-+-----------+--------+----------------+-------------------+
-|    As     |  Verb  |      Path      | Controller#action |
-+-----------+--------+----------------+-------------------+
-| posts     | GET    | posts          | articles#index    |
-| new_post  | GET    | posts/new      | articles#new      |
-| post      | GET    | posts/:id      | articles#show     |
-|           | POST   | posts          | articles#create   |
-| edit_post | GET    | posts/:id/edit | articles#edit     |
-|           | PUT    | posts/:id      | articles#update   |
-|           | POST   | posts/:id      | articles#update   |
-|           | PATCH  | posts/:id      | articles#update   |
-|           | DELETE | posts/:id      | articles#delete   |
-+-----------+--------+----------------+-------------------+
-```
+    +-------------+--------+--------------------+-------------------+
+    | As (Prefix) |  Verb  | Path (URI Pattern) | Controller#action |
+    +-------------+--------+--------------------+-------------------+
+    | posts       | GET    | /posts             | articles#index    |
+    | posts       | POST   | /posts             | articles#create   |
+    | new_post    | GET    | /posts/new         | articles#new      |
+    | edit_post   | GET    | /posts/:id/edit    | articles#edit     |
+    | post        | GET    | /posts/:id         | articles#show     |
+    | post        | PUT    | /posts/:id         | articles#update   |
+    | post        | PATCH  | /posts/:id         | articles#update   |
+    | post        | DELETE | /posts/:id         | articles#destroy  |
+    +-------------+--------+--------------------+-------------------+
 
 The options can be provided directly to `resources` method. You may also want to look at using the `scope`, `prefix` which can provide similar results with less duplication by making use of blocks.  The [scope](#9-scope) and [prefix](#8-prefix) docs are below.
 
@@ -218,21 +199,18 @@ resources :posts, param: :my_post_id
 
 Results in:
 
-```
-+-----------+--------+------------------------+-------------------+
-|    As     |  Verb  |          Path          | Controller#action |
-+-----------+--------+------------------------+-------------------+
-| posts     | GET    | posts                  | posts#index       |
-| new_post  | GET    | posts/new              | posts#new         |
-| post      | GET    | posts/:my_post_id      | posts#show        |
-|           | POST   | posts                  | posts#create      |
-| edit_post | GET    | posts/:my_post_id/edit | posts#edit        |
-|           | PUT    | posts/:my_post_id      | posts#update      |
-|           | POST   | posts/:my_post_id      | posts#update      |
-|           | PATCH  | posts/:my_post_id      | posts#update      |
-|           | DELETE | posts/:my_post_id      | posts#delete      |
-+-----------+--------+------------------------+-------------------+
-```
+    +-------------+--------+-------------------------+-------------------+
+    | As (Prefix) |  Verb  |   Path (URI Pattern)    | Controller#action |
+    +-------------+--------+-------------------------+-------------------+
+    | posts       | GET    | /posts                  | posts#index       |
+    | posts       | POST   | /posts                  | posts#create      |
+    | new_post    | GET    | /posts/new              | posts#new         |
+    | edit_post   | GET    | /posts/:my_post_id/edit | posts#edit        |
+    | post        | GET    | /posts/:my_post_id      | posts#show        |
+    | post        | PUT    | /posts/:my_post_id      | posts#update      |
+    | post        | PATCH  | /posts/:my_post_id      | posts#update      |
+    | post        | DELETE | /posts/:my_post_id      | posts#destroy     |
+    +-------------+--------+-------------------------+-------------------+
 
 Generally, it is recommended to **not** override the param identifier default.
 
@@ -261,21 +239,20 @@ get "view/:id", to: "posts#view", as: "view"
 
 Generates:
 
-```
-+------+------+----------+-------------------+
-|  As  | Verb |   Path   | Controller#action |
-+------+------+----------+-------------------+
-| list | GET  | list     | posts#index       |
-|      | GET  | hit      | posts#hit         |
-| view | GET  | view/:id | posts#view        |
-+------+------+----------+-------------------+
-```
+    +-------------+------+--------------------+-------------------+
+    | As (Prefix) | Verb | Path (URI Pattern) | Controller#action |
+    +-------------+------+--------------------+-------------------+
+    | list        | GET  | /list              | posts#index       |
+    | hit         | GET  | /hit               | posts#hit         |
+    | view        | GET  | /view/:id          | posts#view        |
+    +-------------+------+--------------------+-------------------+
 
 Here are their named routes helper methods.
 
 As / Prefix | Helper
 --- | ---
 list | list_path
+hit  | hit_path
 view | view_path(id)
 
 ### 3.2 member and collection options
@@ -311,22 +288,19 @@ There are sometimes resources that always look up the same id. A good example of
 resource :profile
 ```
 
-Generates these routes:
+Results in:
 
-```
-+--------------+--------+--------------+-------------------+
-|      As      |  Verb  |     Path     | Controller#action |
-+--------------+--------+--------------+-------------------+
-| new_profile  | GET    | profile/new  | profiles#new      |
-| profile      | GET    | profile      | profiles#show     |
-|              | POST   | profile      | profiles#create   |
-| edit_profile | GET    | profile/edit | profiles#edit     |
-|              | PUT    | profile      | profiles#update   |
-|              | POST   | profile      | profiles#update   |
-|              | PATCH  | profile      | profiles#update   |
-|              | DELETE | profile      | profiles#delete   |
-+--------------+--------+--------------+-------------------+
-```
+    +--------------+--------+--------------------+-------------------+
+    | As (Prefix)  |  Verb  | Path (URI Pattern) | Controller#action |
+    +--------------+--------+--------------------+-------------------+
+    | profile      | POST   | /profile           | profiles#create   |
+    | new_profile  | GET    | /profile/new       | profiles#new      |
+    | edit_profile | GET    | /profile/edit      | profiles#edit     |
+    | profile      | GET    | /profile           | profiles#show     |
+    | profile      | PUT    | /profile           | profiles#update   |
+    | profile      | PATCH  | /profile           | profiles#update   |
+    | profile      | DELETE | /profile           | profiles#destroy  |
+    +--------------+--------+--------------------+-------------------+
 
 Here are the generated named routes helpers:
 
@@ -350,30 +324,26 @@ end
 
 Results in:
 
-```
-+-------------------+--------+----------------------------------+-------------------+
-|        As         |  Verb  |               Path               | Controller#action |
-+-------------------+--------+----------------------------------+-------------------+
-| posts             | GET    | posts                            | posts#index       |
-| new_post          | GET    | posts/new                        | posts#new         |
-| post              | GET    | posts/:post_id                   | posts#show        |
-|                   | POST   | posts                            | posts#create      |
-| edit_post         | GET    | posts/:post_id/edit              | posts#edit        |
-|                   | PUT    | posts/:post_id                   | posts#update      |
-|                   | POST   | posts/:post_id                   | posts#update      |
-|                   | PATCH  | posts/:post_id                   | posts#update      |
-|                   | DELETE | posts/:post_id                   | posts#delete      |
-| post_comments     | GET    | posts/:post_id/comments          | comments#index    |
-| new_post_comment  | GET    | posts/:post_id/comments/new      | comments#new      |
-| post_comment      | GET    | posts/:post_id/comments/:id      | comments#show     |
-|                   | POST   | posts/:post_id/comments          | comments#create   |
-| edit_post_comment | GET    | posts/:post_id/comments/:id/edit | comments#edit     |
-|                   | PUT    | posts/:post_id/comments/:id      | comments#update   |
-|                   | POST   | posts/:post_id/comments/:id      | comments#update   |
-|                   | PATCH  | posts/:post_id/comments/:id      | comments#update   |
-|                   | DELETE | posts/:post_id/comments/:id      | comments#delete   |
-+-------------------+--------+----------------------------------+-------------------+
-```
+    +-------------------+--------+-----------------------------------+-------------------+
+    |    As (Prefix)    |  Verb  |        Path (URI Pattern)         | Controller#action |
+    +-------------------+--------+-----------------------------------+-------------------+
+    | posts             | GET    | /posts                            | posts#index       |
+    | posts             | POST   | /posts                            | posts#create      |
+    | new_post          | GET    | /posts/new                        | posts#new         |
+    | edit_post         | GET    | /posts/:id/edit                   | posts#edit        |
+    | post              | GET    | /posts/:id                        | posts#show        |
+    | post              | PUT    | /posts/:id                        | posts#update      |
+    | post              | PATCH  | /posts/:id                        | posts#update      |
+    | post              | DELETE | /posts/:id                        | posts#destroy     |
+    | post_comments     | GET    | /posts/:post_id/comments          | comments#index    |
+    | post_comments     | POST   | /posts/:post_id/comments          | comments#create   |
+    | new_post_comment  | GET    | /posts/:post_id/comments/new      | comments#new      |
+    | edit_post_comment | GET    | /posts/:post_id/comments/:id/edit | comments#edit     |
+    | post_comment      | GET    | /posts/:post_id/comments/:id      | comments#show     |
+    | post_comment      | PUT    | /posts/:post_id/comments/:id      | comments#update   |
+    | post_comment      | PATCH  | /posts/:post_id/comments/:id      | comments#update   |
+    | post_comment      | DELETE | /posts/:post_id/comments/:id      | comments#destroy  |
+    +-------------------+--------+-----------------------------------+-------------------+
 
 This makes for nice clean URLs. For example, we can get all the comments that belong to a post with `/posts/1/comments`.
 
@@ -405,14 +375,12 @@ end
 
 Generates:
 
-```
-+--------------+------+------------------------+-------------------+
-|      As      | Verb |          Path          | Controller#action |
-+--------------+------+------------------------+-------------------+
-| preview_post | GET  | posts/:post_id/preview | posts#preview     |
-| list_posts   | GET  | posts/list             | posts#list        |
-+--------------+------+------------------------+-------------------+
-```
+    +--------------+------+--------------------+-------------------+
+    | As (Prefix)  | Verb | Path (URI Pattern) | Controller#action |
+    +--------------+------+--------------------+-------------------+
+    | preview_post | GET  | /posts/:id/preview | posts#preview     |
+    | list_posts   | GET  | /posts/list        | posts#list        |
+    +--------------+------+--------------------+-------------------+
 
 And their corresponding named routes helper methods.
 
@@ -436,14 +404,12 @@ end
 
 Also results in:
 
-```
-+--------------+------+------------------------+-------------------+
-|      As      | Verb |          Path          | Controller#action |
-+--------------+------+------------------------+-------------------+
-| preview_post | GET  | posts/:post_id/preview | posts#preview     |
-| list_posts   | GET  | posts/list             | posts#list        |
-+--------------+------+------------------------+-------------------+
-```
+    +--------------+------+--------------------+-------------------+
+    | As (Prefix)  | Verb | Path (URI Pattern) | Controller#action |
+    +--------------+------+--------------------+-------------------+
+    | preview_post | GET  | /posts/:id/preview | posts#preview     |
+    | list_posts   | GET  | /posts/list        | posts#list        |
+    +--------------+------+--------------------+-------------------+
 
 ## 7. Namespace
 
@@ -457,21 +423,18 @@ end
 
 Generates:
 
-```
-+-----------------+--------+----------------------+--------------------+
-|       As        |  Verb  |         Path         | Controller#action  |
-+-----------------+--------+----------------------+--------------------+
-| admin_posts     | GET    | admin/posts          | admin/posts#index  |
-| new_admin_post  | GET    | admin/posts/new      | admin/posts#new    |
-| admin_post      | GET    | admin/posts/:id      | admin/posts#show   |
-|                 | POST   | admin/posts          | admin/posts#create |
-| edit_admin_post | GET    | admin/posts/:id/edit | admin/posts#edit   |
-|                 | PUT    | admin/posts/:id      | admin/posts#update |
-|                 | POST   | admin/posts/:id      | admin/posts#update |
-|                 | PATCH  | admin/posts/:id      | admin/posts#update |
-|                 | DELETE | admin/posts/:id      | admin/posts#delete |
-+-----------------+--------+----------------------+--------------------+
-```
+    +-----------------+--------+-----------------------+---------------------+
+    |   As (Prefix)   |  Verb  |  Path (URI Pattern)   |  Controller#action  |
+    +-----------------+--------+-----------------------+---------------------+
+    | admin_posts     | GET    | /admin/posts          | admin/posts#index   |
+    | admin_posts     | POST   | /admin/posts          | admin/posts#create  |
+    | new_admin_post  | GET    | /admin/posts/new      | admin/posts#new     |
+    | edit_admin_post | GET    | /admin/posts/:id/edit | admin/posts#edit    |
+    | admin_post      | GET    | /admin/posts/:id      | admin/posts#show    |
+    | admin_post      | PUT    | /admin/posts/:id      | admin/posts#update  |
+    | admin_post      | PATCH  | /admin/posts/:id      | admin/posts#update  |
+    | admin_post      | DELETE | /admin/posts/:id      | admin/posts#destroy |
+    +-----------------+--------+-----------------------+---------------------+
 
 Namespacing affects:
 
@@ -493,21 +456,18 @@ end
 
 Results in:
 
-```
-+-----------+--------+----------------------+-------------------+
-|    As     |  Verb  |         Path         | Controller#action |
-+-----------+--------+----------------------+-------------------+
-| posts     | GET    | admin/posts          | posts#index       |
-| new_post  | GET    | admin/posts/new      | posts#new         |
-| post      | GET    | admin/posts/:id      | posts#show        |
-|           | POST   | admin/posts          | posts#create      |
-| edit_post | GET    | admin/posts/:id/edit | posts#edit        |
-|           | PUT    | admin/posts/:id      | posts#update      |
-|           | POST   | admin/posts/:id      | posts#update      |
-|           | PATCH  | admin/posts/:id      | posts#update      |
-|           | DELETE | admin/posts/:id      | posts#delete      |
-+-----------+--------+----------------------+-------------------+
-```
+    +-------------+--------+-----------------------+-------------------+
+    | As (Prefix) |  Verb  |  Path (URI Pattern)   | Controller#action |
+    +-------------+--------+-----------------------+-------------------+
+    | posts       | GET    | /admin/posts          | posts#index       |
+    | posts       | POST   | /admin/posts          | posts#create      |
+    | new_post    | GET    | /admin/posts/new      | posts#new         |
+    | edit_post   | GET    | /admin/posts/:id/edit | posts#edit        |
+    | post        | GET    | /admin/posts/:id      | posts#show        |
+    | post        | PUT    | /admin/posts/:id      | posts#update      |
+    | post        | PATCH  | /admin/posts/:id      | posts#update      |
+    | post        | DELETE | /admin/posts/:id      | posts#destroy     |
+    +-------------+--------+-----------------------+-------------------+
 
 ## 9. Scope
 
@@ -523,13 +483,11 @@ end
 
 Results in:
 
-```
-+-------+------+-------------+-------------------+
-|  As   | Verb |    Path     | Controller#action |
-+-------+------+-------------+-------------------+
-| posts | GET  | admin/posts | posts#index       |
-+-------+------+-------------+-------------------+
-```
+    +-------------+------+--------------------+-------------------+
+    | As (Prefix) | Verb | Path (URI Pattern) | Controller#action |
+    +-------------+------+--------------------+-------------------+
+    | posts       | GET  | /admin/posts       | posts#index       |
+    +-------------+------+--------------------+-------------------+
 
 Notice, only the path is affected.  You can also set the scope prefix with a string or symbol option. IE: `scope :admin`
 
@@ -543,13 +501,11 @@ end
 
 Results in:
 
-```
-+-----------------+--------+----------------+-------------------+
-|       As        |  Verb  |      Path      | Controller#action |
-+-----------------+--------+----------------+-------------------+
-| edit_admin_post | GET    | posts/:id/edit | posts#edit        |
-+-----------------+--------+----------------+-------------------+
-```
+    +-----------------+------+--------------------+-------------------+
+    |   As (Prefix)   | Verb | Path (URI Pattern) | Controller#action |
+    +-----------------+------+--------------------+-------------------+
+    | edit_admin_post | GET  | /posts/:id/edit    | posts#edit        |
+    +-----------------+------+--------------------+-------------------+
 
 Only the generated helper method is affected.
 
@@ -563,13 +519,11 @@ end
 
 Results in:
 
-```
-+-------+------+-------+-------------------+
-|  As   | Verb | Path  | Controller#action |
-+-------+------+-------+-------------------+
-| posts | GET  | posts | admin/posts#index |
-+-------+------+-------+-------------------+
-```
+    +-------------+------+--------------------+-------------------+
+    | As (Prefix) | Verb | Path (URI Pattern) | Controller#action |
+    +-------------+------+--------------------+-------------------+
+    | posts       | GET  | /posts             | admin/posts#index |
+    +-------------+------+--------------------+-------------------+
 
 Only the controller module is affected.
 
@@ -587,19 +541,7 @@ end
 
 More info: [Mount Rack Apps docs]({% link _docs/routing/mount.md %})
 
-## 11. Configuring Host
-
-The named routes `_url` methods, will infer the hostname from the request by default.  If you need to configure it explicitly, then you can with `config.helpers.host`. Example:
-
-config/application.rb
-
-```ruby
-Jets.application.configure do
-  config.helpers.host = "http://example.com:8888" # default is nil, which means it'll be inferred from the request
-end
-```
-
-## 12. Root
+## 11. Root
 
 You can specify the root or homepage path with the `root` method.
 

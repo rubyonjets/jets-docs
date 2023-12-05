@@ -6,6 +6,6 @@
 
 Since everything is codified, you end up back in a clean state. 😄
 
-Congrats! You have successfully created, modified, and deleted a Jets API Project.
+Congrats! You have successfully created, modified, and deleted a Jets {{ include.type }} Project.
 
 Next, we'll look at some next steps.

@@ -5,6 +5,8 @@ category: learn-job
 order: 9
 ---
 
+{% include videos/learn/getting-started/job.md %}
+
 Let's make some changes. Let's start with manual changes. It'll help you get to know how things work.
 
 ## Change Lambda Function
@@ -17,7 +19,7 @@ You can click **Deploy** to deploy the changes.
 
 ## Change CloudWatch Event Rule
 
-Instead of clicking **Test**, we'll make some manual changes to the CloudWatch Event Rule to ensure it works properly. A quick way to find the CloudWatch Event Rule is from the CloudFormation stack.
+Instead of clicking **Test**, we'll manually change the CloudWatch Event Rule to ensure it works properly. A quick way to find the CloudWatch Event Rule is from the CloudFormation stack.
 
 ![](https://img.boltops.com/tools/jets/learn/job/review-deploy-cloudformation-console.png)
 
@@ -29,11 +31,11 @@ The code we deploy sets a rate of 10 hours. Let's change it to 1 minute.
 
 ![](https://img.boltops.com/tools/jets/learn/job/update-project-eventbridge-console-edit.png)
 
-You can leave the other settings the same and click **Next** a few times and click on **Update Rule** to save the changes.
+You can leave the other settings the same, click **Next** a few times, and click on **Update Rule** to save the changes.
 
 ## Jets Logs
 
-To confirm that the Event Rule is firing every 1 minute, we'll use `jets logs` this time. We want to follow the logs and specify the name of hard_job-perform. Here's an example.
+To confirm that the Event Rule is firing every 1 minute, we'll use [jets logs]({% link _reference/jets-logs.md %}) this time. We want to follow the logs and specify the name of hard_job-perform. Here's an example.
 
     ❯ jets logs -f -n hard_job-perform
     Tailing logs for /aws/lambda/demo-dev-hard_job-perform
@@ -75,6 +77,6 @@ The CloudWatch Event Rule changes.
 
 ![](https://img.boltops.com/tools/jets/learn/job/update-project-confirm-rule-changes.png)
 
-If you still have `jets logs` running in a terminal, you'll see the event fire again in about 2 minutes.
+If you still have [jets logs]({% link _reference/jets-logs.md %}) running in a terminal, you'll see the event fire again in about 2 minutes.
 
 Next, we'll delete the project.

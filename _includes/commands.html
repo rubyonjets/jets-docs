@@ -72,13 +72,13 @@ end
                                 <div class="commands">
 {% highlight ruby %}
 Jets.application.routes.draw do
-  get  "posts", to: "posts#index"
-  get  "posts/new", to: "posts#new"
-  get  "posts/:id", to: "posts#show"
-  post "posts", to: "posts#create"
-  get  "posts/:id/edit", to: "posts#edit"
-  put  "posts", to: "posts#update"
-  delete  "posts", to: "posts#delete"
+  get    "posts", to: "posts#index"
+  get    "posts/new", to: "posts#new"
+  get    "posts/:id", to: "posts#show"
+  post   "posts", to: "posts#create"
+  get    "posts/:id/edit", to: "posts#edit"
+  put    "posts", to: "posts#update"
+  delete "posts", to: "posts#destroy"
 
   resources :comments # expands to the RESTful routes above
 

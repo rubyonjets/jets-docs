@@ -9,12 +9,12 @@ Here's a cheatsheet that shows you how to add and use a custom renderer. We'll u
 
 ## Gemfile
 
-We'll use the `kramdown` gem. Add it to your `Gemfile`.
+We'll use the `redcarpet` gem. Add it to your `Gemfile`.
 
 Gemfile
 
 ```ruby
-gem "kramdown"
+gem "redcarpet"
 ```
 
 ## Setup Template Handler
@@ -40,7 +40,9 @@ module Renderers
   class MarkdownRenderer
     def self.call(template, text = nil)
       text ||= template.source
-      Kramdown::Document.new(text).to_html.inspect
+      renderer = Redcarpet::Render::HTML.new
+      markdown = Redcarpet::Markdown.new(renderer)
+      markdown.render(text).html_safe.inspect
     end
   end
 end

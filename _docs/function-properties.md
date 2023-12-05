@@ -97,5 +97,5 @@ vpc_config | class_vpc_config
 tags | class_tags
 
 
-Refer to the [AWS::Lambda::Function](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html) CloudFormation docs for a list of the properties. You can also refer to the source code itself: [lambda/dsl.rb](https://github.com/boltops-tools/jets/blob/master/lib/jets/lambda/dsl.rb)
+Refer to the [AWS::Lambda::Function](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html) CloudFormation docs for a list of the properties. You can also refer to the source code itself: [lambda/dsl.rb](https://github.com/rubyonjets/jets/blob/master/lib/jets/lambda/dsl.rb)
 

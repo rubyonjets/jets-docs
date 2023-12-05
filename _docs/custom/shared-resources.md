@@ -39,7 +39,7 @@ class PostmanJob < ApplicationJob
 end
 ```
 
-The `lookup` method is available to the `Alert` class as a part of inheriting from the `Jets::Stack` class. Also note, the code above uses `include Jets::AwsServices` to provide access to the `sns` client.  Refer to the source for a full list of the clients that are included with the module: [jets/aws_services.rb](https://github.com/boltops-tools/jets/blob/master/lib/jets/aws_services.rb). For services not included, add the gem to your project's Gemfile and set up the client in the code.
+The `lookup` method is available to the `Alert` class as a part of inheriting from the `Jets::Stack` class. Also note, the code above uses `include Jets::AwsServices` to provide access to the `sns` client.  Refer to the source for a full list of the clients that are included with the module: [jets/aws_services.rb](https://github.com/rubyonjets/jets/blob/master/lib/jets/aws_services.rb). For services not included, add the gem to your project's Gemfile and set up the client in the code.
 
 ## General Resource Form
 

@@ -5,6 +5,8 @@ category: learn-job
 order: 5
 ---
 
+{% include videos/learn/getting-started/job.md %}
+
 You can test the job locally with `jets console`. Example:
 
     ❯ jets console

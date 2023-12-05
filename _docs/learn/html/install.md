@@ -5,4 +5,6 @@ category: learn-html
 order: 1
 ---
 
+{% include videos/learn/getting-started/html.md %}
+
 {% include learn/install.md mode="Html" %}

@@ -5,17 +5,7 @@ category: authorizers
 order: 7
 ---
 
-When you use [one_apigw_method_for_all_routes]({% link _docs/config/cfn.md %}) and tell Jets to build only one APIGW Methods for all routes, IE:
-
-config/application.rb
-
-```ruby
-Jets.application.configure do
-  config.cfn.build.routes = "one_apigw_method_for_all_routes" # only works with one_lambda_for_all_controllers
-end
-```
-
-Authorizers should only be set at the `root` and the `*catchall` route. This is because only these 2 APIGW resources are actually built. So authorizers can only be set at that APIGW Method. If assign an authorizer for any other route, a warning will be printed.
+Authorizers should only be set at the `root` and the `*catchall` route. This is because only these 2 APIGW resources are actually built. So authorizers can only be set at that APIGW Method. The Authorizer Labmda function should have logic to handle different urls. If assign an authorizer for any other route, a warning will be printed.
 
 ## Example routes.rb
 

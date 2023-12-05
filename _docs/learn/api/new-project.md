@@ -5,14 +5,15 @@ category: learn-api
 order: 3
 ---
 
+{% include videos/learn/getting-started/api.md %}
+
 We'll use [jets new]({% link _reference/jets-new.md %}) to generate a new Jets project.
 
     jets new demo --mode api
 
-We're using the `--mode api` option to generate a Jets project designed for APIs.
+The `--mode api` option generates a Jets project designed for APIs.
 
     ❯ jets new demo --mode api
-          create  .env.development
           create  .env
           create  .gitignore
           create  Gemfile
@@ -20,7 +21,6 @@ We're using the `--mode api` option to generate a Jets project designed for APIs
           create  Rakefile
           create  app/controllers/application_controller.rb
           create  app/helpers/application_helper.rb
-          create  app/APIs/application_API.rb
           create  app/models/application_record.rb
           create  config.ru
           create  config/application.rb
@@ -36,7 +36,7 @@ We're using the `--mode api` option to generate a Jets project designed for APIs
           create  public/500.html
           create  public/favicon.ico
 
-The project structure is lightweight for api mode. For more information about the folders see [Project Structure]({% link _docs/structure.md %}).
+The project structure is lightweight for api mode. For more information about the folders, see [Project Structure]({% link _docs/structure.md %}).
 
 ## Application Config
 
@@ -56,7 +56,7 @@ end
 
 The project_name will be used when we deploy this project. The project that is deployed will have the environment added, IE: `demo-dev`.
 
-You can override settings for each enviroment with the files in `config/environments`. Example:
+You can override settings for each environment with the files in `config/environments`. Example:
 
 config/environments/development.rb
 

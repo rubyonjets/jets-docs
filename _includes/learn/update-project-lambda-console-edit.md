@@ -2,7 +2,7 @@ Let's make some changes. Let's start with manual changes. It'll help you get to 
 
 ## Change Lambda Function
 
-The Lambda Console allows us to edit code directly with the browser. It allows us to test, debug, and learn quickly. We'll add a `puts "debugging ..."` statement.
+The Lambda Console allows us to edit code directly with the browser. It allows us to test, debug, and learn quickly. We'll add a `puts "debugging posts#index called"` statement.
 
 ![](https://img.boltops.com/tools/jets/learn/{{ include.mode }}/update-project-manual.png)
 

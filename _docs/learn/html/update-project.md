@@ -5,11 +5,13 @@ category: learn-html
 order: 9
 ---
 
+{% include videos/learn/getting-started/html.md %}
+
 {% include learn/update-project-lambda-console-edit.md mode="html" %}
 
 ## Jets Logs
 
-You can also use the `jets logs` command to tail the logs in your terminal.
+You can also use the [jets logs]({% link _reference/jets-logs.md %}) command to tail the logs in your terminal.
 
     ❯ jets logs -f
     2023-10-29 18:28:02 UTC INIT_START Runtime Version: ruby:3.2.v9 Runtime Version ARN: arn:aws:lambda:us-west-2::runtime:b96ddb9b1905c3979339d7706a5f7cfda1d851593b1255eb0f15ff573c17fd28
@@ -34,7 +36,7 @@ You can also use the `jets logs` command to tail the logs in your terminal.
     2023-10-29 18:28:06 UTC END RequestId: 0e483ed2-c7c9-43e3-babb-7c165c9a3365
     2023-10-29 18:28:06 UTC REPORT RequestId: 0e483ed2-c7c9-43e3-babb-7c165c9a3365  Duration: 726.32 ms     Billed Duration: 727 ms Memory Size: 1536 MB   Max Memory Used: 180 MB
 
-The `jets log` command will use the Log Group from the controller Lambda function, IE: `/aws/lambda/demo-dev-controller`, so we do not have to specify the name like we did in the [Jets Project Job Learn Guide]({% link _docs/learn/job/update-project.md %}#jets-logs).
+The [jets logs]({% link _reference/jets-logs.md %}) command will use the Log Group from the controller Lambda function, IE: `/aws/lambda/demo-dev-controller`, so we do not have to specify the name as we did in the [Jets Project Job Learn Guide]({% link _docs/learn/job/update-project.md %}#jets-logs).
 
 ## Update Code and Deploy Changes
 
@@ -73,6 +75,6 @@ Once changes have been deployed, confirm Lambda Source code changes.
 
 ![](https://img.boltops.com/tools/jets/learn/html/update-project-confirm-lambda-changes.png)
 
-If you still have `jets logs` running in a terminal, you'll logs as you're testing.
+If you still have [jets logs]({% link _reference/jets-logs.md %}) running in a terminal, you'll see logs tailing as you're testing.
 
 Next, we'll delete the project.

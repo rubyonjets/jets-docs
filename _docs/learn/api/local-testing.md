@@ -5,29 +5,9 @@ category: learn-api
 order: 5
 ---
 
-## Seeding Data
+{% include videos/learn/getting-started/api.md %}
 
-Let's create some seed data to help with first. Create this file:
-
-db/seeds.rb
-
-```ruby
-2.times do |i|
-  i += 1
-  Post.find_or_create_by(title: "Post #{i}", body: "Body #{i}", published: true)
-end
-puts "Posts created"
-```
-
-Run `jets db:seed`
-
-    ❯ jets db:seed
-    Posts created
-
-Run `jets runner` to confirm that the records were created.
-
-    ❯ jets runner 'puts Post.count'
-    2
+{% include learn/seed.md %}
 
 ## Start Server
 
@@ -43,7 +23,7 @@ Example:
     * Listening on http://127.0.0.1:8888
     Use Ctrl-C to stop
 
-A puma web server allows you to test locally just like a normal rack app.
+A Puma web server allows you to test locally, just like a standard rack app.
 
 ## Testing with Curl
 
@@ -130,13 +110,13 @@ data.json
 
 Use `curl -x PUT` to update the data:
 
-    ❯ curl -X PUT --data @data.json localhost:8888/posts
+    ❯ curl -X PUT --data @data.json localhost:8888/posts/3
     {"id":3,"title":"Post 3 Edit 1","body":"Body 3","published":true}
 
 On the jets server side
 
     Processing PostsController#update
-      Parameters: {"post":{"title":"Post 3 Edit 1","body":"Body 3","published":true},"id":"4"}
+      Parameters: {"post":{"title":"Post 3 Edit 1","body":"Body 3","published":true},"id":"3"}
     Completed Status Code 200 in 0.010s
 
 ### Delete with Curl
@@ -148,9 +128,9 @@ Last, let's delete the post
 
 On the jets server side
 
-    Started DELETE "/posts/4" for 127.0.0.1 at 2023-10-28 14:44:20 +0000
+    Started DELETE "/posts/3" for 127.0.0.1 at 2023-10-28 14:44:20 +0000
     Processing PostsController#destroy
-      Parameters: {"id":"4"}
+      Parameters: {"id":"3"}
     Completed Status Code 200 in 0.015s
 
 We can check that the post has been deleted by hitting the posts index action again.

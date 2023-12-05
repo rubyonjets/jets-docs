@@ -5,14 +5,15 @@ category: learn-job
 order: 3
 ---
 
+{% include videos/learn/getting-started/job.md %}
+
 We'll use [jets new]({% link _reference/jets-new.md %}) to generate a new Jets project.
 
     jets new demo --mode job
 
-We're using the `--mode job` option to generate a Jets project designed for jobs.
+The `--mode job` option generates a Jets project designed for jobs.
 
     ❯ jets new demo --mode job
-        create  .env.development
         create  .env
         create  .gitignore
         create  Gemfile
@@ -24,7 +25,7 @@ We're using the `--mode job` option to generate a Jets project designed for jobs
         create  config/environments/production.rb
         create  config/environments/test.rb
 
-The project structure is very lightweight for job mode, which is perfect for a Lambda Job. For more information about the folders see [Project Structure]({% link _docs/structure.md %}).
+The project structure is nice and lightweight for job mode. For more information about the folders, see [Project Structure]({% link _docs/structure.md %}).
 
 ## Application Config
 
@@ -45,7 +46,7 @@ end
 
 The project_name will be used when we deploy this project. The project that is deployed will have the environment added, IE: `demo-dev`. Since this app is for jobs, [prewarming]({% link _docs/prewarming.md %}) is set to false.
 
-You can override settings for each enviroment with the files in `config/environments`. Example:
+You can override settings for each environment with the files in `config/environments`. Example:
 
 config/environments/development.rb
 
@@ -53,10 +54,10 @@ config/environments/development.rb
 Jets.application.configure do
   config.cache_classes = false
   config.eager_load = false
-  config.logging.event = true
+  config.logging.event = false
 end
 ```
 
 For more settings see the [Config Reference]({% link _docs/config/reference.md %}).
 
-Next, we'll review the generated project files.
+Next, we'll explore project files and write some code.

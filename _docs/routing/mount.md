@@ -35,7 +35,7 @@ end
 
 ## Examples
 
-For an example project demonstrating the use of mount, check out [boltops-tools/jets-routes-mount](https://github.com/boltops-tools/jets-routes-mount).
+For an example project demonstrating the use of mount, check out [rubyonjets/jets-routes-mount](https://github.com/rubyonjets/jets-routes-mount).
 
 ## Gemfile Dependencies
 

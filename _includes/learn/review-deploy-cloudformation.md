@@ -62,4 +62,4 @@ Clicking on the **logs** link takes you to the CloudWatch Logs Console. It shows
 
 ![](https://img.boltops.com/tools/jets/learn/{{ include.mode }}/review-deploy-lambda-test-logs.png)
 
-Testing with the Lambda console is a bit of a pain because we need to figure out the event payload structure. See [Debug Event Payloads]({% link _docs/debug/payloads.md %}) for more example payloads. We'll test with curl next.
+Testing with the Lambda console is a bit of a pain because we need to figure out the event payload structure. See [Debug Event Payloads]({% link _docs/debug/payloads.md %}) for more example payloads. We'll test with {% if include.mode == "html" %}a browser{% else %}curl{% endif %} next.

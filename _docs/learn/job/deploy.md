@@ -5,7 +5,9 @@ category: learn-job
 order: 7
 ---
 
-Let's go ahead and deploy the project to AWS Lambda.
+{% include videos/learn/getting-started/job.md %}
+
+Let's deploy the project to AWS Lambda.
 
     jets deploy
 
