@@ -10,6 +10,12 @@ Jets supports [DynamoDB Stream Events](https://docs.aws.amazon.com/amazondynamod
 
 ## Example
 
+Generate code.
+
+    jets generate job clerk --type dynamodb --name file
+
+It looks something like this.
+
 Here is an example connecting an existing DynamoDB table's stream to a Lambda function in a [Job]({% link _docs/jobs.md %})
 
 app/jobs/clerk_job.rb

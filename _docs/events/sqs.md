@@ -20,6 +20,12 @@ We'll cover each of them:
 
 Here is an example connecting an existing SQS queue to a Lambda function in a [Job]({% link _docs/jobs.md %})
 
+Generate code.
+
+    jets generate job waiter --type sqs --name order
+
+It looks something like this.
+
 app/jobs/waiter_job.rb
 
 ```ruby

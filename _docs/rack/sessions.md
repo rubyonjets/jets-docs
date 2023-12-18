@@ -31,7 +31,7 @@ Here's an example configuring the default cookie storage backend.
 
 ```ruby
 Jets.application.configure do
-  config.session.options = { key: 'rack.session',
+  config.session_options = { key: 'rack.session',
                              domain: 'foo.com',
                              path: '/',
                              expire_after: 2592000,
@@ -62,8 +62,8 @@ require "rack/session/dalli"
 
 Jets.application.configure do
   # ...
-  config.session.store = Rack::Session::Dalli
-  config.session.options = { memcache_server: "localhost:11211",
+  config.session_store = Rack::Session::Dalli
+  config.session_options = { memcache_server: "localhost:11211",
                              pool_size: 10 }
 end
 ```

@@ -21,6 +21,12 @@ We'll cover each of them:
 
 Here is an example connecting an existing SNS topic to a Lambda function in a [Job]({% link _docs/jobs.md %})
 
+Generate code.
+
+    jets generate job messenger --type sns --name deliver
+
+It looks something like this.
+
 app/jobs/messenger_job.rb
 
 ```ruby

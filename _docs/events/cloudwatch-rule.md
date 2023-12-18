@@ -10,6 +10,12 @@ Jets supports [CloudWatch Event Rules](https://docs.aws.amazon.com/AmazonCloudWa
 
 ## Example
 
+Generate code.
+
+    jets generate job security --type rule --name detect_security_group_changes
+
+It looks something like this.
+
 An example might be getting notified when an unwanted security group port gets opened.
 
 app/jobs/security_job.rb

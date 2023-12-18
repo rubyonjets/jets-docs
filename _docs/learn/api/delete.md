@@ -49,4 +49,4 @@ Type `y` and hit enter.
     Deleting CloudWatch logs
     Project demo-dev deleted!
 
-{% include learn/how-jets-deletes.md type="Job" %}
+{% include learn/how-jets-deletes.md type="API" %}

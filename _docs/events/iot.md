@@ -14,7 +14,11 @@ Jets supports [IoT Events](https://aws.amazon.com/iot-events/). This allows you 
 
 ## Simple Form
 
-At a minimum, you need to define the SQL statement to use query the Topic Rule. This is the simplest and recommended form.
+Generate code.
+
+    jets generate job thermostat --type iot --name measure
+
+It looks something like this.
 
 app/jobs/thermostat_job.rb
 
@@ -26,6 +30,8 @@ class ThermostatJob < ApplicationJob
   end
 end
 ```
+
+At a minimum, you need to define the SQL statement to use query the Topic Rule. This is the simplest and recommended form.
 
 The `iot_event` declaration creates an [AWS::IoT::TopicRule](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-topicrule.html). You can find it in the IoT console under "Message routing/Rules":
 

@@ -54,8 +54,8 @@ prewarm.rate | 30 minutes | Prewarming Rate
 project_name | generated as part of `jets new` | Jets project name
 ruby.check | true | Check at bootup time for supported Ruby versions.
 ruby.supported_versions | %w[2.5 2.7 3.2] | List of officially supported Ruby versions.
-session.options | {} | Session storage options
-session.store | Rack::Session::Cookie | Session storage.  Note when accessing it use `session[:store]`` since ``.store` is an OrderedOptions method.
+session_options | {} | Session storage options
+session_store | :cookie_store | Session storage.
 time_zone | UTC | Time zone
 
 Here's also the [application/defaults.rb](https://github.com/rubyonjets/jets/blob/master/lib/jets/application/defaults.rb) source where these config options are defined.

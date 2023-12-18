@@ -8,6 +8,14 @@ Jets supports [CloudWatch Log Events](https://docs.aws.amazon.com/AmazonCloudWat
 
 <div class="video-box"><div class="video-container"><iframe src="https://www.youtube.com/embed/m7HeS8yRcCE" frameborder="0" allowfullscreen=""></iframe></div></div>
 
+## Example
+
+Generate code.
+
+    jets generate job log --type log --name report
+
+It looks something like this.
+
 app/jobs/log_job.rb
 
 ```ruby

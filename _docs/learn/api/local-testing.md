@@ -52,7 +52,6 @@ On the jets server side, you'll see the request:
     Started GET "/posts" for 127.0.0.1 at 2023-10-28 14:09:35 +0000
     Processing PostsController#index
     Completed Status Code 200 in 0.015s
-    Started GET "/posts" for 127.0.0.1 at 2023-10-28 14:09:36 +0000
 
 ### Create with Curl
 

@@ -13,7 +13,7 @@ Let's create an SNS Topic as a shared resource. The SNS topic will be used throu
 
 Shared resources are defined in the `app/shared/resources` folder.  You can create the SNS topic like so:
 
-app/shared/resources/alert.rb:
+app/shared/resources/alert.rb
 
 ```ruby
 class Alert < Jets::Stack

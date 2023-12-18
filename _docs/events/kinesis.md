@@ -10,6 +10,12 @@ Jets supports [Kinesis Events](https://docs.aws.amazon.com/lambda/latest/dg/with
 
 ## Example
 
+Generate code.
+
+    jets generate job data --type kinesis --name file
+
+It looks something like this.
+
 Here is an example connecting an existing Kinesis stream to a Lambda function in a [Job]({% link _docs/jobs.md %}).
 
 app/jobs/data_job.rb
