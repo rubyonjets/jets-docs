@@ -26,11 +26,6 @@ Articles, tutorials, and demos on Jets.
 {% for post in posts %}
 * [{{ post.title }}]({{ post.url }}){% endfor %}
 
-## Tutorials
-
-* [HTML ActiveRecord Tutorial]({% link _docs/crud-html-activerecord.md %})
-* [JSON ActiveRecord Tutorial]({% link _docs/crud-json-activerecord.md %})
-
 ## Videos
 
 {% assign posts = site.data.video_playlists %}

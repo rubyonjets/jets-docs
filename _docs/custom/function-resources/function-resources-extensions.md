@@ -14,15 +14,15 @@ app/extensions/iot_extension.rb
 
 ```ruby
 module IotExtension
-  def thermostat_rule(logical_id, props={})
+  def thermostat_rule(logical_id, props = {})
     defaults = {
       topic_rule_payload: {
         sql: "SELECT * FROM 'TemperatureTopic' WHERE temperature > 60",
         actions: [
-          lambda: { function_arn: "!Ref {namespace}LambdaFunction" }
+          lambda: {function_arn: "!Ref {namespace}LambdaFunction"}
         ],
-        rule_disabled: true,
-      },
+        rule_disabled: true
+      }
     }
     props = defaults.deep_merge(props)
     resource(logical_id, "AWS::IoT::TopicRule", props)
@@ -34,13 +34,14 @@ Note: Astute users may noticed that underscore for the keys is used. This allows
 
 After the module is defined, you can use the newly created convenience method like so:
 
-app/jobs/temperature_job.rb
+app/events/temperature_event.rb
 
 ```ruby
-class TemperatureJob < ApplicationJob
+class TemperatureEvent < ApplicationEvent
   thermostat_rule(:room)
   def record
     # custom business logic
+    puts "record event #{JSON.dump(event)}"
   end
 end
 ```

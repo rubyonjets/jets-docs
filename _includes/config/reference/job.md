@@ -1,0 +1,2 @@
+job.enable | false | Enable Jets to create Job resources to handle ActiveJob work, like SQS Queue.
+job.queue.properties | {} | Override the SQS Queue properties. See [Generated Function SQS Queue]({% link _docs/events/sqs.md %}#generated-function-sqs-queue) and [AWS::SQS::Queue](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sqs-queue.html).

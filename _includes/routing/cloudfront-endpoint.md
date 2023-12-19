@@ -1,0 +1,1 @@
+You can put a [CloudFront Distribution](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-distribution.html) in of the Lambda Function URL to provide a user-friendly URL endpoint instead of the random endpoint, IE: https://svf6lbpjbdj73voyfzmpexstau0ygxxh.lambda-url.us-west-2.on.aws

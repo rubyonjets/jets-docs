@@ -117,6 +117,6 @@ Remember, when you deploy this to Lambda you should set the `JETS_MASTER_KEY`. Y
 ## Options
 
 ```
--e, [--environment=ENVIRONMENT]  # Specifies the environment to run this credentials under (test/development/production).
+-e, [--environment=ENVIRONMENT]  # Specifies the environment to run this credentials under (test/dev/prod).
 ```
 

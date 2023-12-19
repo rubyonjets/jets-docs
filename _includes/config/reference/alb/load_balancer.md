@@ -1,0 +1,3 @@
+alb.load_balancer.security_groups | [] | Additional existing security groups to add to the ALB. You can "Bring Your Own Security Groups". Note, Jets will still create a managed security group. If you want Jets to disable the manage security group entirely, you can set `config.alb.security_group.enable = false`
+alb.load_balancer.load_balancer_attributes | [] | [Load Balancer Attributes](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-loadbalancer-loadbalancerattribute.html). You can pass a simple Hash structure, IE: `{"idle_timeout.timeout_seconds": 60}`. Jets will standardize the structure for you.
+alb.load_balancer.subnets | nil | Jets will use the default subnet ids when not set. ALB require at least 2 subnets.

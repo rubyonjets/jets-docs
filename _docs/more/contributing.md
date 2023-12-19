@@ -2,7 +2,7 @@
 title: Contributing to Jets
 nav_text: Contributing
 category: more
-order: 2
+order: 7
 ---
 
 Hi there! Interested in contributing to Jets? We'd love your help. Jets is an open source project, built one contribution at a time by users like you.

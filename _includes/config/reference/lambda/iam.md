@@ -1,0 +1,5 @@
+lambda.iam.default_managed_policy | [] | Override default Jets Application-wide Managed IAM policy. Be careful overriding, you may remove required permissions.
+lambda.iam.default_policy | self.class.iam_default_policy | Override default Jets Application-wide IAM policy. Be careful overriding, you may remove required permissions.
+lambda.iam.default_vpc_policy | %w[ec2:CreateNetworkInterface ec2:DeleteNetworkInterface ec2:DescribeNetworkInterfaces ec2:DescribeVpcs ec2:DescribeSubnets ec2:DescribeSecurityGroups] | description
+lambda.iam.managed_policy | [] | Application-wide Managed IAM Policy to add to the default Jets IAM policy. All Lambda fuctions will have this.
+lambda.iam.policy | [] | Application-wide Custom IAM Policy to add to the Jets default IAM policy. All Lambda fuctions will have this.

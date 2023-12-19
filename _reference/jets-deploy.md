@@ -49,6 +49,6 @@ This builds the project and deploys it AWS Lambda. The deployment is mainly hand
 
 ```
 -m, [--message=MESSAGE]          # Custom message to use for the deployment message
--e, [--environment=ENVIRONMENT]  # Specifies the environment to run this deploy under (test/development/production).
+-e, [--environment=ENVIRONMENT]  # Specifies the environment to run this deploy under (test/dev/prod).
 ```
 

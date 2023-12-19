@@ -14,7 +14,7 @@ Lambda Functions:
 
 ## Minimal Deploy IAM Policy
 
-The IAM user you are using to run the `jets deploy` command needs a minimal set of IAM policies in order to deploy a Jets application. For more info, refer to the [Minimal Deploy IAM Policy]({% link _docs/extras/minimal-deploy-iam.md %}) docs.
+The IAM user you are using to run the `jets deploy` command needs a minimal set of IAM policies in order to deploy a Jets application. For more info, refer to the [Minimal Deploy IAM Policy]({% link _docs/iam/deploy.md %}) docs.
 
 ## Deploy to Different AWS Accounts
 
@@ -46,14 +46,14 @@ To deploy to different accounts:
     AWS_PROFILE=account2 jets deploy
 
 ## Deploying to Different environments:
-Deploying to different environments can be achieved with `JETS_ENV`.  
+Deploying to different environments can be achieved with `JETS_ENV`.
 Remember that things like config.domain.hosted_zone_name will need to be unique for your environment(s).
 These settings can be specified in config/environments/ to override the global settings.
 
 Example:
 
-    JETS_AGREE=yes JETS_ENV=development bundle exec jets deploy
-    JETS_AGREE=yes JETS_ENV=production bundle exec jets deploy
+    JETS_AGREE=yes JETS_ENV=dev bundle exec jets deploy
+    JETS_AGREE=yes JETS_ENV=prod bundle exec jets deploy
 
 ## Deploying to Multiple Regions
 

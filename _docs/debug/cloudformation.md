@@ -1,6 +1,6 @@
 ---
-title: Debugging CloudFormation
-nav_text: CloudFormation
+title: CloudFormation Rollback
+nav_text: CloudFormation Rollback
 category: debug
 order: 1
 ---
@@ -30,11 +30,13 @@ The parent stack is reporting that the main error is on the `JetsPreheatJob Embe
 
 ![](/img/docs/debug/cloudformation-child-stack-error.png)
 
-You can see here that the error is because the user does not have the necessary IAM permission. In this case, giving the user the [Minimal Deploy IAM Policy]({% link _docs/extras/minimal-deploy-iam.md %}) will resolve the issue.
+You can see here that the error is because the user does not have the necessary IAM permission. In this case, giving the user the [Minimal Deploy IAM Policy]({% link _docs/iam/deploy.md %}) will resolve the issue.
 
 ## New Child Stacks Deleted
 
 When a child stack is created for the very first time and happens to fail, CloudFormation will roll back the child stack and delete it. This makes it tricky for those who don't yet realize this because the error message is gone by the time they check. In this case, you have to refresh the CloudFormation console during a deploy to see it and capture that.
 
-You may want to try incrementally debugging it. First, create a simple class with just one method and get that deployed successfully. And then add your full logic and deploy again. With this approach, the rolled back child stack remain intact and you can see the error message post deploy.
+In Jets 5 and above, Jets tries to show the nested child stack error in the deploy out. If that does not show up though, you may have to go to the CloudFormation console and check on it.
+
+You also may want to try incrementally debugging it. First, create a simple class with just one method and get that deployed successfully. And then add your full logic and deploy again. With this approach, the rolled back child stack remain intact and you can see the error message post deploy.
 

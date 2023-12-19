@@ -18,22 +18,23 @@ We'll cover each of them:
 
 ## Existing SQS Queue
 
-Here is an example connecting an existing SQS queue to a Lambda function in a [Job]({% link _docs/jobs.md %})
+Here is an example connecting an existing SQS queue to a Lambda function in a [Event]({% link _docs/events.md %})
 
 Generate code.
 
-    jets generate job waiter --type sqs --name order
+    jets generate:event waiter --trigger sqs --method order
 
 It looks something like this.
 
-app/jobs/waiter_job.rb
+app/events/waiter_event.rb
 
 ```ruby
-class WaiterJob < ApplicationJob
-  class_timeout 30 # must be less than or equal to the SQS queue default timeout
+class WaiterEvent < ApplicationEvent
+  class_timeout 15.minutes # Lambda Function timeout must be less than or equal to the SQS Visibility timeout
   sqs_event "hello-queue"
   def order
-    puts "order event #{JSON.dump(event)}"
+    puts "event #{JSON.dump(event)}"
+    puts "sqs_events #{JSON.dump(sqs_events)}"
   end
 end
 ```
@@ -49,7 +50,7 @@ Ultimately, the `sqs_event` declaration generates a [Lambda::EventSourceMapping]
 Jets can create and manage an SQS queue for a specific function. This is done with a special `:generate_queue` argument.
 
 ```ruby
-class HardJob < ApplicationJob
+class CoolEvent < ApplicationEvent
   class_timeout 30 # must be less than or equal to the SQS queue default timeout
   sqs_event :generate_queue
   def lift
@@ -58,13 +59,13 @@ class HardJob < ApplicationJob
 end
 ```
 
-A special `:queue_properties` key will set the [SQS::Queue](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html) properties. Other keys set the [Lambda::EventSourceMapping](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html) properties.  Example:
+A special `:QueueProperties` key will set the [SQS::Queue](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sqs-queue.html) properties. Other keys set the [Lambda::EventSourceMapping](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html) properties.  Example:
 
 ```ruby
   sqs_event(:generate_queue,
-    batch_size: 10, # property of EventSourceMapping
-    queue_properties: {
-      message_retention_period: 345600, # 4 days in seconds
+    BatchSize: 10, # property of EventSourceMapping
+    QueueProperties: {
+      MessageRetentionPeriod: 345600, # 4 days in seconds
   })
 ```
 
@@ -78,7 +79,7 @@ Note, SQS Queues managed by Jets are deleted when you delete the Jets applicatio
 
 Jets can also support creating a shared SQS Queue via a [Shared Resource]({% link _docs/custom/shared-resources.md %}). Here's how you create the SQS queue as a shared resource:
 
-app/shared/resources/list.rb
+shared/resources/list.rb
 
 ```ruby
 class List < Jets::Stack
@@ -88,10 +89,10 @@ end
 
 You can reference the Shared Queue like so:
 
-app/jobs/hard_job.rb
+app/events/cool_event.rb
 
 ```ruby
-class HardJob < ApplicationJob
+class CoolEvent < ApplicationEvent
   class_timeout 30 # must be less than or equal to the SQS queue default timeout
   depends_on :list # so we can reference list shared resources
   sqs_event ref(:waitlist) # reference sqs queue in shared resource
@@ -101,7 +102,7 @@ class HardJob < ApplicationJob
 end
 ```
 
-Underneath the hood, Jets provisions resources via CloudFormation.  The use of `depends_on` ensures that Jets will pass the shared resource `List` stack outputs to the `HardJob` stack as input parameters. This allows `HardJob` to reference resources from the separate child `List` stack.
+Underneath the hood, Jets provisions resources via CloudFormation.  The use of `depends_on` ensures that Jets will pass the shared resource `List` stack outputs to the `CoolEvent` stack as input parameters. This allows `CoolEvent` to reference resources from the separate child `List` stack.
 
 {% include cloudformation_links.md %}
 
@@ -109,10 +110,10 @@ Underneath the hood, Jets provisions resources via CloudFormation.  The use of `
 
 You can access the SQS url with the `lookup` method. The method is available to `Jets::Stack` subclasses like the `List` class here. Here's an example:
 
-app/jobs/postman_job.rb
+app/events/postman_event.rb
 
 ```ruby
-class PostmanJob < ApplicationJob
+class PostmanEvent < ApplicationEvent
   include Jets::AwsServices
 
   iam_policy "sqs"
@@ -133,7 +134,7 @@ end
 
 Here's an example of sending a message to an SQS queue via the [aws sqs send-message](https://docs.aws.amazon.com/cli/latest/reference/sqs/send-message.html) CLI:
 
-    aws sqs send-message --queue-url https://sqs.us-west-2.amazonaws.com/112233445566/test-queue --message-body '{"test": "hello world"}'
+    aws sqs send-message --queue-url https://sqs.us-west-2.amazonaws.com/112233445566/hello-queue --message-body '{"test": "hello world"}'
 
 You can send a message via the SQS Console, sdk, etc also.
 
@@ -141,7 +142,7 @@ You can send a message via the SQS Console, sdk, etc also.
 
 It helps to tail the logs and watch the event as it comes through.
 
-    jets logs -f -n waiter_job-order
+    jets logs -f -n waiter_event-order
 
 ## Event Payloads
 
@@ -183,5 +184,13 @@ The `sqs_event` helper method unravels the data and provides the SQS message bod
 
 ## IAM Policy
 
-An IAM policy is generated for the Lambda function associated with the SQS event that allows the permissions needed.  You can control and override the IAM policy with normal [IAM Policies]({% link _docs/iam-policies.md %}) if needed though.
+An IAM policy is generated for the Lambda function associated with the SQS event that allows the permissions needed.  You can control and override the IAM policy with normal [IAM Policies]({% link _docs/iam/app/iam-policies.md %}) if needed though.
+
+## Troubleshooting
+
+If you get an error message about `Invalid request provided: Queue visibility timeout` like this:
+
+    05:50:35PM CREATE_FAILED AWS::Lambda::EventSourceMapping HandleEventSourceMapping Resource handler returned message: "Invalid request provided: Queue visibility timeout: 30 seconds is less than Function timeout: 60 seconds (Service: Lambda, Status Code: 400, Request ID: 2a7e4692-70fe-45eb-8fd3-06f20692af1e)" (RequestToken: 414a433a-21a3-da18-676e-fd00001fded2, HandlerErrorCode: InvalidRequest)
+
+This means the **SQS Queue Default visibility timeout** is less than the **Lambda Function timeout**. You have to decrease the Lambda Function timeout or increase the SQS Queue timeout.
 

@@ -5,11 +5,11 @@ category: custom-shared-resources
 order: 4
 ---
 
-For some Shared Resources you might need to create Lambda functions themselves. Instead of writing the Lambda function code inline with the Shared Resource definition, you can define them in `app/shared/functions` and declare them with the `function` helper. Here's an example:
+For some Shared Resources you might need to create Lambda functions themselves. Instead of writing the Lambda function code inline with the Shared Resource definition, you can define them in `shared/functions` and declare them with the `function` helper. Here's an example:
 
 ## Ruby Example
 
-app/shared/resources/custom.rb:
+shared/resources/custom.rb
 
 ```ruby
 class Custom < Jets::Stack
@@ -17,9 +17,9 @@ class Custom < Jets::Stack
 end
 ```
 
-You then define the function in the `app/shared/functions` folder:
+You then define the function separately in the `shared/functions` folder:
 
-app/shared/functions/bob.rb:
+shared/functions/bob.rb
 
 ```ruby
 def lambda_handler(event:, context:)
@@ -35,16 +35,16 @@ There is also a `ruby_function` alias to the `function` method. They do the same
 
 For Shared Resource Functions, you can use Python just as easily.  Here's an example:
 
-app/shared/resources/custom.rb:
+shared/resources/custom.rb
 
 ```ruby
 class Custom < Jets::Stack
   python_function(:kevin)
 end
 ```
-You then define the function in the `app/shared/functions` folder:
+You then define the function separately in the `shared/functions` folder:
 
-app/shared/functions/kevin.py:
+shared/functions/kevin.py
 
 ```python
 def lambda_handler(event, context):
@@ -55,14 +55,14 @@ def lambda_handler(event, context):
 
 Here's also a node example:
 
-app/shared/resources/custom.rb:
+shared/resources/custom.rb
 
 ```ruby
 class Custom < Jets::Stack
   node_function(:stuart)
 end
 ```
-app/shared/functions/stuart.js:
+shared/functions/stuart.js:
 
 ```javascript
 exports.handler = function(event, context, callback) {
@@ -78,7 +78,7 @@ The methods `ruby_function`, `python_function`, and `node_function` all delegate
 class Custom < Jets::Stack
   function(:kevin,
     Handler: "kevin.lambda_handler",
-    Runtime: "ruby2.7"
+    Runtime: "ruby3.2"
   )
 end
 ```
@@ -93,7 +93,7 @@ class Custom < Jets::Stack
       S3Key: code_s3_key
     },
     Handler: "kevin.lambda_handler",
-    Runtime: "ruby2.7"
+    Runtime: "ruby3.2"
   )
 end
 ```

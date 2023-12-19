@@ -1,5 +1,5 @@
 ---
-title: Debugging CloudWatch Logs Basics
+title: CloudWatch Logs Basics
 nav_text: CloudWatch Logs Basics
 category: debug
 order: 2

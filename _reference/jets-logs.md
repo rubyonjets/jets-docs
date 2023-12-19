@@ -25,13 +25,13 @@ If you want to follow the logs use the `-f` flag.
 
 If you want to see the production logs:
 
-    ❯ JETS_ENV=production jets logs -f
+    ❯ JETS_ENV=prod jets logs -f
     Tailing logs for /aws/lambda/demo-prod-controller
 
 If you want to see logs for a job, specify the job and method.
 
-    ❯ jets logs -f -n hard_job-dig
-    Tailing logs for /aws/lambda/demo-dev-hard_job-dig
+    ❯ jets logs -f -n cool_event-dig
+    Tailing logs for /aws/lambda/demo-dev-cool_event-dig
 
 
 ## Options

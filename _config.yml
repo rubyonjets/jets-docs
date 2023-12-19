@@ -1,9 +1,9 @@
 # Site settings
-title: Jets Ruby Serverless Framework
+title: Jets Serverless Deployment Service
 email: tongueroo@gmail.com
 url: http://rubyonjets.com
-description: "Ruby Serverless Framework"
-keywords: "AWS Lambda, AWS Serverless, Ruby, Framework"
+description: "Rubon on Jets: Rails and Ruby Serverless Deployment Service for AWS Lambda"
+keywords: "AWS Lambda, AWS Serverless, Ruby, Rails, Sinatra, Hanami, Rack"
 skills: ""
 meta_author: Tung Nguyen
 
@@ -71,3 +71,5 @@ defaults:
 
 plugins_dir:
  - jekyll-coffeescript
+
+ads_url: "https://ads.boltops.com"

@@ -2,7 +2,7 @@
 title: Getting Started
 ---
 
-Step-by-step guides to help you get started with Jets, the Ruby Serverless Framework.
+Step-by-step guides to help you get started with Jets, the Serverless Deployment Service.
 
 ___
 
@@ -10,8 +10,9 @@ ___
 
 <div class="getting-started-options">
   <div class="row">
-    <div class="col"><a href="{% link _docs/learn/job.md %}">Job Project</a></div>
-    <div class="col"><a href="{% link _docs/learn/api.md %}">API Project</a></div>
-    <div class="col"><a href="{% link _docs/learn/html.md %}">HTML Project</a></div>
+{% assign docs = site.docs | where: "categories","learn" | sort: "order"  %}
+{% for doc in docs %}
+    <div class="col"><a href="{{ doc.url }}">{{ doc.nav_text }} </a></div>
+{% endfor %}
   </div>
 </div>

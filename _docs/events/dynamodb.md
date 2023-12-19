@@ -12,30 +12,36 @@ Jets supports [DynamoDB Stream Events](https://docs.aws.amazon.com/amazondynamod
 
 Generate code.
 
-    jets generate job clerk --type dynamodb --name file
+    jets generate:event clerk --trigger dynamodb --method file
 
 It looks something like this.
 
-Here is an example connecting an existing DynamoDB table's stream to a Lambda function in a [Job]({% link _docs/jobs.md %})
+Here is an example connecting an existing DynamoDB table's stream to a Lambda function in a [Event]({% link _docs/events.md %})
 
-app/jobs/clerk_job.rb
+app/events/clerk_event.rb
 
 ```ruby
-class ClerkJob < ApplicationJob
-  dynamodb_event "test-table" # existing table: demo-dev-test-table
+class ClerkEvent < ApplicationEvent
+  dynamodb_event "test-table" # existing table: demo-dev_test-table
   def file
     puts "event #{JSON.dump(event)}"
   end
 end
 ```
 
-**Note**: The dynamodb table name is prefixed with the project namespace as of Jets 5 via [Dynomite 2]({% link _docs/database/dynamodb.md %}). For example: `test-table => demo-dev-test-table`. You can adjust this behavior with `config.events.dynamodb.table_namespace`. See: [Config Reference]({% link _docs/config/reference.md %}).
+**Note**: The dynamodb table name is prefixed with the project namespace as of Jets 5. For example: `test-table => demo-dev_test-table`. You can adjust this behavior with `config.events.dynamodb.table_namespace`. See: [Config Reference]({% link _docs/config/reference.md %}).
 
 Here's the DynamoDB Lambda function trigger.
 
 ![](/img/docs/dynamodb-trigger.png)
 
 Note you must enable DynamoDB streaming for the table yourself first.  Refer to the "Enabling DynamoDB Streams" section on how to do this.
+
+## Create Table
+
+Notice how the table name is "namespaced" with the `demo-dev` prefix.
+
+    aws dynamodb create-table --table-name demo-dev_test-table --attribute-definitions AttributeName=id,AttributeType=S --key-schema AttributeName=id,KeyType=HASH --billing-mode PAY_PER_REQUEST
 
 ## Enabling DynamoDB Streams
 
@@ -45,20 +51,23 @@ Here's where you enable streams with the DynamoDB console.
 
 Here's also an example of how to enable streams with the [aws dynamodb update-table](https://docs.aws.amazon.com/cli/latest/reference/dynamodb/update-table.html) cli.
 
-    aws dynamodb update-table --table-name demo-dev-test-table --stream-specification "StreamEnabled=true,StreamViewType=NEW_AND_OLD_IMAGES"
+    aws dynamodb update-table --table-name demo-dev_test-table --stream-specification "StreamEnabled=true,StreamViewType=NEW_AND_OLD_IMAGES"
 
+**Note**: When you enable streams, AWS generates a unique latest stream ARN. The Jets `dynamodb_event` uses the AWS SDK to auto-detect this ARN. If you disable the stream and re-enable the stream then the ARN changes. You can redeploy so that the latest stream ARN is detected and use.
+
+You can also explicitly specify the stream ARN instead of the table name with the `dynamodb_event` method. IE: `dynamodb_event "arn:aws:dynamodb:us-west-2:112233445566:table/demo-dev_test-table/stream/2024-02-11T15:44:30.751"`.
 
 ## Putting Data To DynamoDB
 
 Here's an example of updating data in a DynamoDB table [aws dynamodb put-item](https://docs.aws.amazon.com/cli/latest/reference/dynamodb/put-item.html) CLI:
 
-    aws dynamodb put-item --table-name demo-dev-test-table --item '{"id": {"S": "id-1"}, "name": {"S": "name-1"}}'
+    aws dynamodb put-item --table-name demo-dev_test-table --item '{"id": {"S": "id-1"}, "name": {"S": "name-1"}}'
 
 ## Tailing Logs
 
 It helps to tail the logs and watch the event as it comes through.
 
-    jets logs -f -n clerk_job-file
+    jets logs -f -n clerk_event-file
 
 ## Event Payload
 
@@ -113,8 +122,19 @@ Here's a screenshot of the event in the CloudWatch Log console.
 
 ## IAM Policy
 
-Jets generates an IAM policy for the Lambda function associated with the DynamoDB event that allows the permissions needed.  You can control and override the IAM policy with normal [IAM Policies]({% link _docs/iam-policies.md %}) if required, though.
+Jets generates an IAM policy for the Lambda function associated with the DynamoDB event that allows the permissions needed.  You can control and override the IAM policy with normal [IAM Policies]({% link _docs/iam/app/iam-policies.md %}) if required, though.
 
-## Related
+## Debugging
 
-* [Dynomite find_all_with_stream_event]({% link _docs/database/dynamodb/querying/find-with-event.md %})
+If you are not seeing the event being triggered:
+
+Make sure you have **changed** the value of the item. Stream events will only fire if there are changes. Here's a `edit-1` change to the item.
+
+    aws dynamodb put-item --table-name demo-dev_test-table --item '{"id": {"S": "id-1"}, "name": {"S": "name-1-edit-1"}}'
+
+If you have disabled and reenabled the stream. The stream ARN could be stale. You should redeploy to update it.
+
+You can check the CloudFormation template to confirm the Stream ARN. Look for `Type: AWS::Lambda::EventSourceMapping` and `Properties.EventSourceArn`. That should match the dynamodb table LatestStreamArn.
+
+    aws dynamodb describe-table --table-name demo-dev_test-table | jq
+
