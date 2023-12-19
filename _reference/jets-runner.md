@@ -55,6 +55,6 @@ puts "hello world with args: #{args}"
 ## Options
 
 ```
--e, [--environment=ENVIRONMENT]  # Specifies the environment to run this runner under (test/development/production).
+-e, [--environment=ENVIRONMENT]  # Specifies the environment to run this runner under (test/dev/prod).
 ```
 

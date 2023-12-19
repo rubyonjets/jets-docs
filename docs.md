@@ -2,46 +2,28 @@
 title: Overview
 ---
 
-## What is Ruby on Jets?
+## What is Jets?
 
-Jets is a Ruby serverless Framework that allows you to create and deploy services easily. It includes everything you need to build APIs and deploy them to AWS Lambda. Jets is also perfect for writing functions that glue AWS services and resources together.
+Jets is a [Deployment Service](https://www.rubyonjets.com/). Jets makes it easy to deploy and run your app on Serverless. It packages up your code and runs it on AWS Lambda. Jets can deploy [Rails]({% link _docs/learn/rails.md %}), [Sinatra]({% link _docs/learn/sinatra.md %}), [Hanami]({% link _docs/learn/hanami.md %}), and any [Rack]({% link _docs/learn/rack.md %}) app.
 
-## How It Works
+## Jets Account
 
-You write code and Jets turns your code into Lambda functions and other AWS resources. Jets orchestrates provisioning and deployment so you can focus on writing code, which is what serverless is all about! Here's a presentation that introduces Jets:
+To use Jets, you need a Jets account. You can sign up at [www.rubyonjets.com](https://www.rubyonjets.com/) and create an API token key there. There is a 2-week free usage period for your AWS account. After that, a paid plan is required. You pay a flat monthly  price for each stack. Here's the [pricing](https://www.rubyonjets.com/pricing).
 
-<div class="video-box"><div class="video-container"><iframe src="https://www.youtube.com/embed/a0VKbrgzKso" frameborder="0" allowfullscreen=""></iframe></div></div>
+## Rails Support
 
-## Jets AWS Introduction Series
+To deploy your Rails app, Jets uses your code to build a [Docker image](https://docs.rubyonjets.com/docs/config/package-type/) and deploy it to AWS Lambda.
 
-For those who would like to learn some AWS essentials, you might like this introductory series:
+The steps to deploy your app are minimal. Add this to your Gemfile.
 
-{% assign posts = site.data.intro_series %}
-{% for post in posts %}
-* [{{ post.title }}]({{ post.url }}){% endfor %}
+Gemfile
 
-## Jets Tutorial Series
+    gem "jets", ">= 6.0"
+    gem "jets-rails", ">= 1.0"
 
-For those that would like to jump into Jets more directly, you might like this:
+And run
 
-{% assign posts = site.data.tutorial_series %}
-{% for post in posts limit: 11 %}
-* [{{ post.title }}]({{ post.url }}){% endfor %}
+    jets init
+    jets deploy
 
-## Jets Events Series
-
-For those interested in connecting events with Jets and using it as a Glue Framework.
-
-{% assign posts = site.data.events_series %}
-{% for post in posts limit: 4 %}
-* [{{ post.title }}]({{ post.url }}){% endfor %}
-
-
-## Videos
-
-Here are the video playlists for the tutorial series.
-
-{% assign posts = site.data.video_playlists %}
-{% for post in posts %}
-* [{{ post.title }}]({{ post.url }}){% endfor %}
-
+That's it.

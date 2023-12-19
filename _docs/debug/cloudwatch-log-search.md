@@ -1,5 +1,5 @@
 ---
-title: Debugging CloudWatch Logs Search
+title: CloudWatch Logs Search
 nav_text: CloudWatch Logs Search
 category: debug
 order: 3

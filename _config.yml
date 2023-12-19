@@ -71,3 +71,6 @@ defaults:
 
 plugins_dir:
  - jekyll-coffeescript
+
+# ads_url: "https://ads.boltops.com"
+ads_url: "https://k6baop27mhhvnm5r2nr4uqvhb40gfetq.lambda-url.us-west-2.on.aws"

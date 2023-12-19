@@ -1,72 +1,42 @@
 ---
 title: Jobs
+category: top-level
+subcategory: jobs
+order: 7
 ---
 
-A Jets job handles work which is better suited to run in the background - outside of the web request/response cycle. Here's an example:
+**Note**: Jets 6 Jobs are different than Jets 5 Jobs. A Jets 6 Job is a Rails ActiveJob compatible job. Jets 5 Jobs have been renamed to [Jets Events]({% link _docs/events.md %})
 
-app/jobs/hard_job.rb:
+Jets Jobs are just Rails Jobs. It's implemented as a `config.active_job.queue_adapter = :jets_job` adapter. See: [Enabling Jets Jobs]({% link _docs/jobs/enable.md %}).
+
+Jets handles work that is better suited to run in the background - outside of the web request/response cycle. Here's an example:
+
+app/jobs/cleanup_job.rb:
 
 ```ruby
-class HardJob < ApplicationJob
-  class_timeout 300 # 300s or 5m, current Lambda max is 15m
-
-  rate "10 hours" # every 10 hours
-  def dig
-    puts "done digging"
-  end
-
-  # Cron expression is AWS Cron Format and require 6 fields
-  cron "0 */12 * * ? *" # every 12 hours
-  def lift
-    puts "done lifting"
+class CleanupJob < ApplicationJob
+  def perform(*args)
+    puts "Cleaning up: #{args}"
   end
 end
 ```
 
-In our example, the job `HardJob#dig` will run every 10 hours, and `HardJob#lift` will run every 12 hours.
+## Jets Job SQS Queue
 
-You can see the lambda functions which correspond to your job functions in the Lambda console:
+When you deploy a Jets app, it'll create an SQS Queue and a `jets-queue_event-handle` Lambda function to handle the Jets jobs processing. When you call the job.
 
-![The Lambda functions corresponding to the jobs in the AWS Console](/img/docs/demo-lambda-functions-jobs.png)
+    $ rails console
+    > CleanupJob.perform_later("desk")
 
-The `rate` and `cron` methods create CloudWatch Event Rules to handle scheduling. You can see these CloudWatch Event Rules in the CloudWatch console:
+It gets added to the SQS Queue and immediately processed by the Lambda function. You can see the work being process via the logs.
 
-![Generated CloudWatch Event Rules for scheduling in the AWS UI](/img/docs/demo-job-cloudwatch-rule.png)
+    $ jets logs -f -n jets-queue_event-handle
+    Cleaning up: desk
 
-## Running Jobs Explicitly
+**Tip**: If you need to remember the Lambda function name, you can use the `jets functions` command to find it.
 
-You can run background jobs explicitly. Example:
+## Links
 
-```ruby
-event = {key1: "value1"}
-HardJob.perform_now(:dig, event)
-HardJob.perform_later(:lift, event)
-```
-
-In the example above, the `perform_now` method executes the job in the **current process**. The `perform_later` function runs the job by invoking the AWS Lambda function associated with it in a **new process**.  It usually runs a few seconds later.
-
-Note, remotely on AWS Lambda, the functions calling the `perform_*` methods need to have the IAM permission to call Lambda. For example, a simple `iam_policy "lambda:InvokeFunction"` should do it. See [IAM Policies]({% link _docs/iam-policies.md %}) for more info.
-
-## Additional Arguments
-
-Additional arguments are passed to the HardJob with an event hash.
-
-```ruby
-event = {key1: "value1"}
-HardJob.perform_now(:dig, event)
-```
-
-The `event` helper is available in the method.
-
-```ruby
-class HardJob
-  def dig
-    puts "event #{event.inspect}" # event hash is avaialble
-  end
-end
-```
-
-## Cron Expression
-
-The cron expression is in the [AWS Cron format](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html).  The AWS Cron format has six required fields, separated by white space.  This is slightly different from the traditional Linux cron format which has 5 fields.
-
+{% assign event_docs = site.docs | where: "categories","jobs" | sort: "order" %}
+{% for doc in event_docs %}
+* [{{ doc.title }}]({{doc.url}}): {{ doc.desc }}{% endfor %}

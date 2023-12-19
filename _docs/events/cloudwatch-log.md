@@ -12,14 +12,14 @@ Jets supports [CloudWatch Log Events](https://docs.aws.amazon.com/AmazonCloudWat
 
 Generate code.
 
-    jets generate job log --type log --name report
+    jets generate:event log --trigger log --method report
 
 It looks something like this.
 
-app/jobs/log_job.rb
+app/events/log_event.rb
 
 ```ruby
-class LogJob < ApplicationJob
+class LogEvent < ApplicationEvent
   log_event "/aws/lambda/hello"
   def report
     puts "event #{JSON.dump(event)}"
@@ -35,7 +35,7 @@ Here's where the logs subscription filter is in the CloudWatch console:
 The `log_event` declaration creates an [AWS::Logs::SubscriptionFilter](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-subscriptionfilter.html).  So you can provide a filter pattern like so:
 
 ```ruby
-class LogJob < ApplicationJob
+class LogEvent < ApplicationEvent
   log_event("my-log-group",
     filter_pattern: "{$.userIdentity.type = Root}"
   )
@@ -51,7 +51,13 @@ It is recommended that you use a `filter_pattern` because there can be a lot of 
 
 It helps to tail the logs and watch the event as it comes through.
 
-    jets logs -f -n log_job-report
+    jets logs -f -n log_event-report
+
+## Send Event
+
+To get an event to send, invoke the Lambda function it's listening to.  In this case:
+
+    aws lambda invoke --function-name hello output.txt
 
 ## Event Payloads
 
@@ -79,7 +85,7 @@ Jets provides the uncompressed data via `log_event`:
  "logGroup"=>"/aws/lambda/hello",
  "logStream"=>"2019/02/14/[$LATEST]3e00026ab0364cf1a087fa28919db6f9",
  "subscriptionFilters"=>
-  ["demo-dev-LogJob-5WWK0N2M28RA-ReportSubscriptionFilter-TBMLAU10NITH"],
+  ["demo-dev-LogEvent-5WWK0N2M28RA-ReportSubscriptionFilter-TBMLAU10NITH"],
  "logEvents"=>
   [{"id"=>"34568757276306932081717187970747304140839513019428765696",
     "timestamp"=>1550116687517,

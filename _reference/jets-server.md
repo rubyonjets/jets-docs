@@ -31,7 +31,7 @@ Start up server binding to host `0.0.0.0`:
 ## Options
 
 ```
--e, [--environment=ENVIRONMENT]              # Specifies the environment to run this server under (test/development/production).
+-e, [--environment=ENVIRONMENT]              # Specifies the environment to run this server under (test/dev/prod).
 -p, [--port=port]                            # Runs Jets on the specified port - defaults to 8888.
 -b, [--binding=IP]                           # Binds Jets to the specified IP - defaults to 'localhost' in development and '0.0.0.0' in other environments'.
 -c, [--config=file]                          # Uses a custom rackup configuration.

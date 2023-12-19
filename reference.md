@@ -18,7 +18,6 @@ title: CLI Reference
 * [jets delete]({% link _reference/jets-delete.md %})
 * [jets deploy]({% link _reference/jets-deploy.md %})
 * [jets dev:cache]({% link _reference/jets-dev-cache.md %})
-* [jets dotenv:show]({% link _reference/jets-dotenv-show.md %})
 * [jets dynamodb:generate]({% link _reference/jets-dynamodb-generate.md %})
 * [jets dynamodb:migrate]({% link _reference/jets-dynamodb-migrate.md %})
 * [jets dynamodb:seed]({% link _reference/jets-dynamodb-seed.md %})

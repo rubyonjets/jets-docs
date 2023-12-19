@@ -1,0 +1,1 @@
+**Important**: If you are using a [Docker Host]({% link _docs/remote/codebuild/docker-host.md %}) to speed up your builds, the Docker Host will determine the Docker image architecture, not just the CodeBuild remote runner. Your custom Docker Host architecture must match the CodeBuild remote runner architecture.

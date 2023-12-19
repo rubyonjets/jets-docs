@@ -4,35 +4,10 @@
     <ul>
       {% include render/category.html category="learn" %}
     </ul>
-    <h2>Docs</h2>
+    <h2><a href="{% link docs.md %}">Docs</a></h2>
     <ul id="docs">
-      <li><a href="{% link docs.md %}">Intro</a>
-        <ul class="docs">
-          <li><a href="{% link _docs/functions.md %}">Functions</a></li>
-          <li><a href="{% link _docs/controllers.md %}">Controllers</a></li>
-          <li><a href="{% link _docs/intro/routing.md %}">Routing</a></li>
-          <li><a href="{% link _docs/jobs.md %}">Jobs</a></li>
-          <li><a href="{% link _docs/install.md %}">Install</a></li>
-          <li><a href="{% link _docs/new-modes.md %}">Jets New</a></li>
-          <li><a href="{% link _docs/structure.md %}">Project Structure</a></li>
-          <li><a href="{% link _docs/local-server.md %}">Local Server</a></li>
-          <li><a href="{% link _docs/repl-console.md %}">REPL Console</a></li>
-          <li><a href="{% link _docs/deploy.md %}">Deploy</a></li>
-          <li><a href="{% link _docs/jets-call.md %}">Jets Call</a></li>
-          <li><a href="{% link _docs/function-properties.md %}">Function Properties</a></li>
-          <li><a href="{% link _docs/iam-policies.md %}">IAM Policies</a></li>
-          <li><a href="{% link _docs/managed-iam-policies.md %}">Managed IAM Policies</a></li>
-          <li><a href="{% link _docs/prewarming.md %}">Prewarming</a></li>
-          <li><a href="{% link _docs/env-files.md %}">Env Files</a></li>
-          <li><a href="{% link _docs/env-extra.md %}">Env Extra</a></li>
-          <li><a href="{% link _docs/generators.md %}">Generators</a></li>
-        </ul>
-      </li>
-
       {% include render/category.html category="top-level" %}
 
-      <li><a href="{% link _docs/articles.md %}">Articles & Tutorials</a></li>
-      <li><a href="{% link faq.md %}">FAQ</a></li>
       <li><a href="{% link support.md %}">Support</a></li>
       <li><a href="{% link reference.md %}">CLI Reference</a></li>
     </ul>

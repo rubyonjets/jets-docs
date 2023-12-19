@@ -1,0 +1,23 @@
+<div id="sidebar">
+  <section class="content-nav">
+    <h2><a href="{% link getting-started.md %}">Getting Started</a></h2>
+    <ul>
+      {% include render/category.html category="learn" %}
+    </ul>
+    <ul>
+      <li><a href="/docs/config/">config</a>
+        <ul>{% include render/category.html category="config" %}</ul>
+      </li>
+      <li><a href="/docs/considerations/">considerations</a>
+        <ul>{% include render/category.html category="considerations" %}</ul>
+      </li>
+    </ul>
+  </section>
+  <div class="menu-options">
+    <h2>sidebar options:</h2>
+    <ul class="list-unstyled">
+      <li><a href="#" id="expand-all">expand all</a></li>
+      <li><a href="{{ site.gh_url }}/blob/main/{{ page.path }}" target="_blank">edit page</a></li>
+    </ul>
+  </div>
+</div>

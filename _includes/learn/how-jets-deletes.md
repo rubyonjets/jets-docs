@@ -1,11 +1,11 @@
-## How Jets Deletes
+## How Jets Delete Works
 
-1. Empties managed s3 bucket Jets created to store the CloudFormation templates and your packaged code zip file.
-2. Deletes the parent `demo-dev` stack, which in turn deletes the nested stack and all resources associated with the Jets app.
-3. Deletes the CloudFormation logs associated with the Lambda functions.
+1. Jets packages code and uploads it to S3 to handle deletion.
+2. The Remote Runner syncs a bootstrap stack which removes and deletes most of the resources.
+3. The final step performs the remaining deletion of the S3 bucket and CodeBuild Remote Runner.
 
-Since everything is codified, you end up back in a clean state. 😄
+Since everything is codified, you nicely end up back in a clean state. 😄
 
-Congrats! You have successfully created, modified, and deleted a Jets {{ include.type }} Project.
+Congrats! You have successfully created, modified, and deleted a Jets {{ include.framework }} project.
 
 Next, we'll look at some next steps.

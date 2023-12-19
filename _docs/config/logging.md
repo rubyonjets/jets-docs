@@ -1,65 +1,102 @@
 ---
 title: Logging
 category: config
-order: 3
+order: 10
 ---
 
-## Formatter
+When your app is deployed to AWS Lambda, logging to stdout logs are sent to CloudWatch logs. You can configure the log verbosity level Lambda writes to CloudWatch logs. These are the Jets defaults.
 
-The default logger foramtter does not prefix a timestamp. This is pretty much the default.
-
-config/environments/development.rb
+config/jets/deploy.rb
 
 ```ruby
-Jets.application.configure do
-  config.logger.formatter = ActiveSupport::Logger::SimpleFormatter.new
-  config.logging.event = false # dont show large event in local development logging
+Jets.deploy.configure do
+  config.lambda.function.logging_config = {
+    ApplicationLogLevel: "INFO",
+    LogFormat: "JSON", # Text | JSON
+    SystemLogLevel: "WARN"
+  }
 end
 ```
 
-The reason a timestamp is not prefix by default is that it makes for cleaner logging output locally. Remotely, on AWS lambda the `jets logs` command will include the timestamp already from the CloudWatch event item. So the timestamp is not needed.
+**Important**: To set log levels, you must use `LogFormat: "JSON"`.
 
-That being said, if you want a timestamp to be prefixed, you can use this:
+* Application Log Levels: TRACE DEBUG INFO WARN ERROR FATAL
+* System Log Levels: DEBUG INFO WARN
 
-config/environments/development.rb
+The System WARN level removes initStart, runtimeDone, report logs which usually look like this
+
+    START RequestId: aef5f99f-3eea-4963-bc17-02717248a83f Version: $LATEST
+    ...
+    END RequestId: aef5f99f-3eea-4963-bc17-02717248a83f
+    REPORT RequestId: aef5f99f-3eea-4963-bc17-02717248a83f Duration: 9.69 ms Billed Duration: 10 ms Memory Size: 1536 MB Max Memory Used: 405 MB
+
+To reset it to default AWS Lambda logging behavior, use:
+
+config/jets/deploy.rb
 
 ```ruby
-Jets.application.configure do
-  config.logger.formatter = Logger::Formatter.new # has timestamps
-  config.logging.event = false # dont show large event in local development logging
+Jets.deploy.configure do
+  config.lambda.function.logging_config = {
+    LogFormat: "Text",
+  }
 end
 ```
 
-The `config.logging.event` tells Jets whether or not to log the Lambda event payload. In development it's configured to false. In production, it's configured to true, so you can see it for debugging on Lambda.
+Note, you cannot set log levels when using `LogFormat: "Text"`.
 
-## Request Logging Override
 
-For controllers, all params and event payload will be logged to CloudWatch in every request along with a completion log with the status code and duration of the request. You can override each of these logs via the following:
+Related:
 
-Lambda request started:
+* [CloudFormation Lambda Function LoggingConfig](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-loggingconfig.html): The config map to the CloudFormation properties.
+* [Log Level Filtering](https://docs.aws.amazon.com/lambda/latest/dg/monitoring-cloudwatchlogs.html#monitoring-cloudwatchlogs-log-level): You can set different log levels for the `ApplicationLogLevel` and `SystemLogLevel`.
+* [System log level event mapping](https://docs.aws.amazon.com/lambda/latest/dg/monitoring-cloudwatchlogs.html#monitoring-cloudwatchlogs-log-level-mapping): initStart, runtimeDone, report, etc
+
+## Prewarm Logging
+
+When using `LogFormat: "Text"`, prewarming requests can add noise to the logs.
+
+If you want to see the noisy prewarming logs.
+
+config/jets/deploy.rb
 
 ```ruby
-class ApplicationController < Jets::Controller::Base
-  def log_start
-    Jets.logger.info "Lambda function begin"
-  end
+Jets.deploy.configure do
+  config.lambda.function.logging_config = {
+    LogFormat: "Text",
+  }
+  config.prewarm.quiet = false
 end
 ```
 
-Lambda request completed:
+The prewarming request logs then look like this
 
-This function accepts a options parameter. The `options` value is a Hash with these keys:
+    $ jets logs -f
+    START RequestId: aef5f99f-3eea-4963-bc17-02717248a83f Version: $LATEST
+    Prewarm request: {"boot_at":"2024-04-26 02:00:36 UTC","gid":"7ac4ad98","prewarm_at":"2024-04-26 02:17:59 UTC","prewarm_count":18}
+    END RequestId: aef5f99f-3eea-4963-bc17-02717248a83f
+    REPORT RequestId: aef5f99f-3eea-4963-bc17-02717248a83f Duration: 9.69 ms Billed Duration: 10 ms Memory Size: 1536 MB Max Memory Used: 405 MB
 
-* status: status code of the web request (ie. 200)
-* took: web request's execution time.
+## Rails Logging Format
+
+The Rails logging format includes it's own timestamp and process info.
+
+    $ jets logs -f
+    I, [2024-04-26T03:14:22.572735 #9] INFO -- : [a989a1f7-7f83-4984-bf52-dd86d9c96c0c] Started GET "/" for 66.234.208.210 at 2024-04-26 03:14:22 +0000
+    I, [2024-04-26T03:14:22.573489 #9] INFO -- : [a989a1f7-7f83-4984-bf52-dd86d9c96c0c] Processing by ApplicationController#home as HTML
+    I, [2024-04-26T03:14:22.776744 #9] INFO -- : [a989a1f7-7f83-4984-bf52-dd86d9c96c0c] Completed 200 OK in 203ms (Views: 118.3ms | ActiveRecord: 79.6ms | Allocations: 52194)
+
+If you want to remove Rails timestamp and pid
+
+config/environments/production.rb
 
 ```ruby
-class ApplicationController < Jets::Controller::Base
-  def log_finish(options={})
-    status, took = options[:status], options[:took]
-    Jets.logger.info "Web request complete, status code: #{status}, took: #{took}s"
-  end
+Rails.application.configure do
+  # Use default logging formatter so that PID and timestamp are not suppressed.
+  config.log_formatter = ::Logger::Formatter.new
+
+  # Uncomment to also remove the id hash, but SimpleFormatter strips the leading spaces
+  # logger = ActiveSupport::Logger.new(STDOUT)
+  # logger.formatter = ActiveSupport::Logger::SimpleFormatter.new
+  # config.logger = logger
 end
 ```
-
-Note: The interface may change in the future.

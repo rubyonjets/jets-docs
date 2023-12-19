@@ -1,0 +1,4 @@
+alb.security_group.enable | true | Jets will create a managed security group when true. False to disable it entirely. Note: You may want to just set the `security_group_ingress` and `security_group_egress` configs instead.
+alb.security_group.security_group_egress | nil | Override the Jets Managed ALB security group engress default rules that allow all outbound traffic to the world.  Be careful modifying this as it can block access, unless that's what you want.
+alb.security_group.security_group_ingress | nil | Override the Jets Managed ALB security group ingress default rules that allow 80 and 443 to 0.0.0.0/0. Be careful modifying this as it can block access, unless that's what you want.
+alb.security_group.vpc_id | nil | Jets sets this to match the `config.load_balancer.subnets` VPC Id. Generally, you should not have to set this.

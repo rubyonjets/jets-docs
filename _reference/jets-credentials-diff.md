@@ -121,6 +121,6 @@ Remember, when you deploy this to Lambda you should set the `JETS_MASTER_KEY`. Y
                                      # Default: false
     [--disenroll], [--no-disenroll]  # Disenrolls project from credentials file diffing
                                      # Default: false
--e, [--environment=ENVIRONMENT]      # Specifies the environment to run this credentials under (test/development/production).
+-e, [--environment=ENVIRONMENT]      # Specifies the environment to run this credentials under (test/dev/prod).
 ```
 

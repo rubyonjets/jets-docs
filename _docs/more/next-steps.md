@@ -1,7 +1,7 @@
 ---
 title: Next Steps
 category: more
-order: 4
+order: 8
 ---
 
 Hopefully, you have a good feel for how Jets works now. From here, there are a few resources that can help you continue along:

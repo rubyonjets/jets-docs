@@ -1,0 +1,2 @@
+lambda.function.provisioned_concurrency | nil | This applies [events]({% link _docs/events.md %}) functions too.
+lambda.function.reserved_concurrency | 5 | This applies [events]({% link _docs/events.md %}) functions too.

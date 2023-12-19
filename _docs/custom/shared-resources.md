@@ -5,15 +5,13 @@ subcategory: custom-shared-resources
 order: 3
 ---
 
-Shared resources are how you create **standalone** custom AWS resources with Jets.  With the [Associated Resources]({% link _docs/custom/function-resources.md %}), you can add custom AWS resources which are associated with Lambda functions.  Shared resources are also fully customizable AWS resources, but they are not as tightly associated with a Lambda function. Understanding Shared Resources will allow you to customize a Jets application with any custom resource.
+Shared resources are how you create **standalone** custom AWS resources with Jets.  With the [Associated Function Resources]({% link _docs/custom/function-resources.md %}), you can add custom AWS resources which are associated with Lambda functions.  Shared resources are also fully customizable AWS resources, but they are not tightly associated with a Lambda function. Understanding Shared Resources will allow you to customize a Jets application with any custom resource.
 
 ## SNS Topic Example
 
-Let's create an SNS Topic as a shared resource. The SNS topic will be used throughout the application to publish messages.
+Let's create an SNS Topic as a shared resource. The SNS topic will be used throughout the application to publish messages. Shared resources are defined in the `shared/resources` folder.  You can create the SNS topic like so:
 
-Shared resources are defined in the `app/shared/resources` folder.  You can create the SNS topic like so:
-
-app/shared/resources/alert.rb
+shared/resources/alert.rb
 
 ```ruby
 class Alert < Jets::Stack
@@ -21,10 +19,12 @@ class Alert < Jets::Stack
 end
 ```
 
-This creates an SNS Topic resource.  You can then reference the SNS Topic with the `Alert.lookup` method in your code. For example, here's a [Job]({% link _docs/jobs.md %}) that looks up the ARN of the `delivery_completed` SNS topic and then publishes to it.
+This creates an SNS Topic resource.  You can then reference the SNS Topic with the `Alert.lookup` method in your code. For example, here's a [Event]({% link _docs/events.md %}) that looks up the ARN of the `delivery_completed` SNS topic and then publishes to it.
+
+app/events/postman_event.rb
 
 ```ruby
-class PostmanJob < ApplicationJob
+class PostmanEvent < ApplicationEvent
   include Jets::AwsServices
 
   iam_policy("sns")
@@ -63,7 +63,6 @@ The Jets::Stack `resource` method is similar to [Custom Associated Resources's](
 
 ## IAM Permission
 
-The Jets::Stack `lookup` method uses a [CloudFormation Output](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/outputs-section-structure.html) that is created as part of the convenience methods.  The `lookup` method requires read permission to the CloudFormation stack. This permission is automatically added to your application default IAM permissions when you are using Shared Resources, given you have not have overridden the [application-wide IAM policy]({% link _docs/iam-policies.md %}).
+The Jets::Stack `lookup` method uses a [CloudFormation Output](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/outputs-section-structure.html) that is created as part of the convenience methods.  The `lookup` method requires read permission to the CloudFormation stack. This permission is automatically added to your application default IAM permissions when you are using Shared Resources, given you have not have overridden the [application-wide IAM policy]({% link _docs/iam/app/iam-policies.md %}).
 
 Understanding the general shared `resource` method is the key to adding any shared custom resource you require to a Jets application, so hopefully the explanations above help.
-

@@ -19,22 +19,22 @@ We'll cover each of them:
 
 ## Existing SNS Topic
 
-Here is an example connecting an existing SNS topic to a Lambda function in a [Job]({% link _docs/jobs.md %})
+Here is an example connecting an existing SNS topic to a Lambda function in a [Event]({% link _docs/events.md %})
 
 Generate code.
 
-    jets generate job messenger --type sns --name deliver
+    jets generate:event messenger --trigger sns --method deliver
 
 It looks something like this.
 
-app/jobs/messenger_job.rb
+app/events/messenger_event.rb
 
 ```ruby
-class MessengerJob < ApplicationJob
-  class_timeout 30 # must be less than or equal to the SNS Topic default timeout
+class MessengerEvent < ApplicationEvent
   sns_event "hello-topic"
   def deliver
-    puts "deliver event #{JSON.dump(event)}"
+    puts "event #{JSON.dump(event)}"
+    puts "sns_events #{JSON.dump(sns_events)}"
   end
 end
 ```
@@ -52,8 +52,7 @@ There's more information on the filter_policy here on [SNS Message Filtering](ht
 Jets can create and manage an SNS Topic for a specific function. This is done with a special `:generate_topic` argument.
 
 ```ruby
-class HardJob < ApplicationJob
-  class_timeout 30 # must be less than or equal to the SNS Topic default timeout
+class CoolEvent < ApplicationEvent
   sns_event :generate_topic
   def lift
     puts "lift event #{JSON.dump(event)}"
@@ -81,7 +80,7 @@ Note, SNS Topics managed by Jets are deleted when you delete the Jets applicatio
 
 Jets can also support creating a shared SNS Topic via a [Shared Resource]({% link _docs/custom/shared-resources.md %}). Here's how you create the SNS Topic as a shared resource:
 
-app/shared/resources/topic.rb:
+shared/resources/topic.rb:
 
 ```ruby
 class Topic < Jets::Stack
@@ -91,10 +90,10 @@ end
 
 You can reference the Shared Topic like so:
 
-app/jobs/hard_job.rb:
+app/events/cool_event.rb:
 
 ```ruby
-class HardJob < ApplicationJob
+class CoolEvent < ApplicationEvent
   depends_on :topic # so we can reference topic shared resources
   sns_event ref(:engineering) # reference sns topic in shared resource
   def fix
@@ -103,7 +102,7 @@ class HardJob < ApplicationJob
 end
 ```
 
-Underneath the hood, Jets provisions resources via CloudFormation.  The use of `depends_on` ensures that Jets will pass the shared resource `Topic` stack outputs to the `HardJob` stack as input parameters. This allows `HardJob` to reference resources from the separate child `Topic` stack.
+Underneath the hood, Jets provisions resources via CloudFormation.  The use of `depends_on` ensures that Jets will pass the shared resource `Topic` stack outputs to the `CoolEvent` stack as input parameters. This allows `CoolEvent` to reference resources from the separate child `Topic` stack.
 
 {% include cloudformation_links.md %}
 
@@ -119,7 +118,7 @@ You can send a message via the SNS Console, sdk, etc also.
 
 It helps to tail the logs and watch the event as it comes through.
 
-    jets logs -f -n messenger_job-deliver
+    jets logs -f -n messenger_event-deliver
 
 ## Event Payloads
 

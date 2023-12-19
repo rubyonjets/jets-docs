@@ -23,6 +23,6 @@ If the application has no Ruby code and only uses Polymorphic functions, then ge
 
 ```
     [--templates], [--no-templates]  # Build CloudFormation templates only
--e, [--environment=ENVIRONMENT]      # Specifies the environment to run this build under (test/development/production).
+-e, [--environment=ENVIRONMENT]      # Specifies the environment to run this build under (test/dev/prod).
 ```
 
