@@ -1,6 +1,6 @@
 ---
 title: Authorizers
-category: routing
+category: routing-services-apigw
 subcategory: authorizers
 order: 2
 ---
@@ -42,7 +42,7 @@ end
 
 The `authorizer` keyword builds an ApiGateway Authorizer. The authorizer options map to CloudFormation [ApiGateway::Authorizer](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-authorizer.html) properties. You can use any of the properties supported by CloudFormation. The authorizer is associated with the Lambda function directly below it.
 
-The Lambda function must return a response in the [Amazon API Gateway Lambda Authorizer Output structure](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-lambda-authorizer-output.html).  The example above builds the raw structure, you may also be interested in the [build_policy helper]({% link _docs/routing/authorizers/authorizer-helpers.md %}).
+The Lambda function must return a response in the [Amazon API Gateway Lambda Authorizer Output structure](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-lambda-authorizer-output.html).  The example above builds the raw structure, you may also be interested in the [build_policy helper]({% link _docs/routing/services/apigw/authorizers/authorizer-helpers.md %}).
 
 ## ApplicationAuthorizer
 
@@ -69,7 +69,7 @@ Jets.application.routes.draw do
 end
 ```
 
-When the `authorizer` property is used, the `authorization_type` is inferred from the authorizer property and automatically set for you. The `authorization_type` can be overridden by setting it explicitly. Refer to the [Authorization Types docs]({% link _docs/routing/authorizers/authorization-types.md %}) for more info.  For `CUSTOM` AND `COGNITO_USER_POOLS` authorization types, it is recommended to let Jets handle it. For the `AWS_IAM` type you will need to handle it appropriately.
+When the `authorizer` property is used, the `authorization_type` is inferred from the authorizer property and automatically set for you. The `authorization_type` can be overridden by setting it explicitly. Refer to the [Authorization Types docs]({% link _docs/routing/services/apigw/authorizers/authorization-types.md %}) for more info.  For `CUSTOM` AND `COGNITO_USER_POOLS` authorization types, it is recommended to let Jets handle it. For the `AWS_IAM` type you will need to handle it appropriately.
 
 ## Authorizer in Controllers
 

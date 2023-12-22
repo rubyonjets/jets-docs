@@ -69,7 +69,7 @@ Jets.application.configure do
 end
 ```
 
-More info: [Routes Authorization]({% link _docs/routing/authorizers/authorization-types.md %})
+More info: [Routes Authorization]({% link _docs/routing/services/apigw/authorizers/authorization-types.md %})
 
 ## Testing CORS
 

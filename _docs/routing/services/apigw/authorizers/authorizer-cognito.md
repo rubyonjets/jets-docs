@@ -22,7 +22,7 @@ class MainAuthorizer < ApplicationAuthorizer
 end
 ```
 
-Notice how there's no method defined underneath the `authorizer` declaration in the example. Cognito authorizers do not have Lambda functions associated with them unlike [Lambda authorizers]({% link _docs/routing/authorizers.md %}).
+Notice how there's no method defined underneath the `authorizer` declaration in the example. Cognito authorizers do not have Lambda functions associated with them unlike [Lambda authorizers]({% link _docs/routing/services/apigw/authorizers.md %}).
 
 ## Connecting to Routes
 
