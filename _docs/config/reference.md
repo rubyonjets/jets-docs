@@ -27,7 +27,7 @@ controllers.default_protect_from_forgery | true for html mode, false for api mod
 controllers.filtered_parameters | [] | Parameters to filter in logging output
 {% include config/reference/cfn.md %}
 deploy.stagger.batch_size | 10 | Stagger the cloudformation update batch size.
-deploy.stagger.enabled | false | Stagger the cloudformation update. Can be helpful with large apps.
+deploy.stagger.enable | false | Stagger the cloudformation update. Can be helpful with large apps.
 domain.cert_arn | nil | Cert ARN for SSL
 domain.endpoint_type | REGIONAL | The endpoint type to create for API Gateway custom domain. IE: EDGE or REGIONAL. Default to EDGE because CloudFormation update is faster
 domain.name | nil | Custom domain name to use. Recommend to leave nil and jets will set a conventional custom domain name and then use CloudFront in front outside of Jets to fully control the domain name.

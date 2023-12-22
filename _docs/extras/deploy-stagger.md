@@ -26,7 +26,7 @@ So the application has to be quite large to trigger this limit.  This limit may 
 Jets supports a "stagger" deploy option to help reduce the rate at which Lambda functions are created in parallel.  It can be turned it on in `config/application.rb`:
 
 ```ruby
-config.deploy.stagger.enabled = true  # default is false
+config.deploy.stagger.enable = true  # default is false
 config.deploy.stagger.batch_size = 10 # default is 10
 ```
 

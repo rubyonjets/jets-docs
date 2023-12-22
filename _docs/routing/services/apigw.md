@@ -17,4 +17,5 @@ config/deploy.rb
 ```ruby
 Jets.application.configure do
   config.apigw.enable = true
+end
 ```
