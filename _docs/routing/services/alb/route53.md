@@ -16,7 +16,7 @@ config/deploy.rb
 ```ruby
 Jets.application.configure do
   config.alb.enable = true
-  config.alb.dns.domain = "domain.com" # recommended to only set this option and Jets infers the rest
+  config.alb.dns.domain = "domain.com" # recommended only to set this option and Jets infers the rest
 end
 ```
 
@@ -32,11 +32,11 @@ Then, you can CNAME your domain to the conventional DNS record. Example:
 
 This allows you complete control of the user-facing DNS record.
 
-**IMPORTANT**: The route53 host zone must already exist. You can create route53 hosted zone with the AWS CLI like so:
+**IMPORTANT**: The route53 host zone must already exist. You can create a route53 hosted zone with the AWS CLI like so:
 
     aws route53 create-hosted-zone --name mydomain.com --caller-reference $(date +%s)
     aws route53 list-hosted-zones
 
 {% include config/reference/header.md %}
-{% include config/reference/alb-dns.md %}
-{% include config/reference/footer.md %}
+{% include config/reference/alb/dns.md %}
+{% include config/reference/alb/footer.md %}

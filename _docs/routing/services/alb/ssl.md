@@ -20,6 +20,10 @@ end
 The `alb.ssl.certs` option can be assigned a single item or an Array with multiple certs. For the certificate arn, you will need to create a certificate with AWS ACM. To do so, you can follow these instructions: [Request a Public Certificate
 ](https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-request-public.html)
 
-The example above uses the `acm_cert_arn` helper method to lookup the ACM certificate with the domain. If you have multiple certs with the same domain, first cert in the API response is used.  If you need more specificity, then you can directly assign the full ACM Certificate ARN.
+The example above uses the `acm_cert_arn` helper method to look up the ACM certificate with the domain. If you have multiple certs with the same domain, first cert in the API response is used.  If you need more specificity, then you can directly assign the full ACM Certificate ARN.
 
 Additionally, the `acm_cert_arn` can take a list of domains. IE: `acm_cert_arn("example1.com", "example2.com")`, in which case an Array is returned.
+
+{% include config/reference/header.md %}
+{% include config/reference/alb/ssl.md %}
+{% include config/reference/alb/footer.md %}

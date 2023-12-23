@@ -5,21 +5,21 @@ category: routing-services-alb
 order: 2
 ---
 
-## Why Bring Your Own Load Balancer
+## Bring Your Own Load Balancer
 
-Jets supports "Bringing Your Own Load Balancer". The [Jets Managed ALB]({% link _docs/routing/services/alb/managed.md %}) has reasonable defaults and a ton of features. It should covers most use-cases. However, you might have special requirements where your a Custom Load Balancer is required. Jets makes this quite easy to do.
+The [Jets Managed ALB]({% link _docs/routing/services/alb/managed.md %}) has reasonable defaults and a ton of features. It covers most use cases. However, you might have special requirements for your own load balancer. Jets allows you to use your own.
 
-Additionally, each Load Balancer costs $$$. You can use a "Shared Load Balancer" to save costs. The Shared Load Balancer can route base on the `host` or `path` to different apps.
+When using an existing Load Balancer, the Jets `alb` settings are ignored. This is because you're "bringing your own" Load Balancer; it's outside the control of the Jets. You take on the responsibility of managing the ELB and its settings.
 
-When using an existing Load Balancer, the other elb settings are ignored by Jets. This is because you're "bringing your own" Load Balancer, it's outside the control of Jets. You take on the responsibility of managing the ELB and its settings.
+One reason why you might want your own ALB is each Load Balancer costs $$$. You can use a "Shared Load Balancer" to save costs. The Shared Load Balancer can route to different apps based on the `host` or `path`.
 
 ## Enabling
 
-You simply register the Jets Controller Lambda Function as a Target the ALB Target Group. You can do this via the AWS console or with this command:
+You register the Jets Controller Lambda Function as a Target in the ALB Target Group. You can do this via the AWS console or with this command:
 
     jets alb:register TARGET_GROUP
 
-When you register the target group, Lambda Function Permission is also added that allows the AWS Load Balancing Service to talk to your Jets Controller Lambda Function.
+When you register the target group, Lambda Function Permission is also added, which allows the AWS Load Balancing Service to talk to your Jets Controller Lambda Function.
 
 ## Configuring
 
@@ -35,12 +35,12 @@ end
 ```
 
 {% include config/reference/header.md %}
-{% include config/reference/alb-existing.md %}
-{% include config/reference/footer.md %}
+{% include config/reference/alb/existing.md %}
+{% include config/reference/alb/footer.md %}
 
 ## Lambda Function Policy Permission
 
-Here's a tip how on to check the Lambda Function Policy Permission
+Here's a tip on how to check the Lambda Function Policy Permission
 
     aws lambda get-policy --function-name demo-dev-controller | jq '.Policy | fromjson'
 
