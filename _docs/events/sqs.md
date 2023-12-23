@@ -164,13 +164,14 @@ Here's an example of the event payload.
 }
 ```
 
-The `sqs_event_payload` helper method unravels the data and provides the SQS message body.
+The `sqs_event_payloads` helper method unravels the data and provides the SQS message body.
 
-### sqs_event_payload
-```ruby
-  {
-    "test": "hello world"
-  }
+### sqs_event_payloads
+
+```json
+[{
+  "test": "hello world"
+}]
 ```
 
 ## IAM Policy
