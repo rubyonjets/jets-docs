@@ -18,4 +18,4 @@ Also note, you can fully customize any of the ALB component properties. Here are
     config.alb.target_group.properties = {}
     config.alb.security_group.properties = {}
 
-Note this is an advanced customization and should only be done for a very good reason. Otherwise, please let us know and will update Jets to account for your use-case.
+Note this is an advanced customization and should only be done for a very good reason. Otherwise, please let us know and we'll try to update Jets for your use-case.
