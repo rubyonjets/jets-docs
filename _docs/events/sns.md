@@ -141,11 +141,12 @@ You can send a message via the SNS Console, sdk, etc also.
     ]
 }
 ```
-The `sns_event_payload` helper method unravels the data and provides the SNS message.
+The `sns_event_payloads` helper method unravels the data and provides the SNS message payloads.
 
-### sns_event_payload
-```ruby
-  {
-    "default": "test message"
-  }
+### sns_event_payloads
+
+```json
+[{
+  "default": "test message"
+}]
 ```
