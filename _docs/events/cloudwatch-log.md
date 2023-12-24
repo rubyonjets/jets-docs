@@ -47,6 +47,12 @@ end
 
 It is recommended that you use a `filter_pattern` because there can be a lot of CloudWatch Log event data.  Here are the docs on [Searching and Filtering Log Data](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/MonitoringLogData.html).  You can do regular text filter if your logs are plain text and JSON-path based filtering if your logs are JSON.
 
+## Tailing Logs
+
+It helps to tail the logs and watch the event as it comes through.
+
+    jets logs -f -n log_job-report
+
 ## Event Payloads
 
 The event payload from CloudWatch Log is a compressed base64 encoded String within a JSON structure.  That's quite a mouthful, so an example helps explain:

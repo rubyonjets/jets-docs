@@ -55,10 +55,24 @@ cron "0 */12 * * ? *" # every 12 hours
 rate "10 hours" # every 10 hours
 ```
 
-**Tip**: You can use the `--type` option to generate Jobs with different event types. Example:
+## Other Event Types
+
+**Tip**: You can use the `--type` option to generate Jobs with supported event types. Example:
 
     jets generate job hard --type sns
 
-Here are some other supported event types: dynamodb, iot, kinesis, log, rule, s3, scheduled, sns, sqs. For more info: `jets generate job -h`. Also, see the [Events Docs]({% link _docs/events.md %}) for more info.
+Here are some other supported event types:
+
+* [dynamodb]({% link _docs/events/dynamodb.md %})
+* [iot]({% link _docs/events/iot.md %})
+* [kinesis]({% link _docs/events/kinesis.md %})
+* [log]({% link _docs/events/cloudwatch-log.md %})
+* [rule]({% link _docs/events/cloudwatch-rule.md %})
+* [s3]({% link _docs/events/s3.md %})
+* [scheduled]({% link _docs/events/scheduled.md %})
+* [sns]({% link _docs/events/sns.md %})
+* [sqs]({% link _docs/events/sqs.md %})
+
+For more info: `jets generate job -h`. Also, see the [Events Docs]({% link _docs/events.md %}) for more info.
 
 Next, we'll test the job locally.

@@ -64,6 +64,12 @@ class ThermostatJob < ApplicationJob
   end
 ```
 
+## Tailing Logs
+
+It helps to tail the logs and watch the event as it comes through.
+
+    jets logs -f -n thermostat_job-record
+
 ## Event Payloads
 
 The event payload received is whatever is sent by the device to [MQTT]( https://docs.aws.amazon.com/iot/latest/developerguide/view-mqtt-messages.html).  You can test in the MQTT console.

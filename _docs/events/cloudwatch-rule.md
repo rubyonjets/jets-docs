@@ -81,6 +81,12 @@ end
 
 This pattern of watching CloudWatch events can be used for things like automatically closing security group ports that get unintentionally opened. CloudWatch Events opens up a world of possibilities.
 
+## Tailing Logs
+
+It helps to tail the logs and watch the event as it comes through.
+
+    jets logs -f -n security_job-instance_stopping
+
 ## Multiple Events Support
 
 Registering multiple events to the same Lambda function is supported. Add multiple `rule_event` declarations above the method definition. Example:

@@ -115,6 +115,12 @@ Here's an example of publishing a test message to an SNS topic via the [aws sns 
 
 You can send a message via the SNS Console, sdk, etc also.
 
+## Tailing Logs
+
+It helps to tail the logs and watch the event as it comes through.
+
+    jets logs -f -n messenger_job-deliver
+
 ## Event Payloads
 
 ```json
@@ -141,9 +147,10 @@ You can send a message via the SNS Console, sdk, etc also.
     ]
 }
 ```
-The `sns_event_payloads` helper method unravels the data and provides the SNS message payloads.
 
-### sns_event_payloads
+### sns_events
+
+The `sns_events` helper method unravels the data and provides the SNS message payloads.
 
 ```json
 [{
