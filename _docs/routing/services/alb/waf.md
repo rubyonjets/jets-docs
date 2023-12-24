@@ -11,7 +11,7 @@ config/deploy.rb
 
 ```ruby
 Jets.application.configure do
-  config.alb.waf.web_acl = waf_arn("demo-waf") # find web acl arn by name
+  config.alb.waf.web_acl = web_acl_arn("demo-waf") # find web acl arn by name
 end
 ```
 
