@@ -59,6 +59,12 @@ Here's an example of sending the data. Note, you have to base64 encode the paylo
 
     aws kinesis put-record --stream-name my-stream --partition-key 1 --data $(echo "hello world" | base64)
 
+## Tailing Logs
+
+It helps to tail the logs and watch the event as it comes through.
+
+    jets logs -f -n data_job-file
+
 ## Event Payload
 
 The event payload from CloudWatch Log is a base64 encoded String within a JSON structure.  Here's an example to help explain:

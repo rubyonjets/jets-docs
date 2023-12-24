@@ -137,6 +137,12 @@ Here's an example of sending a message to an SQS queue via the [aws sqs send-mes
 
 You can send a message via the SQS Console, sdk, etc also.
 
+## Tailing Logs
+
+It helps to tail the logs and watch the event as it comes through.
+
+    jets logs -f -n waiter_job-order
+
 ## Event Payloads
 
 Here's an example of the event payload.
@@ -164,9 +170,10 @@ Here's an example of the event payload.
 }
 ```
 
-The `sqs_event_payloads` helper method unravels the data and provides the SQS message body.
+### sqs_events
 
-### sqs_event_payloads
+The `sqs_event` helper method unravels the data and provides the SQS message body.
+
 
 ```json
 [{
