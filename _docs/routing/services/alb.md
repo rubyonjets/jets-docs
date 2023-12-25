@@ -8,7 +8,7 @@ order: 3
 
 Application Load Balancers, ALBs, can be us as a routing service in Jets 6 and above.
 
-**NOTE**: Application Load Balancers are a [Jets Pro](https://www.rubyonjets.com) Feature.
+{% include pro/feature/alb.md %}
 
 ## Enabling
 

@@ -7,6 +7,8 @@ order: 4
 
 Jets can automatically create a "friendly" Route53 DNS record and connect it to the Application Load Balancer DNS Name.
 
+{% include pro/feature/alb.md %}
+
 ## Configuring
 
 Example:
@@ -16,6 +18,7 @@ config/deploy.rb
 ```ruby
 Jets.application.configure do
   config.alb.enable = true
+  config.alb.dns.enable = true
   config.alb.dns.domain = "domain.com" # recommended only to set this option and Jets infers the rest
 end
 ```

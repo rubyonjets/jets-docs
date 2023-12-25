@@ -5,6 +5,8 @@ category: routing-services-alb
 order: 88
 ---
 
+{% include pro/feature/alb.md %}
+
 {% include config/reference/header.md %}
 {% include config/reference/alb.md %}
 

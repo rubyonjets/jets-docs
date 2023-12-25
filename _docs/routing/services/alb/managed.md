@@ -7,6 +7,8 @@ order: 1
 
 By default, when you enable Application Load Balancer support, Jets creates and manages an ALB for you.
 
+{% include pro/feature/alb.md %}
+
 ## Cost
 
 It's important to note that there's a cost with running an ALB. It works out to about $20/mo as a baseline.
@@ -28,6 +30,8 @@ Jets.application.configure do
   config.alb.load_balancer.security_groups = security_group_ids("my-security-group")
 end
 ```
+
+{% include pro/helper.md helper_name="subnet_ids" %}
 
 **Important**:
 

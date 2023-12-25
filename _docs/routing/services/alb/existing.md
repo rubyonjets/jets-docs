@@ -13,6 +13,8 @@ When using an existing Load Balancer, the Jets `alb` settings are ignored. This 
 
 One reason why you might want your own ALB is each Load Balancer costs $$$. You can use a "Shared Load Balancer" to save costs. The Shared Load Balancer can route to different apps based on the `host` or `path`.
 
+{% include pro/feature/alb.md %}
+
 ## Enabling
 
 You register the Jets Controller Lambda Function as a Target in the ALB Target Group. You can do this via the AWS console or with this command:
@@ -33,6 +35,8 @@ Jets.application.configure do
   config.alb.existing.dns_name = "elb-dev-Elb-FOOAR4WRTPXKY-421647888.us-west-2.alb.amazonaws.com"
 end
 ```
+
+{% include pro/helper.md helper_name="alb_target_group_arn" %}
 
 {% include config/reference/header.md %}
 {% include config/reference/alb/existing.md %}
