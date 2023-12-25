@@ -2,6 +2,7 @@
 title: Lambda Function URL
 nav_text: Lambda URL
 category: routing-services
+subcategory: routing-services-lambda
 order: 1
 ---
 
