@@ -7,7 +7,7 @@ order: 4
 
 Jets supports creating a Load Balancer with HTTPS/SSL termination with ACM certs.
 
-{% include pro/feature/alb.md %}
+{% include pro/feature.md feature_name="Application Load Balancers" %}
 
 config/deploy.rb
 
