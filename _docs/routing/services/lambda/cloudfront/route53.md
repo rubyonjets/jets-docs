@@ -21,17 +21,14 @@ Jets.application.configure do
   config.lambda.url.cloudfront.cert = acm_cert_arn("domain.com", region: "us-east-1")
   config.lambda.url.cloudfront.domain = "domain.com"
 
-  config.lambda.url.cloudfront.dns.enable = true # Jets can also automatically create the route53 record
+  config.lambda.url.cloudfront.dns.enable = true # <= ENABLE
   # config.lambda.url.cloudfront.dns.name = "my.domain.com" # optional, recommend conventional name instead
 end
 ```
 
-The `config.lambda.url.cloudfront.dns.name` is optional. Instead, it's recommended you let Jets set a conventional DNS name. Jets can does this using the the `config.lambda.url.cloudfront.domain` value.  The convention is `APP-ENV.domain.com`.
+The `config.lambda.url.cloudfront.dns.name` is optional. Instead, it's recommended you let Jets set a conventional DNS name. Jets can does this using the the `config.lambda.url.cloudfront.domain` value.  The convention is `APP-ENV.domain.com`. For example:
 
-For example:
-
-    config.lambda.url.cloudfront.domain   => "domain.com"
-    config.lambda.url.cloudfront.dns.name => "demo-dev.domain.com"
+    config.lambda.url.cloudfront.domain => "domain.com" => "demo-dev.domain.com"
 
 This allows you to deploy additional stacks or environments wihthout any configuration changes. Examples:
 

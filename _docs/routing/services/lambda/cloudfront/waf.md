@@ -23,6 +23,6 @@ end
 
 {% include pro/helper.md helper_name="web_acl_arn" %}
 
-This allows you to reuse one WAF ACL and associate its Rules with multiple ALBs. It can help keep your WAF Rules DRY. IE: Change the rules one time, and they protect all the ALB traffic.
+This allows you to reuse one WAF ACL and associate its Rules with multiple CloudFront Distributions. It can help keep your WAF Rules DRY. IE: Change the rules one time, and they protect all the CloudFront traffic.
 
 Also notice `scope: "CLOUDFRONT"`, the WAF Web ACL must be a global WAF. Regional WAFs do not work with CloudFront.
