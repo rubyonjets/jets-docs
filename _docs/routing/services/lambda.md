@@ -22,7 +22,7 @@ config/deploy.rb
 
 ```ruby
 Jets.application.configure do
-  config.lambda.url.enable = false
+  config.lambda.url.enable = false # true is the default
 end
 ```
 

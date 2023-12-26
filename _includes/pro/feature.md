@@ -1,1 +1,1 @@
-**Note**: {{ include.feature_name }} are a [Jets Pro]({% link _docs/pro.md %}) feature.
+**Note**: {{ include.feature_name }} is a [Jets Pro]({% link _docs/pro.md %}) feature.

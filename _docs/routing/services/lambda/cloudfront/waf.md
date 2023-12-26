@@ -2,7 +2,7 @@
 title: Lambda URL CloudFront WAF
 nav_text: WAF
 category: routing-services-lambda-cloudfront
-order: 2
+order: 3
 ---
 
 You can associate an existing WAF ACL with the CloudFront distribution. Here's an example:
@@ -13,7 +13,7 @@ config/deploy.rb
 
 ```ruby
 Jets.application.configure do
-  config.lambda.url.cloudfront.enable = false
+  config.lambda.url.cloudfront.enable = true
   config.lambda.url.cloudfront.cert = acm_cert_arn("domain.com", region: "us-east-1")
   config.lambda.url.cloudfront.domain = "domain.com"
 

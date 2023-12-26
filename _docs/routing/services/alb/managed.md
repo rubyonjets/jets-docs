@@ -7,7 +7,7 @@ order: 1
 
 By default, when you enable Application Load Balancer support, Jets creates and manages an ALB for you.
 
-{% include pro/feature.md feature_name="Application Load Balancers" %}
+{% include pro/feature.md feature_name="Application Load Balancer" %}
 
 ## Cost
 

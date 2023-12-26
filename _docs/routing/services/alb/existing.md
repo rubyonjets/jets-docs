@@ -13,7 +13,7 @@ When using an existing Load Balancer, the Jets `alb` settings are ignored. This 
 
 One reason why you might want your own ALB is each Load Balancer costs $$$. You can use a "Shared Load Balancer" to save costs. The Shared Load Balancer can route to different apps based on the `host` or `path`.
 
-{% include pro/feature.md feature_name="Application Load Balancers" %}
+{% include pro/feature.md feature_name="Application Load Balancer" %}
 
 ## Enabling
 

@@ -7,7 +7,7 @@ order: 6
 
 You can associate an existing WAF ACL with the ALB. Here's an example:
 
-{% include pro/feature.md feature_name="Application Load Balancers" %}
+{% include pro/feature.md feature_name="Application Load Balancer" %}
 
 config/deploy.rb
 

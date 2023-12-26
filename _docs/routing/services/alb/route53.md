@@ -7,7 +7,7 @@ order: 4
 
 Jets can automatically create a "friendly" Route53 DNS record and connect it to the Application Load Balancer DNS Name.
 
-{% include pro/feature.md feature_name="Application Load Balancers" %}
+{% include pro/feature.md feature_name="Application Load Balancer" %}
 
 ## Configuring
 
