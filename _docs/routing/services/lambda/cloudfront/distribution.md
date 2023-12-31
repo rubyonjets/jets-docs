@@ -1,11 +1,11 @@
 ---
-title: Lambda URL CloudFront
-nav_text: CloudFront
-category: routing-services-lambda
+title: Lambda URL CloudFront Distribution
+nav_text: Distribution
+category: routing-services-lambda-cloudfront
 order: 1
 ---
 
-Jets can automatically create a Route53 record pointing to the managed CloudFront domain.
+You can put CloudFront in of the Lambda Function URL to provide a user-friendly URL endpoint instead of the random endpoint.
 
 {% include pro/feature.md feature_name="Lambda URL CloudFront" %}
 
@@ -27,10 +27,6 @@ end
 
 Note `region: "us-east-1"` is required since CloudFront operates out of us-east-1. The ACM cert must be in us-east-1.
 
-The `domain = "domain.com"` results in a conventional `demo-dev.domain.com` Cloudfrot cname or alias.
-
-You can disable the convention with `config.lambda.url.cloudfront.enable_conventions = false`.
-
 ## Aliases
 
 You can add more aliases with the `aliases` option.
@@ -44,5 +40,16 @@ Jets.application.configure do
   config.lambda.url.cloudfront.domain = "domain.com"
   config.lambda.url.cloudfront.aliases = ["name1.domain.com", "name2.domain.com"]
 end
+```
 
-This adds CNAMEs in additional to the conventional dns name.
+This adds CNAMEs in additional to the conventional dns names.
+
+## Conventions
+
+The `config.lambda.url.cloudfront.domain = "domain.com"` results in a conventional `demo-dev.domain.com` Cloudfront cname or alias.
+
+{% include lambda/cloudfront/deploy-extra.md %}
+
+
+Note: You can disable the convention with `config.lambda.url.cloudfront.enable_conventions = false`.
+
