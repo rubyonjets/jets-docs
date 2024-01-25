@@ -14,15 +14,21 @@ config/jets/deploy.rb
 ```ruby
 Jets.deploy.configure do
   config.docker.build.args = {
-    "RUBY_VERSION" => "3.2.3",
+    "BUILD_ARG" => "value",
   }
 end
 ```
 
-This will set the `RUBY_VERSION` build args.  The build args added to the top of `Dockerfile`. Jets will then call
+This will set the `BUILD_ARG` build args.  The build args added to the top of `Dockerfile`. Jets will then call
 
-    docker build --build-arg RUBY_VERSION=3.2.3 ...
+    docker build --build-arg BUILD_ARG=value ...
 
-## Example: BUNDLE
+The `ARG` Docker instruction is added to the top of the Dockerfile automatically.
 
-BUNDLE_GITHUB__COM: "SSM:/bins/dev/GITHUB_TOKEN",
+Dockerfile
+
+```dockerfile
+ARG BUILD_ARG
+FROM ruby:3.2.3-slim as base
+# ...
+```
