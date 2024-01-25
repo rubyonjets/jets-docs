@@ -7,7 +7,7 @@ order: 2
 
 Jets uses a multi-stage Docker build process. This keeps the final image size small for deployment. You also have the ability to "inject" code right into the Dockerfile at various stages.
 
-Here's a simplified example Dockerfile to help explain.
+Here's a simplified example Dockerfile with multi-stages to help explain. There's a `FROM base as build` stage and a `FROM base as deployment` stage.
 
 {% include docker/Dockerfile.md %}
 

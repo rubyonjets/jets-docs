@@ -1,0 +1,1 @@
+Jets creates a Managed Dockerfile when there is no `Dockerfile` or `Dockerfile.tt` in your project folder. The Jets Managed Dockerfile uses the Ruby image from DockerHub as the base image, which is Debian based.
