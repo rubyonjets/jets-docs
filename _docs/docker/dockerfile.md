@@ -11,7 +11,7 @@ Jets can use Docker to build and deploy your application. The jets-remote build 
 3. **Static Dockerfile**: When there's a `Dockerfile` in your project. Jets uses it directly.
 4. **Prebuilt Docker Image**: When there's a `config.docker.image` config set. Jets uses your provided prebuilt Docker image.
 
-## Managed Dockerfile with config.docker
+## Jets Managed Dockerfile
 
 You can customize the Jets Managed Dockerfile with `config.docker`. Here's an example:
 
@@ -40,7 +40,7 @@ The Dockerfile is simplified to help understand what happens. The actual generat
 
 The basic concept is that you can customize the Dockerfile and build process with the `config.docker` config. This allows you to install any custom packages you might need. IE: system packages for compiled gems like mysql2.
 
-## Dockerfile.tt
+## Dockerfile.tt Template
 
 Another powerful way to customize the Dockerfile is to provide your own `Dockerfile.tt` template. This is considered an advanced technique and should only be used for highly customized use cases. The Dockerfile.tt interface may change.
 
@@ -60,5 +60,5 @@ Jets.deploy.configure do
 end
 ```
 
-You have to build the Docker image yourself and push it to a Docker registry. You also have to make sure that the Docker image is Lambda compatible. IE: It has the Lambda Runtime Interface Client installed as an entrypoint and a Lambda handler.
+You have to build the Docker image yourself and push it to a Docker registry. It's also your responsibility to make sure that the Docker image is Lambda compatible. IE: It has the Lambda Runtime Interface Client installed as an entrypoint and a Lambda handler.
 
