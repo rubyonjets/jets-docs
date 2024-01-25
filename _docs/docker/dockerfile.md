@@ -6,14 +6,14 @@ order: 1
 
 Jets can use Docker to build and deploy your application. The jets-remote build process ultimately calls `docker build` for you with added conveniences. IE: Auto-detecting the framework, building a managed Dockerfile, auto-tagging the image, and more. This page covers the Dockerfile and Docker image customization options.
 
-1. **Jets Managed Dockerfile**: Jets auto-detects the framework and builds a managed Dockerfile for you. Jets manages updates to Dockerfile as Docker evolves. IE: You don't have to. Jets does this when there is no `Dockerfile` or `Dockerfile.tt` in your project folder.
+1. **Jets Managed Dockerfile**: Jets auto-detects the framework and builds a managed Dockerfile for you. Jets manages updates to the Dockerfile as Docker evolves. IE: You don't have to.
 2. **Dockerfile.tt Template**: When there's `Dockerfile.tt` template in your project. Jets compiles it down to a `Dockerfile` and uses it.
 3. **Static Dockerfile**: When there's a `Dockerfile` in your project. Jets uses it directly.
 4. **Prebuilt Docker Image**: When there's a `config.docker.image` config set. Jets uses your provided prebuilt Docker image.
 
 ## Jets Managed Dockerfile
 
-You can customize the Jets Managed Dockerfile with `config.docker`. Here's an example:
+Jets creates a Managed Dockerfile when there is no `Dockerfile` or `Dockerfile.tt` in your project folder. The Jets Managed Dockerfile uses the Ruby image from DockerHub as the base image, which is Debian based. You can customize the Jets Managed Dockerfile with `config.docker`. Here's an example:
 
 config/jets/deploy.rb
 
@@ -27,18 +27,19 @@ end
 
 The config above is used to generate the Dockerfile. Here's what it does:
 
-* The packages config tells Jets to use `apt-get` as the package installer.
-* To install the `default-libmysqlclient-dev` package during the build Docker stage.
+* The `packages.install` config tells Jets to use `apt-get`. Currently, only apt-get is supported. This is the default value so it's not necessary to set it.
+* The `default-libmysqlclient-dev` package is installed during the build Docker stage.
 * The `default-mysql-client` package is installed during the deployment Docker stage.
-* The `installer` config is optional. Jets auto-detects it from the Dockerfile OS. It defaults to `apt-get` when auto-detection fails.
 
 Here is a simplified version of what the generated Dockerfile looks like:
 
 {% include docker/Dockerfile.md %}
 
-The Dockerfile is simplified to help understand what happens. The actual generated Dockerfile is more complex and optimized. Even in the simplified version above, you can see that Jets uses a multi-stage Docker build process. This keeps the final image size small for deployment.
+The Dockerfile is simplified to help understand what happens. The actual generated Dockerfile is more complex and optimized. Even in the simplified version above, you can see that Jets uses a multi-stage Docker build process. This keeps the final image size smaller for deployment.
 
-The basic concept is that you can customize the Dockerfile and build process with the `config.docker` config. This allows you to install any custom packages you might need. IE: system packages for compiled gems like mysql2.
+You can perform basic customizations on Dockerfile with the `config.docker` config. This allows you to install any custom packages you might need. IE: system packages for compiled gems like mysql2.
+
+For even more customizations, you can also inject your own code to various stages of the Dockerfile, see: [Dockerfile Code Stages]({% link _docs/docker/stages.md %}).
 
 ## Dockerfile.tt Template
 

@@ -5,7 +5,7 @@ category: docker
 order: 2
 ---
 
-Jets uses a multi-stage Docker build process. This keeps the final image size small for deployment. You have the ability to "inject" code right into the Dockerfile at various stages.
+Jets uses a multi-stage Docker build process. This keeps the final image size small for deployment. You also have the ability to "inject" code right into the Dockerfile at various stages.
 
 Here's a simplified example Dockerfile to help explain.
 
@@ -30,3 +30,10 @@ The code is literally added to the Dockerfile as the first step of the build sta
 * config/jets/dockerfile/stage/after_build
 * config/jets/dockerfile/stage/before_deployment
 * config/jets/dockerfile/stage/after_deployment
+
+{% include docker/Dockerfile.md
+     before_build="# BEFORE_BUILD POINT"
+     after_build="# AFTER_BUILD POINT"
+     before_deployment="# BEFORE_DEPLOYMENT POINT"
+     after_deployment="# AFTER_DEPLOYMENT POINT"
+%}
