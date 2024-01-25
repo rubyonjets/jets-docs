@@ -1,5 +1,6 @@
 ---
 title: Rails Support
+nav_text: Rails
 category: top-level
 subcategory: rails
 order: 7

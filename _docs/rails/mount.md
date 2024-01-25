@@ -15,7 +15,7 @@ Rails is its own unique beast. You have to strip down a lot of Rails functionali
 
 ## Same Process
 
-As mentioned in [Rails Support]({% link _docs/rails-support.md %}), Jets allows several approaches to get a Rails application running on serverless. With the [Afterburner]({% link _docs/rails/afterburner.md %}) and [Mega Mode]({% link _docs/rails/megamode.md %}) approach, Jets starts the Rails application as a **separate** standalone process. This results in isolating the Rails and Jets app as independent processes.
+As mentioned in [Rails Support]({% link _docs/rails.md %}), Jets allows several approaches to get a Rails application running on serverless. With the [Afterburner]({% link _docs/rails/afterburner.md %}) and [Mega Mode]({% link _docs/rails/megamode.md %}) approach, Jets starts the Rails application as a **separate** standalone process. This results in isolating the Rails and Jets app as independent processes.
 
 With the Rack mount approach, Jets calls the Rails app within the **same** process.
 

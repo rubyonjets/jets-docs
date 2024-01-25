@@ -10,7 +10,7 @@ Jets Mega Mode supports deploying your Rails app also with little changes to you
 
 <div class="video-box"><div class="video-container"><iframe src="https://www.youtube.com/embed/gDLH9ui9ITk" frameborder="0" allowfullscreen=""></iframe></div></div>
 
-With Mega Mode we start up a rack server as subprocess and Jets proxies requests to the underlying rack server. Jets Mega Mode is designed to achieve generic Rack support for frameworks like Rails.  [Jets Afterburner]({% link _docs/rails-support.md %}) is actually implemented by Mega Mode underneath the hood. Here are some aspects of how Mega Mode works.
+With Mega Mode we start up a rack server as subprocess and Jets proxies requests to the underlying rack server. Jets Mega Mode is designed to achieve generic Rack support for frameworks like Rails.  [Jets Afterburner]({% link _docs/rails.md %}) is actually implemented by Mega Mode underneath the hood. Here are some aspects of how Mega Mode works.
 
 ## Separate Server Process
 
