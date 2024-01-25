@@ -33,4 +33,10 @@ The config above is used to generate the Dockerfile. Here's what it does:
 * The `default-libmysqlclient-dev` package is installed during the build Docker stage.
 * The `default-mysql-client` package is installed during the deployment Docker stage.
 
+{% include config/reference/header.md %}
+{% include config/reference/docker.md %}
+{% include config/reference/footer.md %}
+
+## Even More Customizations
+
 For even more customizations, you can also inject your own code to various stages of the Dockerfile, see: [Dockerfile Code Stages]({% link _docs/docker/stages.md %}).
