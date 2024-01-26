@@ -13,22 +13,28 @@ config/jets/deploy.rb
 
 ```ruby
 Jets.deploy.configure do
-  config.docker.build.args = {
-    "BUILD_ARG" => "value",
+  config.docker.build_args.at.the_top = {
+    "BUILD_ARG1" => "value1",
+  }
+  config.docker.build_args.at.build_stage = {
+    "BUILD_ARG2" => "value2",
+  }
+  config.docker.build_args.at.deployment_stage = {
+    "BUILD_ARG3" => "value3",
   }
 end
 ```
 
-This will set the `BUILD_ARG` build args.  The build args added to the top of `Dockerfile`. Jets will then call
+The build args are added to near the top of different sections of the multi-stage `Dockerfile`, after Jets installs system packages, and user defined packages from `config.docker.packages`.
 
-    docker build --build-arg BUILD_ARG=value ...
+{% include docker/Dockerfile.md
+    build_args_at_the_top="ARG BUILD_ARG1"
+    build_args_at_build_stage="ARG BUILD_ARG2"
+    build_args_at_deployment_stage="ARG BUILD_ARG3"
+%}
 
-The `ARG` Docker instruction is added to the top of the Dockerfile automatically.
+## Docker Build
 
-Dockerfile
+Jets will then call:
 
-```dockerfile
-ARG BUILD_ARG
-FROM ruby:3.2.3-slim as base
-# ...
-```
+    docker build --build-arg BUILD_ARG1=value1 --build-arg BUILD_ARG2=value2 --build-arg BUILD_ARG2=value2 ...
