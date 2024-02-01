@@ -25,6 +25,7 @@ autoload_paths | [] | Customize autoload paths. Add extra paths you want to Jets
 build.prebundle_copy | [] | Paths to copy over to the code cache area before `bundle install`. Useful for copying gems in Gemfile with a local relative path source.
 controllers.default_protect_from_forgery | true for html mode, false for api mode. | Whether or not to check for forgery protection
 controllers.filtered_parameters | [] | Parameters to filter in logging output
+{% include config/reference/codebuild.md %}
 {% include config/reference/cfn.md %}
 deploy.stagger.batch_size | 10 | Stagger the cloudformation update batch size.
 deploy.stagger.enable | false | Stagger the cloudformation update. Can be helpful with large apps.

@@ -1,7 +1,7 @@
 Making up some names for identifying:
 
-1. subdomain form: https://demo-dev-s3bucket-5lfgasr90ldd.s3.us-east-2.amazonaws.com/jets/public
-2. subfolder form: https://s3-us-east-2.amazonaws.com/demo-dev-s3bucket-5lfgasr90ldd/jets/public
+1. subdomain form: https://demo-dev-s3bucket-5lfgasr90ldd.s3.us-west-2.amazonaws.com/jets/public
+2. subfolder form: https://s3-us-west-2.amazonaws.com/demo-dev-s3bucket-5lfgasr90ldd/jets/public
 
 Note: Opening them both in a browser, they both work. Opening images in browsers are normal GET requests. It's the VueJS Javascript Cross Domain, CORs, request where only the subdomain form works. Hope that helps.
 
