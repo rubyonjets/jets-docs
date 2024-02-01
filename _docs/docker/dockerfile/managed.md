@@ -21,9 +21,9 @@ config/jets/deploy.rb
 
 ```ruby
 Jets.deploy.configure do
-  config.docker.dockefile.packages.installer = "apt-get"
-  config.docker.dockefile.packages.build_stage = ["default-libmysqlclient-dev"]
-  config.docker.dockefile.packages.deployment_stage = ["default-mysql-client"]
+  config.dockerfile.packages.installer = "apt-get"
+  config.dockerfile.packages.build_stage = ["default-libmysqlclient-dev"]
+  config.dockerfile.packages.deployment_stage = ["default-mysql-client"]
 end
 ```
 
