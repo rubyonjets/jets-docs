@@ -60,7 +60,7 @@ Jets.bootstrap.configure do
   config.remote.hooks.managed.github_clone = true
   config.remote.hooks.managed.docker_login = true
 
-  config.codebuild.env.vars = {
+  config.codebuild.project.env.vars = {
     DOCKER_PASS: "SSM:/dev/DOCKER_PASS",
     DOCKER_USER: "SSM:/dev/DOCKER_USER",
     GITHUB_TOKEN: "SSM:/dev/GITHUB_TOKEN",

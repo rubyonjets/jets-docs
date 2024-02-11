@@ -15,7 +15,7 @@ config/jets/bootstrap.rb
 
 ```ruby
 Jets.bootstrap.configure do
-  config.codebuild.env.vars = {
+  config.codebuild.project.env.vars = {
     BUNDLE_GITHUB__COM: "SSM:/dev/GITHUB_TOKEN",
   }
 ```
@@ -41,7 +41,7 @@ config/jets/bootstrap.rb
 
 ```ruby
 Jets.bootstrap.configure do
-  config.codebuild.env.vars = {
+  config.codebuild.project.env.vars = {
     BUNDLE_GITHUB__COM: "SSM:/dev/GITHUB_TOKEN",
     BUNDLE_GEM__FURY__IO: "SSM:/dev/GEM_FURY_IO_TOKEN",
     BUNDLE_GEMS__CONTRIBSYS__COM: "SSM:/dev/GEMS_CONTRIBSYS_COM_TOKEN",

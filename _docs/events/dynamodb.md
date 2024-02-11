@@ -22,20 +22,26 @@ app/jobs/clerk_job.rb
 
 ```ruby
 class ClerkJob < ApplicationJob
-  dynamodb_event "test-table" # existing table: demo-dev-test-table
+  dynamodb_event "test-table" # existing table: demo-dev_test-table
   def file
     puts "event #{JSON.dump(event)}"
   end
 end
 ```
 
-**Note**: The dynamodb table name is prefixed with the project namespace as of Jets 5 via [Dynomite 2]({% link _docs/database/dynamodb.md %}). For example: `test-table => demo-dev-test-table`. You can adjust this behavior with `config.events.dynamodb.table_namespace`. See: [Config Reference]({% link _docs/config/reference.md %}).
+**Note**: The dynamodb table name is prefixed with the project namespace as of Jets 5 via [Dynomite 2]({% link _docs/database/dynamodb.md %}). For example: `test-table => demo-dev_test-table`. You can adjust this behavior with `config.events.dynamodb.table_namespace`. See: [Config Reference]({% link _docs/config/reference.md %}).
 
 Here's the DynamoDB Lambda function trigger.
 
 ![](/img/docs/dynamodb-trigger.png)
 
 Note you must enable DynamoDB streaming for the table yourself first.  Refer to the "Enabling DynamoDB Streams" section on how to do this.
+
+## Create Table
+
+Notice how the table name is "namespaced" with the `demo-dev` prefix.
+
+    aws dynamodb create-table --table-name demo-dev_test-table --attribute-definitions AttributeName=id,AttributeType=S --key-schema AttributeName=id,KeyType=HASH --billing-mode PAY_PER_REQUEST
 
 ## Enabling DynamoDB Streams
 
@@ -45,14 +51,14 @@ Here's where you enable streams with the DynamoDB console.
 
 Here's also an example of how to enable streams with the [aws dynamodb update-table](https://docs.aws.amazon.com/cli/latest/reference/dynamodb/update-table.html) cli.
 
-    aws dynamodb update-table --table-name demo-dev-test-table --stream-specification "StreamEnabled=true,StreamViewType=NEW_AND_OLD_IMAGES"
+    aws dynamodb update-table --table-name demo-dev_test-table --stream-specification "StreamEnabled=true,StreamViewType=NEW_AND_OLD_IMAGES"
 
 
 ## Putting Data To DynamoDB
 
 Here's an example of updating data in a DynamoDB table [aws dynamodb put-item](https://docs.aws.amazon.com/cli/latest/reference/dynamodb/put-item.html) CLI:
 
-    aws dynamodb put-item --table-name demo-dev-test-table --item '{"id": {"S": "id-1"}, "name": {"S": "name-1"}}'
+    aws dynamodb put-item --table-name demo-dev_test-table --item '{"id": {"S": "id-1"}, "name": {"S": "name-1"}}'
 
 ## Tailing Logs
 

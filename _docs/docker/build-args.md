@@ -13,13 +13,13 @@ config/jets/deploy.rb
 
 ```ruby
 Jets.deploy.configure do
-  config.docker.build_args.at.the_top = {
+  config.dockerfile.build_args.at_top = {
     "BUILD_ARG1" => "value1",
   }
-  config.docker.build_args.at.build_stage = {
+  config.dockerfile.build_args.build_stage = {
     "BUILD_ARG2" => "value2",
   }
-  config.docker.build_args.at.deployment_stage = {
+  config.dockerfile.build_args.deployment_stage = {
     "BUILD_ARG3" => "value3",
   }
 end
