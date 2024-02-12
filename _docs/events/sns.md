@@ -34,7 +34,8 @@ class MessengerEvent < ApplicationEvent
   class_timeout 30 # must be less than or equal to the SNS Topic default timeout
   sns_event "hello-topic"
   def deliver
-    puts "deliver event #{JSON.dump(event)}"
+    puts "event #{JSON.dump(event)}"
+    puts "sns_events #{JSON.dump(sns_events)}"
   end
 end
 ```

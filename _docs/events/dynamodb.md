@@ -53,6 +53,9 @@ Here's also an example of how to enable streams with the [aws dynamodb update-ta
 
     aws dynamodb update-table --table-name demo-dev_test-table --stream-specification "StreamEnabled=true,StreamViewType=NEW_AND_OLD_IMAGES"
 
+**Note**: When you enable streams, AWS generates a unique latest stream ARN. The Jets `dynamodb_event` uses the AWS SDK to auto-detect this ARN. If you disable the stream and re-enable the stream then the ARN changes. You can redeploy so that the latest stream ARN is detected and use.
+
+You can also explicitly specify the stream ARN instead of the table name with the `dynamodb_event` method. IE: `dynamodb_event "arn:aws:dynamodb:us-west-2:112233445566:table/demo-dev_test-table/stream/2024-02-11T15:44:30.751"`.
 
 ## Putting Data To DynamoDB
 
@@ -120,6 +123,20 @@ Here's a screenshot of the event in the CloudWatch Log console.
 ## IAM Policy
 
 Jets generates an IAM policy for the Lambda function associated with the DynamoDB event that allows the permissions needed.  You can control and override the IAM policy with normal [IAM Policies]({% link _docs/iam-policies.md %}) if required, though.
+
+## Debugging
+
+If you are not seeing the event being triggered:
+
+Make sure you have **changed** the value of the item. Stream events will only fire if there are changes. Here's a `edit-1` change to the item.
+
+    aws dynamodb put-item --table-name demo-dev_test-table --item '{"id": {"S": "id-1"}, "name": {"S": "name-1-edit-1"}}'
+
+If you have disabled and reenabled the stream. The stream ARN could be stale. You should redeploy to update it.
+
+You can check the CloudFormation template to confirm the Stream ARN. Look for `Type: AWS::Lambda::EventSourceMapping` and `Properties.EventSourceArn`. That should match the dynamodb table LatestStreamArn.
+
+    aws dynamodb describe-table --table-name demo-dev_test-table | jq
 
 ## Related
 

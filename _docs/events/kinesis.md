@@ -53,6 +53,12 @@ You can also check that the Lambda function is connected to Kinesis via the [aws
     }
     $
 
+## Create Stream Example
+
+Here's an example of creating a kinesis stream via the CLI:
+
+    aws kinesis create-stream --stream-name my-stream --shard-count 1
+
 ## Send Test Data
 
 Here's an example of sending the data. Note, you have to base64 encode the payload data.
@@ -110,12 +116,6 @@ Since there can be multiple records, kinesis_data is an Array that contains the 
 Here's a screenshot of the event in the CloudWatch Log console.
 
 ![](/img/docs/kinesis-log.png)
-
-## Create Stream Example
-
-Here's an example of creating a kinesis stream via the CLI:
-
-    aws kinesis create-stream --stream-name my-stream --shard-count 1
 
 ## IAM Policy
 

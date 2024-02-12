@@ -30,10 +30,11 @@ app/jobs/waiter_event.rb
 
 ```ruby
 class WaiterEvent < ApplicationEvent
-  class_timeout 30 # must be less than or equal to the SQS queue default timeout
+  class_timeout 30 # must be less than or equal to the SNS Topic default timeout
   sqs_event "hello-queue"
   def order
-    puts "order event #{JSON.dump(event)}"
+    puts "event #{JSON.dump(event)}"
+    puts "sqs_events #{JSON.dump(sqs_events)}"
   end
 end
 ```
@@ -133,7 +134,7 @@ end
 
 Here's an example of sending a message to an SQS queue via the [aws sqs send-message](https://docs.aws.amazon.com/cli/latest/reference/sqs/send-message.html) CLI:
 
-    aws sqs send-message --queue-url https://sqs.us-west-2.amazonaws.com/112233445566/test-queue --message-body '{"test": "hello world"}'
+    aws sqs send-message --queue-url https://sqs.us-west-2.amazonaws.com/112233445566/hello-queue --message-body '{"test": "hello world"}'
 
 You can send a message via the SQS Console, sdk, etc also.
 
