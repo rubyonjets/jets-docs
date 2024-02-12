@@ -22,7 +22,7 @@ Here is an example connecting an existing SQS queue to a Lambda function in a [J
 
 Generate code.
 
-    jets generate:event waiter --type sqs --name order
+    jets generate:event waiter --trigger sqs --method order
 
 It looks something like this.
 

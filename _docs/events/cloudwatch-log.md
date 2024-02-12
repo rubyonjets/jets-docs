@@ -12,7 +12,7 @@ Jets supports [CloudWatch Log Events](https://docs.aws.amazon.com/AmazonCloudWat
 
 Generate code.
 
-    jets generate:event log --type log --name report
+    jets generate:event log --trigger log --method report
 
 It looks something like this.
 

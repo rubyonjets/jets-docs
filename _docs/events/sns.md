@@ -23,7 +23,7 @@ Here is an example connecting an existing SNS topic to a Lambda function in a [J
 
 Generate code.
 
-    jets generate:event messenger --type sns --name deliver
+    jets generate:event messenger --trigger sns --method deliver
 
 It looks something like this.
 

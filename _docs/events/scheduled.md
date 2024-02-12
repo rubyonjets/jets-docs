@@ -10,7 +10,7 @@ Jets supports [Scheduled Events](https://docs.aws.amazon.com/eventbridge/latest/
 
 Generate code.
 
-    jets generate:event cool --type scheduled
+    jets generate:event cool --trigger scheduled
 
 It looks something like this.
 

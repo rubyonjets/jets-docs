@@ -12,7 +12,7 @@ Jets supports [Kinesis Events](https://docs.aws.amazon.com/lambda/latest/dg/with
 
 Generate code.
 
-    jets generate:event data --type kinesis --name file
+    jets generate:event data --trigger kinesis --method file
 
 It looks something like this.
 

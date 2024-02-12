@@ -12,7 +12,7 @@ Jets supports [DynamoDB Stream Events](https://docs.aws.amazon.com/amazondynamod
 
 Generate code.
 
-    jets generate:event clerk --type dynamodb --name file
+    jets generate:event clerk --trigger dynamodb --method file
 
 It looks something like this.
 

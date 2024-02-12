@@ -12,7 +12,7 @@ Jets supports [CloudWatch Event Rules](https://docs.aws.amazon.com/AmazonCloudWa
 
 Generate code.
 
-    jets generate:event security --type rule --name detect_security_group_changes
+    jets generate:event security --trigger rule --method detect_security_group_changes
 
 It looks something like this.
 
