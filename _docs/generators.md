@@ -25,7 +25,7 @@ The Jets generators piggybacks off of the Rails generators. The generators have 
 To get more info on each generator provide the -h flag to each of them. Examples:
 
     jets generate controller -h
-    jets generate job -h
+    jets generate:event -h
     jets generate scaffold -h
 
 Note: The help output is really the original rails generator help.
@@ -44,7 +44,7 @@ Below is a list of cheatsheet-like examples for some of the generators.
 
 ### Job
 
-    jets generate job hard
+    jets generate:event cool
 
 ### Migration
 

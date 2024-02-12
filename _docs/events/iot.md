@@ -16,7 +16,7 @@ Jets supports [IoT Events](https://aws.amazon.com/iot-events/). This allows you 
 
 Generate code.
 
-    jets generate job thermostat --type iot --name measure
+    jets generate:event thermostat --type iot --name measure
 
 It looks something like this.
 

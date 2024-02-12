@@ -22,7 +22,7 @@ Here is an example connecting an existing SQS queue to a Lambda function in a [J
 
 Generate code.
 
-    jets generate job waiter --type sqs --name order
+    jets generate:event waiter --type sqs --name order
 
 It looks something like this.
 
@@ -49,7 +49,7 @@ Ultimately, the `sqs_event` declaration generates a [Lambda::EventSourceMapping]
 Jets can create and manage an SQS queue for a specific function. This is done with a special `:generate_queue` argument.
 
 ```ruby
-class HardJob < ApplicationJob
+class CoolEvent < ApplicationJob
   class_timeout 30 # must be less than or equal to the SQS queue default timeout
   sqs_event :generate_queue
   def lift
@@ -88,10 +88,10 @@ end
 
 You can reference the Shared Queue like so:
 
-app/jobs/hard_job.rb
+app/jobs/cool_event.rb
 
 ```ruby
-class HardJob < ApplicationJob
+class CoolEvent < ApplicationJob
   class_timeout 30 # must be less than or equal to the SQS queue default timeout
   depends_on :list # so we can reference list shared resources
   sqs_event ref(:waitlist) # reference sqs queue in shared resource
@@ -101,7 +101,7 @@ class HardJob < ApplicationJob
 end
 ```
 
-Underneath the hood, Jets provisions resources via CloudFormation.  The use of `depends_on` ensures that Jets will pass the shared resource `List` stack outputs to the `HardJob` stack as input parameters. This allows `HardJob` to reference resources from the separate child `List` stack.
+Underneath the hood, Jets provisions resources via CloudFormation.  The use of `depends_on` ensures that Jets will pass the shared resource `List` stack outputs to the `CoolEvent` stack as input parameters. This allows `CoolEvent` to reference resources from the separate child `List` stack.
 
 {% include cloudformation_links.md %}
 

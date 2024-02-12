@@ -11,7 +11,7 @@ As explained in the [Core Resource Model](http://rubyonjets.com/docs/core-resour
 The `rate` method creates a CloudWatch Event Rule resource. This Event Rule resource is associated with the `dig` Lambda function. Here's the example again:
 
 ```ruby
-class HardJob < ApplicationJob
+class CoolEvent < ApplicationJob
   rate "10 hours" # every 10 hours
   def dig
     puts "done digging"
@@ -22,7 +22,7 @@ end
 What happens is that Jets takes the `rate` method, performs some wrapper logic, and calls the core `resource` method in the first pass.  The code looks something like this after the first pass:
 
 ```ruby
-class HardJob < ApplicationJob
+class CoolEvent < ApplicationJob
   resource(
     "{namespace}EventsRule": {
       Type: "AWS::Events::Rule",
@@ -46,21 +46,21 @@ In the second pass, Jets replaces the `{namespace}` with an identifier a value t
 
 Before | After
 --- | ---
-{namespace} | HardJobDig
+{namespace} | CoolEventDig
 
 The final code looks something like this:
 
 ```ruby
-class HardJob < ApplicationJob
+class CoolEvent < ApplicationJob
   resource(
-    HardJobDigEventsRule: {
+    CoolEventDigEventsRule: {
       Type: "AWS::Events::Rule",
       Properties: {
         ScheduleExpression: "rate(10 hours)",
         State: "ENABLED",
         Targets: [{
-          Arn: "!GetAtt HardJobDigLambdaFunction.Arn",
-          Id: "HardJobDigRuleTarget"
+          Arn: "!GetAtt CoolEventDigLambdaFunction.Arn",
+          Id: "CoolEventDigRuleTarget"
         }]
       }
     }

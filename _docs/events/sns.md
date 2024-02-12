@@ -23,7 +23,7 @@ Here is an example connecting an existing SNS topic to a Lambda function in a [J
 
 Generate code.
 
-    jets generate job messenger --type sns --name deliver
+    jets generate:event messenger --type sns --name deliver
 
 It looks something like this.
 
@@ -52,7 +52,7 @@ There's more information on the filter_policy here on [SNS Message Filtering](ht
 Jets can create and manage an SNS Topic for a specific function. This is done with a special `:generate_topic` argument.
 
 ```ruby
-class HardJob < ApplicationJob
+class CoolEvent < ApplicationJob
   class_timeout 30 # must be less than or equal to the SNS Topic default timeout
   sns_event :generate_topic
   def lift
@@ -91,10 +91,10 @@ end
 
 You can reference the Shared Topic like so:
 
-app/jobs/hard_job.rb:
+app/jobs/cool_event.rb:
 
 ```ruby
-class HardJob < ApplicationJob
+class CoolEvent < ApplicationJob
   depends_on :topic # so we can reference topic shared resources
   sns_event ref(:engineering) # reference sns topic in shared resource
   def fix
@@ -103,7 +103,7 @@ class HardJob < ApplicationJob
 end
 ```
 
-Underneath the hood, Jets provisions resources via CloudFormation.  The use of `depends_on` ensures that Jets will pass the shared resource `Topic` stack outputs to the `HardJob` stack as input parameters. This allows `HardJob` to reference resources from the separate child `Topic` stack.
+Underneath the hood, Jets provisions resources via CloudFormation.  The use of `depends_on` ensures that Jets will pass the shared resource `Topic` stack outputs to the `CoolEvent` stack as input parameters. This allows `CoolEvent` to reference resources from the separate child `Topic` stack.
 
 {% include cloudformation_links.md %}
 

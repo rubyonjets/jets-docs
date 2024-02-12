@@ -28,17 +28,17 @@ Generally, your jobs will inherit from this `ApplicationJob`.
 
 Let's create some code that does some work. We'll use a generator again.
 
-    ❯ jets generate job hard
-        create  app/jobs/hard_job.rb
+    ❯ jets generate:event cool
+        create  app/jobs/cool_event.rb
 
 The generate code looks like this:
 
-app/jobs/hard_job.rb
+app/jobs/cool_event.rb
 
 ```ruby
-class HardJob < ApplicationJob
+class CoolEvent < ApplicationJob
   rate "10 hours"
-  def perform
+  def handle
     puts "Do something with event #{event}"
   end
 end
@@ -46,7 +46,7 @@ end
 
 **Note**: The method name does not have to be `perform`, it can be anything. For Jobs, Jets will create a distinct Lambda function for each public method.
 
-The `rate` macro-like method tells Jets to create an Amazon EventBridge rule (formerly called CloudWatch Event Rules and Scheduled Expressions) that runs the `perform` method below it on a schedule. Basically, the `HardJob#perform` Lambda function will run every 10 hours.
+The `rate` macro-like method tells Jets to create an Amazon EventBridge rule (formerly called CloudWatch Event Rules and Scheduled Expressions) that runs the `perform` method below it on a schedule. Basically, the `CoolEvent#perform` Lambda function will run every 10 hours.
 
 You can use [cron](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-cron-expressions.html) or [rate](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-rate-expressions.html) expressions.  Examples:
 
@@ -59,7 +59,7 @@ rate "10 hours" # every 10 hours
 
 **Tip**: You can use the `--type` option to generate Jobs with supported event types. Example:
 
-    jets generate job hard --type sns
+    jets generate:event cool --type sns
 
 Here are some other supported event types:
 
@@ -73,6 +73,6 @@ Here are some other supported event types:
 * [sns]({% link _docs/events/sns.md %})
 * [sqs]({% link _docs/events/sqs.md %})
 
-For more info: `jets generate job -h`. Also, see the [Events Docs]({% link _docs/events.md %}) for more info.
+For more info: `jets generate:event -h`. Also, see the [Events Docs]({% link _docs/events.md %}) for more info.
 
 Next, we'll test the job locally.

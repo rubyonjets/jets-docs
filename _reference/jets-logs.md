@@ -30,8 +30,8 @@ If you want to see the production logs:
 
 If you want to see logs for a job, specify the job and method.
 
-    ❯ jets logs -f -n hard_job-dig
-    Tailing logs for /aws/lambda/demo-dev-hard_job-dig
+    ❯ jets logs -f -n cool_event-dig
+    Tailing logs for /aws/lambda/demo-dev-cool_event-dig
 
 
 ## Options

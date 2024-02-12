@@ -71,11 +71,11 @@ Here's also the `jets deploy` messages:
 
     Deploying CloudFormation stack with jets app!
     05:59:41PM UPDATE_IN_PROGRESS AWS::CloudFormation::Stack demo-dev User Initiated
-    05:59:46PM UPDATE_IN_PROGRESS AWS::CloudFormation::Stack HardJob
-    06:01:05PM UPDATE_COMPLETE AWS::CloudFormation::Stack HardJob
+    05:59:46PM UPDATE_IN_PROGRESS AWS::CloudFormation::Stack CoolEvent
+    06:01:05PM UPDATE_COMPLETE AWS::CloudFormation::Stack CoolEvent
     06:01:07PM UPDATE_COMPLETE_CLEANUP_IN_PROGRESS AWS::CloudFormation::Stack demo-dev
-    06:01:08PM UPDATE_IN_PROGRESS AWS::CloudFormation::Stack HardJob
-    06:25:49PM UPDATE_COMPLETE AWS::CloudFormation::Stack HardJob
+    06:01:08PM UPDATE_IN_PROGRESS AWS::CloudFormation::Stack CoolEvent
+    06:25:49PM UPDATE_COMPLETE AWS::CloudFormation::Stack CoolEvent
     06:25:49PM UPDATE_COMPLETE AWS::CloudFormation::Stack demo-dev
     Stack success status: UPDATE_COMPLETE
     Time took for stack deployment: 26m 11s.

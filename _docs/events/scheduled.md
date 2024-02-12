@@ -10,17 +10,17 @@ Jets supports [Scheduled Events](https://docs.aws.amazon.com/eventbridge/latest/
 
 Generate code.
 
-    jets generate job hard --type scheduled
+    jets generate:event cool --type scheduled
 
 It looks something like this.
 
-app/jobs/hard_job.rb
+app/jobs/cool_event.rb
 
 ```ruby
-class HardJob < ApplicationJob
+class CoolEvent < ApplicationEvent
   rate "10 hours"
-  def perform
-    puts "Do something with event #{event}"
+  def handle
+    puts "Do something with event #{JSON.dump(event)}"
   end
 end
 ```
@@ -47,7 +47,7 @@ You can also use [rate expresions](https://docs.aws.amazon.com/eventbridge/lates
 
 It helps to tail the logs and watch the event as it comes through.
 
-    jets logs -f -n hard_job-perform
+    jets logs -f -n cool_event-handle
 
 ## Event Payloads
 
@@ -65,7 +65,7 @@ The event payload from the Scheduled Event is pretty simple.
   "time": "2023-12-24T15:48:05Z",
   "region": "us-west-2",
   "resources": [
-    "arn:aws:events:us-west-2:1122334455:rule/demo-dev-HardJob-1VH3QUF-HardJobPerformEventsRule-X2ZUwbcS7f5J"
+    "arn:aws:events:us-west-2:1122334455:rule/demo-dev-CoolEvent-1VH3QUF-CoolEventPerformEventsRule-X2ZUwbcS7f5J"
   ],
   "detail": {}
 }

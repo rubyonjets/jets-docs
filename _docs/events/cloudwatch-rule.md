@@ -12,7 +12,7 @@ Jets supports [CloudWatch Event Rules](https://docs.aws.amazon.com/AmazonCloudWa
 
 Generate code.
 
-    jets generate job security --type rule --name detect_security_group_changes
+    jets generate:event security --type rule --name detect_security_group_changes
 
 It looks something like this.
 
@@ -109,7 +109,7 @@ class SecurityJob < ApplicationJob
     }
   )
   rate "10 hours"
-  def perform_some_logic
+  def handle_some_logic
     puts "event: #{JSON.dump(event)}" # event is available
     # logic goes here
   end

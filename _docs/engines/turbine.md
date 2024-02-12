@@ -15,7 +15,7 @@ Method | Description
 --- | ---
 initalizer | Runs after Jets has been initialized with mainly Jets libraries loaded.
 after_initalizer | Runs after Jets has been initialized and has loaded your application-specific code.
-on_exception | Fires whenever there is an application-wide exception, the registered block of code will be run. This is useful to report errors to error reporting services. Note, in Jets v4 and below, this hook only fires on Lambda. Locally, to reproduce you can run code with `Jets.process(event, context, handler)`.  Example: `Jets.process({},{}, "handlers/jobs/hard_job.dig")`. In Jets v5 and above, the hook fires both locally and on Lambda. This makes it easier to develop and test plugins that make use of this hook.
+on_exception | Fires whenever there is an application-wide exception, the registered block of code will be run. This is useful to report errors to error reporting services. Note, in Jets v4 and below, this hook only fires on Lambda. Locally, to reproduce you can run code with `Jets.process(event, context, handler)`.  Example: `Jets.process({},{}, "handlers/jobs/cool_event.dig")`. In Jets v5 and above, the hook fires both locally and on Lambda. This makes it easier to develop and test plugins that make use of this hook.
 
 If you don't want to develop a third party extension for Jets, you should use plain old initializer. An initializer is any Ruby file stored under config/initializers in your application.
 

@@ -5,10 +5,10 @@ category: testing
 order: 2
 ---
 
-Let's say you have a HardJob class:
+Let's say you have a CoolEvent class:
 
 ```ruby
-class HardJob < ApplicationJob
+class CoolEvent < ApplicationJob
   rate "10 hours" # every 10 hours
   def dig
     {done: "digging"}
@@ -20,13 +20,13 @@ end
 
 Here's a simple example of a job spec.
 
-spec/job/hard_job_spec.rb:
+spec/job/cool_event_spec.rb:
 
 ```ruby
-describe HardJob, type: :job do
+describe CoolEvent, type: :job do
   let(:event) { {} }
   it "dig" do
-    result = HardJob.perform_now(:dig, event)
+    result = CoolEvent.perform_now(:dig, event)
     expect(result).to eq(done: "digging")
   end
 end
@@ -37,8 +37,8 @@ end
 If you need to mock out instance methods in your job class, you may want to use something like this:
 
 ```ruby
-describe HardJob, type: :job do
-  let(:job) { HardJob.new(event, context, :dig) }
+describe CoolEvent, type: :job do
+  let(:job) { CoolEvent.new(event, context, :dig) }
   let(:event) { {} }
   let(:context) { {} }
 

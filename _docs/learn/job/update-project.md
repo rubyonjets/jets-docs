@@ -35,12 +35,12 @@ You can leave the other settings the same, click **Next** a few times, and click
 
 ## Jets Logs
 
-To confirm that the Event Rule is firing every 1 minute, we'll use [jets logs]({% link _reference/jets-logs.md %}) this time. We want to follow the logs and specify the name of hard_job-perform. Here's an example.
+To confirm that the Event Rule is firing every 1 minute, we'll use [jets logs]({% link _reference/jets-logs.md %}) this time. We want to follow the logs and specify the name of cool_event-handle. Here's an example.
 
-    ❯ jets logs -f -n hard_job-perform
-    Tailing logs for /aws/lambda/demo-dev-hard_job-perform
+    ❯ jets logs -f -n cool_event-handle
+    Tailing logs for /aws/lambda/demo-dev-cool_event-handle
     2023-10-29 02:53:44 UTC START RequestId: 2e1e92ca-2b43-463a-a107-c5c9a980c946 Version: $LATEST
-    2023-10-29 02:53:44 UTC Do something with event {"version"=>"0", "id"=>"0619bfa8-8f56-2dc6-bd8c-a9cc4b98ed60", "detail-type"=>"Scheduled Event", "source"=>"aws.events", "account"=>"536766270177", "time"=>"2023-10-29T02:53:16Z", "region"=>"us-west-2", "resources"=>["arn:aws:events:us-west-2:536766270177:rule/demo-dev-HardJob-BABMHLBCK-HardJobPerformEventsRule-jwNlQMmky4tX"], "detail"=>{}}
+    2023-10-29 02:53:44 UTC Do something with event {"version"=>"0", "id"=>"0619bfa8-8f56-2dc6-bd8c-a9cc4b98ed60", "detail-type"=>"Scheduled Event", "source"=>"aws.events", "account"=>"536766270177", "time"=>"2023-10-29T02:53:16Z", "region"=>"us-west-2", "resources"=>["arn:aws:events:us-west-2:536766270177:rule/demo-dev-CoolEvent-BABMHLBCK-CoolEventPerformEventsRule-jwNlQMmky4tX"], "detail"=>{}}
     2023-10-29 02:53:44 UTC END RequestId: 2e1e92ca-2b43-463a-a107-c5c9a980c946
     2023-10-29 02:53:44 UTC REPORT RequestId: 2e1e92ca-2b43-463a-a107-c5c9a980c946  Duration: 2.42 ms       Billed Duration: 3 ms   Memory Size: 1536 MB       Max Memory Used: 162 MB
 
@@ -50,12 +50,12 @@ You should see the event being triggered every 1 minute.
 
 So far, we have been making manual changes. We should codify the changes. To help see the changes, let's make some additional changes so that it's easy to check. We'll use a rate of `2 minutes` and `Debug event` for the puts text this time.
 
-app/jobs/hard_job.rb
+app/jobs/cool_event.rb
 
 ```ruby
-class HardJob < ApplicationJob
+class CoolEvent < ApplicationJob
   rate "2 minutes"
-  def perform
+  def handle
     puts "Debug event #{event}"
   end
 end

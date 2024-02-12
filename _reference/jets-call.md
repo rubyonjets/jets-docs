@@ -28,14 +28,14 @@ You'll need to specify enough of the event payload so that the Jets shim handler
 
 ## Job Examples
 
-    jets call hard_job-drive '{"test":1}'
-    jets call hard_job-drive '{"test":1}' | jq .
-    jets call hard_job-drive file://event.json | jq . # load event with a file
+    jets call cool_event-drive '{"test":1}'
+    jets call cool_event-drive '{"test":1}' | jq .
+    jets call cool_event-drive file://event.json | jq . # load event with a file
 
 
 The equivalent AWS Lambda CLI command:
 
-    aws lambda invoke --function-name demo-dev-hard_job-dig --payload '{"path":"/posts","test":1}' outfile.txt
+    aws lambda invoke --function-name demo-dev-cool_event-dig --payload '{"path":"/posts","test":1}' outfile.txt
     cat outfile.txt | jq '.'
 
 Jets figures out what functions to call by evaluating the app code and finds if the class and method exists.  If you want to turn guess mode off and want to always explicitly provide the method name use the `--no-guess` option.  The function name will then have to match the lambda function without the namespace. Example:
@@ -54,7 +54,7 @@ And you can set `retry_limit`. If you don't want to retry you can set 0.
 
 Instead of calling AWS lambda remote, you can also have `jets call` use the code directly on your machine.  To enable this, use the `--local` flag. Example:
 
-    jets call hard_job-drive --local
+    jets call cool_event-drive --local
 
 ## Logs
 

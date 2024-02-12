@@ -4,10 +4,10 @@ title: Jobs
 
 A Jets job handles work which is better suited to run in the background - outside of the web request/response cycle. Here's an example:
 
-app/jobs/hard_job.rb:
+app/jobs/cool_event.rb:
 
 ```ruby
-class HardJob < ApplicationJob
+class CoolEvent < ApplicationJob
   class_timeout 300 # 300s or 5m, current Lambda max is 15m
 
   rate "10 hours" # every 10 hours
@@ -23,7 +23,7 @@ class HardJob < ApplicationJob
 end
 ```
 
-In our example, the job `HardJob#dig` will run every 10 hours, and `HardJob#lift` will run every 12 hours.
+In our example, the job `CoolEvent#dig` will run every 10 hours, and `CoolEvent#lift` will run every 12 hours.
 
 You can see the lambda functions which correspond to your job functions in the Lambda console:
 
@@ -39,8 +39,8 @@ You can run background jobs explicitly. Example:
 
 ```ruby
 event = {key1: "value1"}
-HardJob.perform_now(:dig, event)
-HardJob.perform_later(:lift, event)
+CoolEvent.perform_now(:dig, event)
+CoolEvent.perform_later(:lift, event)
 ```
 
 In the example above, the `perform_now` method executes the job in the **current process**. The `perform_later` function runs the job by invoking the AWS Lambda function associated with it in a **new process**.  It usually runs a few seconds later.
@@ -49,17 +49,17 @@ Note, remotely on AWS Lambda, the functions calling the `perform_*` methods need
 
 ## Additional Arguments
 
-Additional arguments are passed to the HardJob with an event hash.
+Additional arguments are passed to the CoolEvent with an event hash.
 
 ```ruby
 event = {key1: "value1"}
-HardJob.perform_now(:dig, event)
+CoolEvent.perform_now(:dig, event)
 ```
 
 The `event` helper is available in the method.
 
 ```ruby
-class HardJob
+class CoolEvent
   def dig
     puts "event #{event.inspect}" # event hash is avaialble
   end

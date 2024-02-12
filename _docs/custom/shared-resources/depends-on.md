@@ -68,7 +68,7 @@ class CoolEvent < ApplicationEvent
   class_timeout 30 # less than to equal to the default queue timeout
 
   sqs_queue "!Ref Waitlist"
-  def perform
+  def handle
     puts "perform called"
   end
 end

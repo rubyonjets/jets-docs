@@ -13,7 +13,7 @@ An important learning point is that all resources associated with each Lambda fu
 For example, the `rate` method creates a CloudWatch Event Rule resource. This Event Rule resource is associated with the `dig` Lambda function. Here's an example:
 
 ```ruby
-class HardJob < ApplicationJob
+class CoolEvent < ApplicationJob
   rate "10 hours" # every 10 hours
   def dig
     puts "done digging"
@@ -24,16 +24,16 @@ end
 What's happens is that Jets takes the `rate` method, performs some wrapper logic, and calls the core `resource` method.  In other words, the code could also be written like so:
 
 ```ruby
-class HardJob < ApplicationJob
+class CoolEvent < ApplicationJob
   resource(
-    HardJobDigEventsRule: {
+    CoolEventDigEventsRule: {
       Type: "AWS::Events::Rule",
       Properties: {
         ScheduleExpression: "rate(10 hours)",
         State: "ENABLED",
         Targets: [{
-          Arn: "!GetAtt HardJobDigLambdaFunction.Arn",
-          Id: "HardJobDigRuleTarget"
+          Arn: "!GetAtt CoolEventDigLambdaFunction.Arn",
+          Id: "CoolEventDigRuleTarget"
         }]
       }
     }
