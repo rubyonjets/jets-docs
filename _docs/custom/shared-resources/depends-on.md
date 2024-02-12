@@ -48,9 +48,9 @@ By declaring `depends_on :alert` in the `Alarm` class, Jets creates the `Alert` 
 
 With this design, Jets makes it is easy to create many nested stacks and use resources from each other.
 
-## App Classes: Controllers, Jobs, Etc
+## App Classes: Events
 
-The `depends_on` declaration also works in non-shared app classes.  When you add `depends_on` to an app class like a controller or a job, Jets will ensure that the resources are created in the dependent order and also pass the outputs of the independent stack to the dependent stack. This is useful in case you want to reference a resource from one stack to another.  Example:
+The `depends_on` declaration also works in non-shared app classes.  When you add `depends_on` to an app class like an Event class, Jets will ensure that the resources are created in the dependent order and also pass the outputs of the independent stack to the dependent stack. This is useful in case you want to reference a resource from one stack to another.  Example:
 
 app/shared/resources/list.rb
 
@@ -60,19 +60,18 @@ class List < Jets::Stack
 end
 ```
 
-app/jobs/hard_job.rb
+app/events/cool_event.rb
 
 ```ruby
-class HardJob < ApplicationJob
+class CoolEvent < ApplicationEvent
   depends_on :list
   class_timeout 30 # less than to equal to the default queue timeout
 
   sqs_queue "!Ref Waitlist"
-  def dig
-    puts "done digging"
+  def perform
+    puts "perform called"
   end
 end
 ```
 
-Understanding of what is happening underneath the hood with Jets and CloudFormation helps to understand shared resources usage. Remember that each class gets translated into a nested child stack. The parameters are possibly passed between the stacks. The depends_on declaration tells Jets to pass all the outputs from the `List` stack as input parameters to the `HardJob` stack.  In this case, one of the outputs from the `sqs_queue(:waitlist)` resource declaration is `Waitlist`. The `Waitlist` output contains the SQS arn.  `HardJob` references the input parameter. This is how it is possible for `HardJob` to refer to a resource created in another stack.
-
+Understanding of what is happening underneath the hood with Jets and CloudFormation helps to understand shared resources usage. Remember that each class gets translated into a nested child stack. The parameters are possibly passed between the stacks. The depends_on declaration tells Jets to pass all the outputs from the `List` stack as input parameters to the `CoolEvent` stack.  In this case, one of the outputs from the `sqs_queue(:waitlist)` resource declaration is `Waitlist`. The `Waitlist` output contains the SQS ARN.  `CoolEvent` references the input parameter. This is how it is possible for `CoolEvent` to refer to a resource created in another stack.

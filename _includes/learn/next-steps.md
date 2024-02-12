@@ -4,7 +4,7 @@ Some good next steps are to learn about what else Jets can do. This is really ju
 
 * [Functions]({% link _docs/functions.md %})
 * [Controllers]({% link _docs/controllers.md %})
-* [Jobs]({% link _docs/jobs.md %})
+* [Jobs]({% link _docs/events.md %})
 * [Events]({% link _docs/events.md %})
 * [Routing]({% link _docs/routing.md %})
 * [Authorization]({% link _docs/auth.md %})

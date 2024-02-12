@@ -19,7 +19,7 @@ We'll cover each of them:
 
 ## Existing SNS Topic
 
-Here is an example connecting an existing SNS topic to a Lambda function in a [Job]({% link _docs/jobs.md %})
+Here is an example connecting an existing SNS topic to a Lambda function in a [Job]({% link _docs/events.md %})
 
 Generate code.
 

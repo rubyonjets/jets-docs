@@ -16,7 +16,7 @@ Generate code.
 
 It looks something like this.
 
-Here is an example connecting an existing Kinesis stream to a Lambda function in a [Job]({% link _docs/jobs.md %}).
+Here is an example connecting an existing Kinesis stream to a Lambda function in a [Job]({% link _docs/events.md %}).
 
 app/jobs/data_job.rb
 

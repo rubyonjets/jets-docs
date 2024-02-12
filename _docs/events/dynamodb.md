@@ -16,7 +16,7 @@ Generate code.
 
 It looks something like this.
 
-Here is an example connecting an existing DynamoDB table's stream to a Lambda function in a [Job]({% link _docs/jobs.md %})
+Here is an example connecting an existing DynamoDB table's stream to a Lambda function in a [Job]({% link _docs/events.md %})
 
 app/jobs/clerk_job.rb
 
