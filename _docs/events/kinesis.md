@@ -16,12 +16,12 @@ Generate code.
 
 It looks something like this.
 
-Here is an example connecting an existing Kinesis stream to a Lambda function in a [Job]({% link _docs/events.md %}).
+Here is an example connecting an existing Kinesis stream to a Lambda function in a [Event]({% link _docs/events.md %}).
 
-app/jobs/data_job.rb
+app/jobs/data_event.rb
 
 ```ruby
-class DataJob < ApplicationJob
+class DataEvent < ApplicationEvent
   kinesis_event "my-stream" # existing stream
   def file
     puts "event #{JSON.dump(event)}"
@@ -45,7 +45,7 @@ You can also check that the Lambda function is connected to Kinesis via the [aws
                 "LastModified": 1550287680.0,
                 "BatchSize": 100,
                 "State": "Enabled",
-                "FunctionArn": "arn:aws:lambda:us-west-2:112233445566:function:demo-dev-data_job-file",
+                "FunctionArn": "arn:aws:lambda:us-west-2:112233445566:function:demo-dev-data_event-file",
                 "EventSourceArn": "arn:aws:kinesis:us-west-2:112233445566:stream/my-stream",
                 "LastProcessingResult": "OK"
             }
@@ -63,7 +63,7 @@ Here's an example of sending the data. Note, you have to base64 encode the paylo
 
 It helps to tail the logs and watch the event as it comes through.
 
-    jets logs -f -n data_job-file
+    jets logs -f -n data_event-file
 
 ## Event Payload
 
@@ -86,7 +86,7 @@ The event payload from CloudWatch Log is a base64 encoded String within a JSON s
             "eventVersion": "1.0",
             "eventID": "shardId-000000000000:49593016666855735301798073856083438124424404568371101698",
             "eventName": "aws:kinesis:record",
-            "invokeIdentityArn": "arn:aws:iam::112233445566:role/demo-dev-DataJob-OUD26QSQSWKN-DataJobFileIamRole-CM2L7G0KZVY",
+            "invokeIdentityArn": "arn:aws:iam::112233445566:role/demo-dev-DataEvent-OUD26QSQSWKN-DataEventFileIamRole-CM2L7G0KZVY",
             "awsRegion": "us-west-2",
             "eventSourceARN": "arn:aws:kinesis:us-west-2:112233445566:stream/my-stream"
         }

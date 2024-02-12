@@ -18,7 +18,7 @@ We'll cover each of them:
 
 ## Existing SQS Queue
 
-Here is an example connecting an existing SQS queue to a Lambda function in a [Job]({% link _docs/events.md %})
+Here is an example connecting an existing SQS queue to a Lambda function in a [Event]({% link _docs/events.md %})
 
 Generate code.
 
@@ -26,10 +26,10 @@ Generate code.
 
 It looks something like this.
 
-app/jobs/waiter_job.rb
+app/jobs/waiter_event.rb
 
 ```ruby
-class WaiterJob < ApplicationJob
+class WaiterEvent < ApplicationEvent
   class_timeout 30 # must be less than or equal to the SQS queue default timeout
   sqs_event "hello-queue"
   def order
@@ -49,7 +49,7 @@ Ultimately, the `sqs_event` declaration generates a [Lambda::EventSourceMapping]
 Jets can create and manage an SQS queue for a specific function. This is done with a special `:generate_queue` argument.
 
 ```ruby
-class CoolEvent < ApplicationJob
+class CoolEvent < ApplicationEvent
   class_timeout 30 # must be less than or equal to the SQS queue default timeout
   sqs_event :generate_queue
   def lift
@@ -91,7 +91,7 @@ You can reference the Shared Queue like so:
 app/jobs/cool_event.rb
 
 ```ruby
-class CoolEvent < ApplicationJob
+class CoolEvent < ApplicationEvent
   class_timeout 30 # must be less than or equal to the SQS queue default timeout
   depends_on :list # so we can reference list shared resources
   sqs_event ref(:waitlist) # reference sqs queue in shared resource
@@ -109,10 +109,10 @@ Underneath the hood, Jets provisions resources via CloudFormation.  The use of `
 
 You can access the SQS url with the `lookup` method. The method is available to `Jets::Stack` subclasses like the `List` class here. Here's an example:
 
-app/jobs/postman_job.rb
+app/jobs/postman_event.rb
 
 ```ruby
-class PostmanJob < ApplicationJob
+class PostmanEvent < ApplicationEvent
   include Jets::AwsServices
 
   iam_policy "sqs"
@@ -141,7 +141,7 @@ You can send a message via the SQS Console, sdk, etc also.
 
 It helps to tail the logs and watch the event as it comes through.
 
-    jets logs -f -n waiter_job-order
+    jets logs -f -n waiter_event-order
 
 ## Event Payloads
 

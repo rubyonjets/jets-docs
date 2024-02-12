@@ -18,10 +18,10 @@ It looks something like this.
 
 An example might be getting notified when an unwanted security group port gets opened.
 
-app/jobs/security_job.rb
+app/jobs/security_event.rb
 
 ```ruby
-class SecurityJob < ApplicationJob
+class SecurityEvent < ApplicationEvent
   rule_event(
     description: "Checks for security group changes",
     detail_type: ["AWS API Call via CloudTrail"],
@@ -61,7 +61,7 @@ If you need more control, and you can also set any properties of the [AWS::Event
 ](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-rule.html) by passing a hash. Here's another example that detects when an instance goes into stopping state.
 
 ```ruby
-class SecurityJob < ApplicationJob
+class SecurityEvent < ApplicationEvent
   rule_event(
     description: "Detects when instance stops",
     event_pattern: {
@@ -85,14 +85,14 @@ This pattern of watching CloudWatch events can be used for things like automatic
 
 It helps to tail the logs and watch the event as it comes through.
 
-    jets logs -f -n security_job-instance_stopping
+    jets logs -f -n security_event-instance_stopping
 
 ## Multiple Events Support
 
 Registering multiple events to the same Lambda function is supported. Add multiple `rule_event` declarations above the method definition. Example:
 
 ```ruby
-class SecurityJob < ApplicationJob
+class SecurityEvent < ApplicationEvent
   rule_event(
     source: ["aws.ec2"],
     detail_type: ["EC2 Instance State-change Notification"],

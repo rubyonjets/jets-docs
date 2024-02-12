@@ -16,12 +16,12 @@ Generate code.
 
 It looks something like this.
 
-Here is an example connecting an existing DynamoDB table's stream to a Lambda function in a [Job]({% link _docs/events.md %})
+Here is an example connecting an existing DynamoDB table's stream to a Lambda function in a [Event]({% link _docs/events.md %})
 
-app/jobs/clerk_job.rb
+app/jobs/clerk_event.rb
 
 ```ruby
-class ClerkJob < ApplicationJob
+class ClerkEvent < ApplicationEvent
   dynamodb_event "test-table" # existing table: demo-dev_test-table
   def file
     puts "event #{JSON.dump(event)}"
@@ -64,7 +64,7 @@ Here's an example of updating data in a DynamoDB table [aws dynamodb put-item](h
 
 It helps to tail the logs and watch the event as it comes through.
 
-    jets logs -f -n clerk_job-file
+    jets logs -f -n clerk_event-file
 
 ## Event Payload
 

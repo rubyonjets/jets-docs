@@ -20,10 +20,10 @@ Generate code.
 
 It looks something like this.
 
-app/jobs/thermostat_job.rb
+app/jobs/thermostat_event.rb
 
 ```ruby
-class ThermostatJob < ApplicationJob
+class ThermostatEvent < ApplicationEvent
   iot_event "SELECT * FROM 'my/topic'"
   def measure
     puts "event #{JSON.dump(event)}"
@@ -46,7 +46,7 @@ Here's the rule details page:
 If you need more control, you can also set any of the properties of the `topic_rule_payload` by providing a hash.
 
 ```ruby
-class ThermostatJob < ApplicationJob
+class ThermostatEvent < ApplicationEvent
   iot_event(sql: "SELECT * FROM 'my/topic'")
   def record
     puts "event #{JSON.dump(event)}"
@@ -57,7 +57,7 @@ end
 For even more control, you can provide a hash that has a `topic_rule_payload` key. This will provide you full control over the properties passed to the [AWS::IoT::TopicRule](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-topicrule.html) resource.
 
 ```ruby
-class ThermostatJob < ApplicationJob
+class ThermostatEvent < ApplicationEvent
   iot_event(topic_rule_payload: {sql: "SELECT * FROM 'my/topic'"})
   def act
     puts "event #{JSON.dump(event)}"
@@ -68,7 +68,7 @@ class ThermostatJob < ApplicationJob
 
 It helps to tail the logs and watch the event as it comes through.
 
-    jets logs -f -n thermostat_job-record
+    jets logs -f -n thermostat_event-record
 
 ## Event Payloads
 

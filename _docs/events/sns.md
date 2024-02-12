@@ -19,7 +19,7 @@ We'll cover each of them:
 
 ## Existing SNS Topic
 
-Here is an example connecting an existing SNS topic to a Lambda function in a [Job]({% link _docs/events.md %})
+Here is an example connecting an existing SNS topic to a Lambda function in a [Event]({% link _docs/events.md %})
 
 Generate code.
 
@@ -27,10 +27,10 @@ Generate code.
 
 It looks something like this.
 
-app/jobs/messenger_job.rb
+app/jobs/messenger_event.rb
 
 ```ruby
-class MessengerJob < ApplicationJob
+class MessengerEvent < ApplicationEvent
   class_timeout 30 # must be less than or equal to the SNS Topic default timeout
   sns_event "hello-topic"
   def deliver
@@ -52,7 +52,7 @@ There's more information on the filter_policy here on [SNS Message Filtering](ht
 Jets can create and manage an SNS Topic for a specific function. This is done with a special `:generate_topic` argument.
 
 ```ruby
-class CoolEvent < ApplicationJob
+class CoolEvent < ApplicationEvent
   class_timeout 30 # must be less than or equal to the SNS Topic default timeout
   sns_event :generate_topic
   def lift
@@ -94,7 +94,7 @@ You can reference the Shared Topic like so:
 app/jobs/cool_event.rb:
 
 ```ruby
-class CoolEvent < ApplicationJob
+class CoolEvent < ApplicationEvent
   depends_on :topic # so we can reference topic shared resources
   sns_event ref(:engineering) # reference sns topic in shared resource
   def fix
@@ -119,7 +119,7 @@ You can send a message via the SNS Console, sdk, etc also.
 
 It helps to tail the logs and watch the event as it comes through.
 
-    jets logs -f -n messenger_job-deliver
+    jets logs -f -n messenger_event-deliver
 
 ## Event Payloads
 
