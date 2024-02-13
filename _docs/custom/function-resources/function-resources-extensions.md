@@ -34,13 +34,14 @@ Note: Astute users may noticed that underscore for the keys is used. This allows
 
 After the module is defined, you can use the newly created convenience method like so:
 
-app/jobs/temperature_job.rb
+app/events/temperature_event.rb
 
 ```ruby
-class TemperatureJob < ApplicationJob
+class TemperatureEvent < ApplicationEvent
   thermostat_rule(:room)
   def record
     # custom business logic
+    puts "record event #{JSON.dump(event)}"
   end
 end
 ```
