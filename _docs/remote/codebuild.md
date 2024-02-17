@@ -2,6 +2,7 @@
 title: CodeBuild Remote Runner
 nav_text: CodeBuild
 category: remote
+subcategory: remote-codebuild
 order: 1
 ---
 
@@ -32,21 +33,9 @@ end
 * Jets supports Docker-capable CodeBuild Images. This is because there are limitations to the Docker Lambda Compute types. IE: You cannot use `yum install`, `apt install` or `docker build` with Lambda Compute types vs Linux compute types.
 * You can configure environment variables that should be set on the remote runner.
 
-## CodeBuild Fleets
+## Faster Builds
 
-You can use Reserved capacity CodeBuild fleets if you want faster build times. These are **always** running EC2 instances to run the builds. Since they are not on-demand, there are additional costs to them.
-
-The lowest cost Reserved fleet you can get is:
-
-* A `reserved.arm.g1.small` costs $0.00204/minute =~ $88/mo.
-* Prices change. It's noted so you have an idea of how much it'll cost.
-* Other instance types are more expensive. See [CodeBuild Pricing](https://aws.amazon.com/codebuild/pricing/).
-
-The significant benefit of a reserved fleet is caching. Jets configures the CodeBuild Project for Docker Image caching. Cached Docker layers can take your gem dependency build times to zero for most deploys, shaving minutes off the deployment times.
-
-Note, even if you do not use Reserved fleets, Docker Image caching is turned on, but it's a best-effort cache hit. Usually, if your builds do not run within minutes of each other, you'll be given another on-demand throwaway instance that won't have your Docker layers cached.
-
-The con is the cost. Also, if you are only running one instance in the fleet, other jobs will be stuck in the queue waiting.
+If you want faster builds, consider using [CodeBuild Fleets]({% link _docs/remote/codebuild/fleet.md %}).
 
 {% include config/reference/header.md %}
 {% include config/reference/codebuild.md %}
