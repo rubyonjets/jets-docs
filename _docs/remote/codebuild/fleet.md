@@ -50,8 +50,8 @@ Since they are not thrown away after each run, they have additional costs.
 The lowest cost Reserved fleet you can get is:
 
 * A `reserved.arm.g1.small` costs $0.00204/minute =~ $88/mo.
-* You are charged a **minimum** of an hour once you create a reserved fleet. IE: $0.1224
-* Prices change. It's noted so you have an idea of how much it'll cost.
+* You are charged a **minimum** of an hour once you create a reserved fleet. IE: $0.1224. After the first hour, you are billed minutely.
+* Prices may change. It's noted so you have an idea of cost. However, you should always refer to AWS for authorative pricing.
 * Other instance types are more expensive. See [CodeBuild Pricing](https://aws.amazon.com/codebuild/pricing/).
 * If you are only running one instance in the fleet, other jobs will be stuck in the queue waiting.
 
