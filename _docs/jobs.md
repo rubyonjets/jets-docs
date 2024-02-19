@@ -1,72 +1,33 @@
 ---
 title: Jobs
+category: top-level
+subcategory: jobs
+order: 5
 ---
+
+**Note**: Jets 6 Jobs are different than Jets 5 Jobs. A Jets 6 Job an Rails ActiveJob compatiable job. Jets 5 Jobs have been renamed to [Jets Events]({% link _docs/events.md %})
 
 A Jets job handles work which is better suited to run in the background - outside of the web request/response cycle. Here's an example:
 
-app/jobs/cool_event.rb:
+app/jobs/cleanup_job.rb:
 
 ```ruby
-class CoolEvent < ApplicationJob
-  class_timeout 300 # 300s or 5m, current Lambda max is 15m
-
-  rate "10 hours" # every 10 hours
-  def dig
-    puts "done digging"
-  end
-
-  # Cron expression is AWS Cron Format and require 6 fields
-  cron "0 */12 * * ? *" # every 12 hours
-  def lift
-    puts "done lifting"
+class CleanupJob < ApplicationJob
+  def perform(*args)
+    puts "Cleaning up: #{args}"
   end
 end
 ```
 
-In our example, the job `CoolEvent#dig` will run every 10 hours, and `CoolEvent#lift` will run every 12 hours.
+To call a Job:
 
-You can see the lambda functions which correspond to your job functions in the Lambda console:
+    $ rails console
+    > CleanupJob.perform_now("desk")
+    > CleanupJob.perform_later("desk")
 
-![The Lambda functions corresponding to the jobs in the AWS Console](/img/docs/demo-lambda-functions-jobs.png)
 
-The `rate` and `cron` methods create CloudWatch Event Rules to handle scheduling. You can see these CloudWatch Event Rules in the CloudWatch console:
+## Links
 
-![Generated CloudWatch Event Rules for scheduling in the AWS UI](/img/docs/demo-job-cloudwatch-rule.png)
-
-## Running Jobs Explicitly
-
-You can run background jobs explicitly. Example:
-
-```ruby
-event = {key1: "value1"}
-CoolEvent.perform_now(:dig, event)
-CoolEvent.perform_later(:lift, event)
-```
-
-In the example above, the `perform_now` method executes the job in the **current process**. The `perform_later` function runs the job by invoking the AWS Lambda function associated with it in a **new process**.  It usually runs a few seconds later.
-
-Note, remotely on AWS Lambda, the functions calling the `perform_*` methods need to have the IAM permission to call Lambda. For example, a simple `iam_policy "lambda:InvokeFunction"` should do it. See [IAM Policies]({% link _docs/iam-policies.md %}) for more info.
-
-## Additional Arguments
-
-Additional arguments are passed to the CoolEvent with an event hash.
-
-```ruby
-event = {key1: "value1"}
-CoolEvent.perform_now(:dig, event)
-```
-
-The `event` helper is available in the method.
-
-```ruby
-class CoolEvent
-  def dig
-    puts "event #{event.inspect}" # event hash is avaialble
-  end
-end
-```
-
-## Cron Expression
-
-The cron expression is in the [AWS Cron format](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html).  The AWS Cron format has six required fields, separated by white space.  This is slightly different from the traditional Linux cron format which has 5 fields.
-
+{% assign event_docs = site.docs | where: "categories","jobs" | sort: "order" %}
+{% for doc in event_docs %}
+* [{{ doc.title }}]({{doc.url}}): {{ doc.desc }}{% endfor %}
