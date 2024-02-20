@@ -2,7 +2,7 @@
 title: "Jets Job Debugging Tips"
 nav_text: Debug
 category: jobs
-order: 2
+order: 88
 desc: Some debugging tips with Jets Jobs.
 ---
 

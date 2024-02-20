@@ -6,7 +6,11 @@ order: 2
 desc: How to Schedule Jobs with schedule.yml.
 ---
 
-Jets supports a Job Scheduler with `scheduler.yml` that is different but similar to [sidekiq-scheduler](https://github.com/sidekiq-scheduler/sidekiq-scheduler).
+Jets supports a Job Scheduler with `scheduler.yml` that is similar to [sidekiq-scheduler](https://github.com/sidekiq-scheduler/sidekiq-scheduler).
+
+## Enabling
+
+To enable the Jets scheduler create a `config/jets/scheduler.yml` and simply make sure there are entries.
 
 ## Example
 
