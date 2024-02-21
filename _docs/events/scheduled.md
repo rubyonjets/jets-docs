@@ -25,7 +25,7 @@ class CoolEvent < ApplicationEvent
 end
 ```
 
-{% include events/scheduled-expressions.md %}
+{% include events/schedule-expressions.md %}
 
 ## Tailing Logs
 

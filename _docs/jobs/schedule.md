@@ -29,7 +29,7 @@ cleanup_job_desk:
   splat_args: true
 ```
 
-When the `config/jets/scheduler.yml` exists, Jets uses it create the scheduler components upon `jets deploy`, IE: Scheduled Events and Lambda functions.
+When the `config/jets/scheduler.yml` exists, Jets uses it create the scheduler components upon `jets deploy`, IE: Schedule Events and Lambda functions.
 
 ## How It Works
 
@@ -51,18 +51,28 @@ class Jets::ScheduleEvent < Jets::Event::Base
 end
 ```
 
-The `rate` expressions create AWS Scheduled Events. AWS manages the scheduler for you. It's "serverless".
+The `rate` expressions create AWS Schedule Events. AWS manages the scheduler for you. It's "serverless".
 
 Each method in the class creates a distinct lambda function which will handle the processing.
+
+## Conversion Command
+
+You can use the `jets schedule:sidekiq` command to translate the schedule in `sidekiq.yml` to `config/jets/schedule.yml`. Then use `jets schedule:validate` to check the expressions are valid AWS CloudWatch Schedule Event Rules.
+
+    jets schedule:sidekiq
+    jets schedule:validate
+
+**Tip**: It also very helps to use the [AWS EventBridge Console](https://us-west-2.console.aws.amazon.com/scheduler/home?#create-schedule) and pretend to create a Schedule Rule. The form does performs validation in real-time.
 
 ## Expressions Support
 
 Both the `rate` and `cron` expressions are supported.
 
-{% include events/scheduled-expressions.md %}
+{% include events/schedule-expressions.md %}
 
 ## Notes
 
 * The only required field is an scheduling expression field, IE: `rate` or `cron`.
 * The class name can be inferred by the top-level key or explicitly by the `class` field. Example: `GreetJob` (inferred) and `class: CleanupJob` (explicit).
 * The `args` field is optional. If you need the args to be splatted, you can use `splat_args: true`. This removes the `[]` brackets for Array arguments and `{}` brackets for Hash arguments.
+* An interesting note: With the Jets Scheduler implementation, there is no queue. There is no need for a queue. The CloudWatch Schedule Event Rule triggers the Lambda Function directly.
