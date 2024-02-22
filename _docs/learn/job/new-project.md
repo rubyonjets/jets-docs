@@ -19,7 +19,7 @@ The `--mode job` option generates a Jets project designed for jobs.
         create  Gemfile
         create  README.md
         create  Rakefile
-        create  app/jobs/application_job.rb
+        create  app/events/application_event.rb
         create  config/application.rb
         create  config/environments/development.rb
         create  config/environments/production.rb

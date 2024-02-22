@@ -27,7 +27,7 @@ Generate code.
 
 It looks something like this.
 
-app/jobs/messenger_event.rb
+app/events/messenger_event.rb
 
 ```ruby
 class MessengerEvent < ApplicationEvent
@@ -92,7 +92,7 @@ end
 
 You can reference the Shared Topic like so:
 
-app/jobs/cool_event.rb:
+app/events/cool_event.rb:
 
 ```ruby
 class CoolEvent < ApplicationEvent

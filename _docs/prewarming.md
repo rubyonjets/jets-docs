@@ -54,7 +54,7 @@ We can see that the lambda function had been prewarmed once and called 4 times s
 
 Jets prewarms most Ruby functions in your application with the same weight. If you want to prewarm a specific function that gets an extremely high traffic volume, you can create a custom prewarm job. Here's a starter example:
 
-app/jobs/prewarm_job.rb:
+app/events/prewarm_job.rb:
 
 ```ruby
 class PrewarmJob < ApplicationJob

@@ -14,7 +14,7 @@ Generate code.
 
 It looks something like this.
 
-app/jobs/cool_event.rb
+app/events/cool_event.rb
 
 ```ruby
 class CoolEvent < ApplicationEvent

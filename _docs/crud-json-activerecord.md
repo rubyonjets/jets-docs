@@ -23,7 +23,7 @@ Let's go through each in a little more detail.
     Creating a new Jets project called demo.
           create  demo/app/controllers/application_controller.rb
           create  demo/app/helpers/application_helper.rb
-          create  demo/app/jobs/application_job.rb
+          create  demo/app/events/application_event.rb
     ...
     ================================================================
     Congrats  You have successfully created a Jets project.

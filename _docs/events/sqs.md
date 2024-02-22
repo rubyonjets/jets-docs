@@ -26,7 +26,7 @@ Generate code.
 
 It looks something like this.
 
-app/jobs/waiter_event.rb
+app/events/waiter_event.rb
 
 ```ruby
 class WaiterEvent < ApplicationEvent
@@ -89,7 +89,7 @@ end
 
 You can reference the Shared Queue like so:
 
-app/jobs/cool_event.rb
+app/events/cool_event.rb
 
 ```ruby
 class CoolEvent < ApplicationEvent
@@ -110,7 +110,7 @@ Underneath the hood, Jets provisions resources via CloudFormation.  The use of `
 
 You can access the SQS url with the `lookup` method. The method is available to `Jets::Stack` subclasses like the `List` class here. Here's an example:
 
-app/jobs/postman_event.rb
+app/events/postman_event.rb
 
 ```ruby
 class PostmanEvent < ApplicationEvent

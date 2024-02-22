@@ -23,6 +23,8 @@ end
 
 This creates an SNS Topic resource.  You can then reference the SNS Topic with the `Alert.lookup` method in your code. For example, here's a [Event]({% link _docs/events.md %}) that looks up the ARN of the `delivery_completed` SNS topic and then publishes to it.
 
+app/events/postman_event.rb
+
 ```ruby
 class PostmanEvent < ApplicationEvent
   include Jets::AwsServices

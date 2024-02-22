@@ -18,7 +18,7 @@ It looks something like this.
 
 Here is an example connecting an existing Kinesis stream to a Lambda function in a [Event]({% link _docs/events.md %}).
 
-app/jobs/data_event.rb
+app/events/data_event.rb
 
 ```ruby
 class DataEvent < ApplicationEvent

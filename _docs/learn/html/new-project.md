@@ -26,7 +26,7 @@ We're using the `--mode html` option to generate a Jets project designed for HTM
           create  app/assets/stylesheets/application.css
           create  app/controllers/application_controller.rb
           create  app/helpers/application_helper.rb
-          create  app/jobs/application_job.rb
+          create  app/events/application_event.rb
           create  app/models/application_record.rb
           create  app/views/layouts/application.html.erb
           create  config.ru

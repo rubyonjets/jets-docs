@@ -50,7 +50,7 @@ You should see the event being triggered every 1 minute.
 
 So far, we have been making manual changes. We should codify the changes. To help see the changes, let's make some additional changes so that it's easy to check. We'll use a rate of `2 minutes` and `Debug event` for the puts text this time.
 
-app/jobs/cool_event.rb
+app/events/cool_event.rb
 
 ```ruby
 class CoolEvent < ApplicationJob

@@ -18,7 +18,7 @@ It looks something like this.
 
 An example might be getting notified when an unwanted security group port gets opened.
 
-app/jobs/security_event.rb
+app/events/security_event.rb
 
 ```ruby
 class SecurityEvent < ApplicationEvent

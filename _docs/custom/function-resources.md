@@ -46,7 +46,7 @@ In the second pass, Jets replaces the `{namespace}` placeholder with an identifi
 
 Before | After
 --- | ---
-{namespace} | Dig
+{namespace} | Party
 
 It does this because the resolved values are not known until later in the processing. IE: The `party` method is defined below and after the `resource` DSL call.
 

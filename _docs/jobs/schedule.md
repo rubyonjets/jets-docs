@@ -29,7 +29,7 @@ cleanup_job_desk:
   splat_args: true
 ```
 
-When the `config/jets/scheduler.yml` exists, Jets uses it create the scheduler components upon `jets deploy`, IE: Schedule Events and Lambda functions.
+When the `config/jets/scheduler.yml` exists, Jets uses it create the scheduler components upon `jets deploy`, IE: Scheduled Events and Lambda functions.
 
 ## How It Works
 
@@ -51,7 +51,7 @@ class Jets::ScheduleEvent < Jets::Event::Base
 end
 ```
 
-The `rate` expressions create AWS Schedule Events. AWS manages the scheduler for you. It's "serverless".
+The `rate` expressions create AWS Scheduled Events. AWS manages the scheduler for you. It's "serverless".
 
 Each method in the class creates a distinct lambda function which will handle the processing.
 

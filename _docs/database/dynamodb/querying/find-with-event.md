@@ -57,7 +57,7 @@ The JSON stream event structure sent from DynamoDB stream looks something like t
 
 You can use the `find_all_with_stream_event` to load the item as a model object.
 
-app/jobs/clerk_job.rb
+app/events/clerk_job.rb
 
 ```ruby
 class ClerkJob < ApplicationJob

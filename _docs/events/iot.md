@@ -20,7 +20,7 @@ Generate code.
 
 It looks something like this.
 
-app/jobs/thermostat_event.rb
+app/events/thermostat_event.rb
 
 ```ruby
 class ThermostatEvent < ApplicationEvent

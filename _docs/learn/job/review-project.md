@@ -13,7 +13,7 @@ Let's explore the project code and write some app code.
 
 The starter project comes with an `ApplicationJob`. It looks like this:
 
-app/jobs/application_job.rb
+app/events/application_event.rb
 
 ```ruby
 class ApplicationJob < Jets::Job::Base
@@ -29,11 +29,11 @@ Generally, your jobs will inherit from this `ApplicationJob`.
 Let's create some code that does some work. We'll use a generator again.
 
     ❯ jets generate:event cool
-        create  app/jobs/cool_event.rb
+        create  app/events/cool_event.rb
 
 The generate code looks like this:
 
-app/jobs/cool_event.rb
+app/events/cool_event.rb
 
 ```ruby
 class CoolEvent < ApplicationJob

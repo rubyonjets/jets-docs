@@ -26,7 +26,7 @@ app/controllers  | Contains controller code that handles API Gateway web request
 app/functions  | Contains simple functions.  For more info refer to [functions]({% link _docs/functions.md %}).
 app/helpers  | Contains helpers methods that can be used to assist view code.
 app/javascript  | Contains javascript, CSS, and images files that webpacker compiles. Javascript lives in `javascript/packs`, CSS in `javascript/src` and images in `javascript/images`. Refer to [webpacker](https://github.com/rails/webpacker) for more info.
-app/jobs  | Contains job definitions. This code usually executes on a scheduled basis asynchronously outside of the request-response cycle.  For more info refer to the [jobs docs]({% link _docs/events.md %})
+app/events  | Contains job definitions. This code usually executes on a scheduled basis asynchronously outside of the request-response cycle.  For more info refer to the [jobs docs]({% link _docs/events.md %})
 app/models  | Contains model definitions, usually classes that interact with a database via ActiveRecord or some other ORM.
 shared  | Contains shared resources. Refer to [Shared Resources]({% link _docs/custom/shared-resources.md %}).
 app/views  | Contains view code, usually HTML pages and forms.

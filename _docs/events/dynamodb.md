@@ -18,7 +18,7 @@ It looks something like this.
 
 Here is an example connecting an existing DynamoDB table's stream to a Lambda function in a [Event]({% link _docs/events.md %})
 
-app/jobs/clerk_event.rb
+app/events/clerk_event.rb
 
 ```ruby
 class ClerkEvent < ApplicationEvent

@@ -11,8 +11,8 @@ shared/extensions/sqs_extension.rb
 
 ```ruby
 module SqsExtension
-  def sqs_queue(logical_id, props={})
-    defaults = { message_retention_period: 120 }
+  def sqs_queue(logical_id, props = {})
+    defaults = {message_retention_period: 120}
     props = defaults.merge(props)
     resource(logical_id, "AWS::SQS::Queue", props)
     output(logical_id)

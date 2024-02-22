@@ -16,7 +16,7 @@ Generate code.
 
 It looks something like this.
 
-app/jobs/log_event.rb
+app/events/log_event.rb
 
 ```ruby
 class LogEvent < ApplicationEvent
