@@ -79,7 +79,7 @@ Note, SQS Queues managed by Jets are deleted when you delete the Jets applicatio
 
 Jets can also support creating a shared SQS Queue via a [Shared Resource]({% link _docs/custom/shared-resources.md %}). Here's how you create the SQS queue as a shared resource:
 
-app/shared/resources/list.rb
+shared/resources/list.rb
 
 ```ruby
 class List < Jets::Stack

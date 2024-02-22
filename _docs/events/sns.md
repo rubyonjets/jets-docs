@@ -82,7 +82,7 @@ Note, SNS Topics managed by Jets are deleted when you delete the Jets applicatio
 
 Jets can also support creating a shared SNS Topic via a [Shared Resource]({% link _docs/custom/shared-resources.md %}). Here's how you create the SNS Topic as a shared resource:
 
-app/shared/resources/topic.rb:
+shared/resources/topic.rb:
 
 ```ruby
 class Topic < Jets::Stack

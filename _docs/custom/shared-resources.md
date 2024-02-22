@@ -5,15 +5,15 @@ subcategory: custom-shared-resources
 order: 3
 ---
 
-Shared resources are how you create **standalone** custom AWS resources with Jets.  With the [Associated Resources]({% link _docs/custom/function-resources.md %}), you can add custom AWS resources which are associated with Lambda functions.  Shared resources are also fully customizable AWS resources, but they are not as tightly associated with a Lambda function. Understanding Shared Resources will allow you to customize a Jets application with any custom resource.
+Shared resources are how you create **standalone** custom AWS resources with Jets.  With the [Associated Function Resources]({% link _docs/custom/function-resources.md %}), you can add custom AWS resources which are associated with Lambda functions.  Shared resources are also fully customizable AWS resources, but they are not tightly associated with a Lambda function. Understanding Shared Resources will allow you to customize a Jets application with any custom resource.
 
 ## SNS Topic Example
 
-Let's create an SNS Topic as a shared resource. The SNS topic will be used throughout the application to publish messages.
+Let's create an SNS Topic as a shared resource. The SNS topic will be used throughout the application to publish messages. Shared resources are defined in the `shared/resources` folder.  You can create the SNS topic like so:
 
-Shared resources are defined in the `app/shared/resources` folder.  You can create the SNS topic like so:
+Note: In Jets 6, shared resources are moved from `shared/resources` to `shared/resources`.
 
-app/shared/resources/alert.rb
+shared/resources/alert.rb
 
 ```ruby
 class Alert < Jets::Stack

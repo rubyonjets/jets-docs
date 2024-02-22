@@ -15,7 +15,7 @@ The `Jets::Stack` DSL makes managing dependencies between nested stacks simple w
 
 Let's say we wanted to create a CloudWatch Alarm and an SNS Alert and organized them in different classes. The CloudWatch Alarm depends on the SNS Alert. So the SNS Alert needs to be created before the Alarm.  Here's how we achieve this with the `depends_on` declaration.
 
-app/shared/resources/alert.rb
+shared/resources/alert.rb
 
 ```ruby
 class Alert < Jets::Stack
@@ -23,7 +23,7 @@ class Alert < Jets::Stack
 end
 ```
 
-app/shared/resources/alarm.rb
+shared/resources/alarm.rb
 
 ```ruby
 class Alarm < Jets::Stack
@@ -52,7 +52,7 @@ With this design, Jets makes it is easy to create many nested stacks and use res
 
 The `depends_on` declaration also works in non-shared app classes.  When you add `depends_on` to an app class like an Event class, Jets will ensure that the resources are created in the dependent order and also pass the outputs of the independent stack to the dependent stack. This is useful in case you want to reference a resource from one stack to another.  Example:
 
-app/shared/resources/list.rb
+shared/resources/list.rb
 
 ```ruby
 class List < Jets::Stack

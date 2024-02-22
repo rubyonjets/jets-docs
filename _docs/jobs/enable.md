@@ -41,3 +41,5 @@ This creates:
 2. The Lambda Function that listens to Queue events and processes the jobs
 
 AWS Lambda scales automatically to process the queue.
+
+**Note**: Only one queue is created and used. With a Lambda Handler that automatically scales, unsure if there's a need for more than one.
