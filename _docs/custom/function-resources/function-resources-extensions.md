@@ -14,15 +14,15 @@ app/extensions/iot_extension.rb
 
 ```ruby
 module IotExtension
-  def thermostat_rule(logical_id, props={})
+  def thermostat_rule(logical_id, props = {})
     defaults = {
       topic_rule_payload: {
         sql: "SELECT * FROM 'TemperatureTopic' WHERE temperature > 60",
         actions: [
-          lambda: { function_arn: "!Ref {namespace}LambdaFunction" }
+          lambda: {function_arn: "!Ref {namespace}LambdaFunction"}
         ],
-        rule_disabled: true,
-      },
+        rule_disabled: true
+      }
     }
     props = defaults.deep_merge(props)
     resource(logical_id, "AWS::IoT::TopicRule", props)
