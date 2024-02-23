@@ -73,7 +73,7 @@ And the environment based files:
 
 When the code is running on AWS Lambda, the `*.key` files like `config/master.key` will not be deployed. This is because `jets credentials:edit` automatically adds `config/master.key` to `.gitignore` and jets will not deploy files in `.gitignore`. Without the master key, the `Jets.application.credentials.foo` call will not be able to return the secret value.
 
-Note, it is not recommended to remove it from the `.gitignore` file because you might accidentally commit it to version control. Instead, you can add the key value to the a [Env File]({% link _docs/env-files.md %}). Example:
+Note, it is not recommended to remove it from the `.gitignore` file because you might accidentally commit it to version control. Instead, you can add the key value to the a [Env File]({% link _docs/env/env-extra.md %}). Example:
 
 Here's the value from the master.key.
 

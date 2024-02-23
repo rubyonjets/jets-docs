@@ -26,7 +26,7 @@ Jets.application.configure do
 end
 ```
 
-We can configure the variables with [env files]({% link _docs/env-files.md %}).  Example:
+We can configure the variables with [env files]({% link _docs/env/env-extra.md %}).  Example:
 
 .env.production:
 

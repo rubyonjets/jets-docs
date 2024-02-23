@@ -13,7 +13,7 @@ Jets supports deploying Rails applications by using Container images. This is a 
 
 ## Usage
 
-If your Rails application uses environment variables such as `DATABASE_URL` or `DATABASE_PASSWORD`, Jets needs to know about them prior to deployment in order to make them available to the generated Lambda functions. You should set the variables in `.env` files which should be placed in your Rails project's `.jets/project/` directory. Be sure to read the `.env` file [documentation]({% link _docs/env-files.md %}) so that you know how to name your `.env` files.
+If your Rails application uses environment variables such as `DATABASE_URL` or `DATABASE_PASSWORD`, Jets needs to know about them prior to deployment in order to make them available to the generated Lambda functions. You should set the variables in `.env` files which should be placed in your Rails project's `.jets/project/` directory. Be sure to read the `.env` file [documentation]({% link _docs/env/env-extra.md %}) so that you know how to name your `.env` files.
 
     $ cd <your Rails project directory>
     $ mkdir -p .jets/project
