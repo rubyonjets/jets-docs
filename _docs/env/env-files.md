@@ -52,3 +52,6 @@ The naming convention for these files is .env.<ENVIRONMENT>. Here's an example w
 4. config/jets/env/.env.development
 5. config/jets/env/.env - (lowest) - Always loaded
 
+## Function Env Variables
+
+The `config/jets/env` names and values are added to the Lambda Function Env Variables as part of deployment. Related: [SSM Design Thoughts]({% link _docs/env/ssm/thoughts.md %}).
