@@ -52,6 +52,14 @@ The naming convention for these files is .env.<ENVIRONMENT>. Here's an example w
 4. config/jets/env/.env.development
 5. config/jets/env/.env - (lowest) - Always loaded
 
+## Command: jets dotenv
+
+You can use the `jets dotenv` command to show the resolved values. This can be useful for debugging.
+
+    ❯ jets dotenv
+    # Env from evaluated config/jets/env dotenv files
+    DATABASE_URL=mysql2://user:pass@host.com/dbname?pool=5
+
 ## Function Env Variables
 
 The `config/jets/env` names and values are added to the Lambda Function Env Variables as part of deployment. Related: [SSM Design Thoughts]({% link _docs/env/ssm/thoughts.md %}).
