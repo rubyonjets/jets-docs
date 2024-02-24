@@ -1,7 +1,7 @@
 ---
 title: Env Extra
 category: env
-order: 2
+order: 3
 ---
 
 Jets has the concept of extra environments. This can be controlled by the `JETS_EXTRA` variable.  By setting `JETS_EXTRA` you can create additional identical environments.
