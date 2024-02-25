@@ -17,7 +17,7 @@ Events | To create the CloudWatch Event Rules for jobs.
 IAM | To create IAM roles to be associated with the Lambda functions.
 Lambda | To prewarm the application upon deployment completion.
 Logs | To clean up CloudWatch logs when deleting the application.
-Route53 | To create vanity DNS endpoint when using [custom domains]({% link _docs/routing/custom-domain.md %}).
+Route53 | To create vanity DNS endpoint when using [custom domains]({% link _docs/routing/apigw/custom-domain.md %}).
 S3 | To upload code to s3.
 
 ## Instructions

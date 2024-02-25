@@ -7,7 +7,6 @@ Some good next steps are to learn about what else Jets can do. This is really ju
 * [Jobs]({% link _docs/events.md %})
 * [Events]({% link _docs/events.md %})
 * [Routing]({% link _docs/routing.md %})
-* [Authorization]({% link _docs/auth.md %})
 * [Prewarming]({% link _docs/prewarming.md %})
 * [Env Files]({% link _docs/env/env-extra.md %})
 * [Env Extra]({% link _docs/env/env-extra.md %})

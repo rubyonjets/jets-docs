@@ -12,7 +12,7 @@ Underneath the hood, Jets uses CloudFormation to deploy Lambda functions and API
 
 For some resources, the way CloudFormation updates can sometimes fail and rollback. Notably, changing API Gateway routes can cause a rollback. Jets checks the routes and replaces the API Gateway Rest API entirely when needed to avoid a rollback. Jets essentially performs an automated blue-green of API Gateway in this case. This results in changing the API Gateway DNS endpoint. At the end of `jets deploy` the updated API Gateway endpoint is provided.
 
-If you have configured a [Custom Domain]({% link _docs/routing/custom-domain.md %}) then this custom domain automatically gets updated as part of the automated blue-green deployment.
+If you have configured a [Custom Domain]({% link _docs/routing/apigw/custom-domain.md %}) then this custom domain automatically gets updated as part of the automated blue-green deployment.
 
 ## Manual Blue-Green Deployment
 
