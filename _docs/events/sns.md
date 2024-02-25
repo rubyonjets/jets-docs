@@ -31,7 +31,6 @@ app/events/messenger_event.rb
 
 ```ruby
 class MessengerEvent < ApplicationEvent
-  class_timeout 30 # must be less than or equal to the SNS Topic default timeout
   sns_event "hello-topic"
   def deliver
     puts "event #{JSON.dump(event)}"
@@ -54,7 +53,6 @@ Jets can create and manage an SNS Topic for a specific function. This is done wi
 
 ```ruby
 class CoolEvent < ApplicationEvent
-  class_timeout 30 # must be less than or equal to the SNS Topic default timeout
   sns_event :generate_topic
   def lift
     puts "lift event #{JSON.dump(event)}"
