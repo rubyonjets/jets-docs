@@ -186,3 +186,11 @@ The `sqs_event` helper method unravels the data and provides the SQS message bod
 
 An IAM policy is generated for the Lambda function associated with the SQS event that allows the permissions needed.  You can control and override the IAM policy with normal [IAM Policies]({% link _docs/iam-policies.md %}) if needed though.
 
+## Troubleshooting
+
+If you get an error message about `Invalid request provided: Queue visibility timeout` like this:
+
+    05:50:35PM CREATE_FAILED AWS::Lambda::EventSourceMapping HandleEventSourceMapping Resource handler returned message: "Invalid request provided: Queue visibility timeout: 30 seconds is less than Function timeout: 60 seconds (Service: Lambda, Status Code: 400, Request ID: 2a7e4692-70fe-45eb-8fd3-06f20692af1e)" (RequestToken: 414a433a-21a3-da18-676e-fd00001fded2, HandlerErrorCode: InvalidRequest)
+
+This means the **SQS Queue Default visibility timeout** is less than the **Lambda Function timeout**. You have to decrease the Lambda Function timeout or increase the SQS Queue timeout.
+
