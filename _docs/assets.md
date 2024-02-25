@@ -33,7 +33,7 @@ Usually the downside with asset precompling is:
 You can override the setting and configure the folders with the [Application Configuration]({% link _docs/config.md %}).
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   # ...
   # Default assets settings
   config.assets.folders = %w[assets images packs]

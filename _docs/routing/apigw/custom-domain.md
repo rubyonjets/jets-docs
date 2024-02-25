@@ -28,7 +28,7 @@ NOTE: If you have already previously set up an API Custom Domain, when Jets trie
 To create a vanity endpoint edit the `config/application.rb` and edit `domain.cert_arn` and `domain.hosted_zone_name`:
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   config.domain.cert_arn = "arn:aws:acm:us-west-2:112233445577:certificate/8d8919ce-a710-4050-976b-b33da991e7e8" # String
   config.domain.hosted_zone_name = "coolapp.com" # String
   # config.domain.name = "#{Jets.project_namespace}.coolapp.com" # Default is the example convention
@@ -53,7 +53,7 @@ When `JETS_EXTRA=1` is set the values looks like this:
 You can set the domain name yourself and override the default behavior like so:
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   config.domain.name = "mysubdomain.coolapp.com"
 end
 ```
@@ -83,7 +83,7 @@ Important: When a new API Gateway is deployed, the endpoint will change. This is
 You can also specify a `hosted_zone_id` instead of `hosted_zone_name`.
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   config.domain.cert_arn = "arn:aws:acm:us-west-2:112233445577:certificate/8d8919ce-a710-4050-976b-b33da991e7e8" # String
   config.domain.hosted_zone_name = "coolapp.com" # String
   config.domain.hosted_zone_id = "/hostedzone/Z2E57RZEXAMPLE"
@@ -97,7 +97,7 @@ Note, you should still specify the `hosted_zone_name` because it is conventional
 If `config.domain.hosted_zone_name` is set, then `config.domain.route53=true` will be the default behavior. It is useful to turn off the Jets managed route53 record if you would like to manage the DNS yourself.  Though there may be little point as the DNS must always match the API Custom Domain Name.
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   # ...
   config.domain.route53 = false # disable route53 from being managed by jets.
 ```
@@ -107,7 +107,7 @@ Jets.application.configure do
 Jets creates a CNAME route53 record by default. Jets can also create zone apex records or naked domain names. Example:
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   config.domain.cert_arn = "arn:aws:acm:us-west-2:112233445577:certificate/8d8919ce-a710-4050-976b-b33da991e7e8" # String
   config.domain.hosted_zone_name = "coolapp.com" # String
   config.domain.name = "coolapp.com"
@@ -146,7 +146,7 @@ The links above explain that APIGW will not accept CloudFront will accept the `H
 You can configure the base path in the custom domain by adding the base_path parameter . Example:
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   config.domain.cert_arn = "arn:aws:acm:us-west-2:112233445577:certificate/8d8919ce-a710-4050-976b-b33da991e7e8" # String
   config.domain.hosted_zone_name = "coolapp.com" # String
   config.domain.name = "coolapp.com"

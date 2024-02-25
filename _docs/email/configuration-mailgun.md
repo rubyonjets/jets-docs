@@ -19,7 +19,7 @@ config/environments/production.rb:
 require 'railgun/mailer'
 require 'railgun/message'
 
-Jets.application.configure do
+Jets.deploy.configure do
   config.action_mailer.show_previews = false # default: false
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.add_delivery_method :mailgun, Railgun::Mailer

@@ -48,7 +48,7 @@ By default, Jets will infer the project name from the folder you are in.  You ca
 If you want to make Lambda-specific application-wide configurations, you can add config files in the `.jets/project` directory.  For example, you can set the Lamba function memory size for the production environment inside of `.jets/project/config/environments/production.rb`:
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   config.function.memory_size = 1024
 end
 ```

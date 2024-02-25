@@ -74,7 +74,7 @@ You can override settings for each environment with the files in `config/environ
 config/environments/development.rb
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   config.cache_classes = false
   config.eager_load = false
   config.logging.event = true

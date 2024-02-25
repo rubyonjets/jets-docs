@@ -18,7 +18,7 @@ To test Ruby 3.2 before of the official AWS Lambda release of Ruby 3.2 support, 
 config/application.rb
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   # ...
   config.function.runtime = "provided.al2"
   config.lambda.layers = [

@@ -48,7 +48,7 @@ To set function properties globally, edit the function key under the config obje
 `config/application.rb`:
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   ...
   config.function.timeout = 30
   # config.function.role = "arn:aws:iam::#{ENV['AWS_ACCOUNT_ID']}:role/service-role/pre-created"

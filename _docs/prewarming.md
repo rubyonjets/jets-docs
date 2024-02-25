@@ -9,7 +9,7 @@ Provisioned Concurrency is configured via a property on the [AWS::Lambda::Alias]
 Jets supports prewarming your application to remedy the Lambda cold start issue. Prewarming is enabled by default. Only [Controller]({% link _docs/controllers.md %}) functions are prewarmed. To adjust the prewarming settings, edit your `config/application.rb`. Example:
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   # ...
   config.prewarm.enable = true # default: enabled
   config.prewarm.rate = "30 minutes" # default: 30 minutes

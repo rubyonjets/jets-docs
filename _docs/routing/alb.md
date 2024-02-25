@@ -8,16 +8,14 @@ order: 3
 
 Application Load Balancers, ALBs, can be us as a routing service in Jets 6 and above.
 
-{% include pro/feature.md feature_name="Application Load Balancer" %}
-
 ## Enabling
 
 To enable the Application Load Balancer feature:
 
-config/deploy.rb
+config/jets/deploy.rb
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   config.alb.enable = true
 end
 ```

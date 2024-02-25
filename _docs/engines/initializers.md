@@ -24,7 +24,7 @@ Jets supports environment specific initializers also. Examples:
 config/environments/development.rb:
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   config.function.memory_size = 1536
 end
 ```
@@ -32,7 +32,7 @@ end
 config/environments/production.rb:
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   config.function.memory_size = 2048
 end
 ```

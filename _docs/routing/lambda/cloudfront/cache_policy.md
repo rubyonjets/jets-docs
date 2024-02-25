@@ -16,10 +16,10 @@ The Jets Managed CloudFront Distribution creates a default Cache Policy with rea
 
 To enable the Lambda URL CloudFront feature:
 
-config/deploy.rb
+config/jets/deploy.rb
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   config.lambda.url.cloudfront.enable = true
   config.lambda.url.cloudfront.cert = acm_cert_arn("domain.com", region: "us-east-1")
   config.lambda.url.cloudfront.domain = "domain.com"

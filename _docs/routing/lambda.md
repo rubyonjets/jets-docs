@@ -18,10 +18,10 @@ The Lambda Function URL is the default Routing Service used by Jets. This is bec
 
 If you need to turn off the Lambda Function URL, you can:
 
-config/deploy.rb
+config/jets/deploy.rb
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   config.lambda.url.enable = false # true is the default
 end
 ```

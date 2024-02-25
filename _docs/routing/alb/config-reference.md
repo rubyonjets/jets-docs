@@ -5,8 +5,6 @@ category: routing-alb
 order: 88
 ---
 
-{% include pro/feature.md feature_name="Application Load Balancer" %}
-
 {% include config/reference/header.md %}
 {% include config/reference/alb.md %}
 

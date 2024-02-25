@@ -7,14 +7,12 @@ order: 5
 
 If you have set up [SSL]({% link _docs/routing/alb/ssl.md %}), then Jets will set up an HTTP to HTTPS redirect by default. You can configure the behavior if needed.
 
-{% include pro/feature.md feature_name="Application Load Balancer" %}
-
 You can configure redirection by configuring the ELB Listener. Here's an example that redirects http to https with a 302 status code:
 
-config/deploy.rb
+config/jets/deploy.rb
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   # config.alb.redirect.status_code = 302  # IE: 302 or 301
   # config.alb.redirect.port = 443
   # config.alb.redirect.protocol = HTTPS
@@ -24,8 +22,6 @@ Jets.application.configure do
   config.alb.ssl.certs = acm_cert_arn("domain.com")
 end
 ```
-
-{% include pro/helper.md helper_name="acm_cert_arn" %}
 
 You must set up [SSL Support]({% link _docs/routing/alb/ssl.md %}) for the redirection feature.
 

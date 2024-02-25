@@ -7,7 +7,7 @@ order: 1
 By default, csrf forgery protection is enabled in html mode and disabled in api mode. You can override the setting with `default_protect_from_forgery`.
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   config.controllers.default_protect_from_forgery = false
 end
 ```

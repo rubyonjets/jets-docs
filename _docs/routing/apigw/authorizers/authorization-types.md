@@ -18,7 +18,7 @@ The complete list of authorization types is available in the [AWS API Gateway do
 You can enable authorization application-wide with `config/application.rb`:
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   config.api.authorization_type = :aws_iam
 end
 ```

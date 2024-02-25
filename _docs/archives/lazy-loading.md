@@ -34,7 +34,7 @@ To configure lazy loading set the `config.ruby.lazy_load` as part of the [Applic
 config/environments/production.rb:
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   config.ruby.lazy_load = true
 end
 ```

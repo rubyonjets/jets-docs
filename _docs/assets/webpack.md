@@ -119,7 +119,7 @@ When deployed to lambda, the file is served out of s3 and looks like this:
 The Jets default max-age for assets serving out of s3 is 3600s or 1h. When using webpacker, since the sha checksums are added, it makes sense to use longer TTLs. Here's an example:
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   # ...
   # Default assets settings
   config.assets.folders = %w[assets images packs]

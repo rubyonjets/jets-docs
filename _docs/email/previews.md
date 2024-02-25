@@ -10,7 +10,7 @@ Jets supports previewing emails from [localhost:8888/jets/mailers](localhost:888
 config/environments/development.rb:
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   config.action_mailer.show_previews = true # default: false
 end
 ```

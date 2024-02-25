@@ -12,7 +12,7 @@ Jets supports Fragment Caching. Jets uses the same `ActionController::Caching` m
 config/environments/development.rb
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   if Jets.root.join("tmp/caching-dev.txt").exist?
     config.jets_controller.perform_caching = true
     config.cache_store = :memory_store

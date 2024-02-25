@@ -7,8 +7,6 @@ order: 1
 
 By default, when you enable Application Load Balancer support, Jets creates and manages an ALB for you.
 
-{% include pro/feature.md feature_name="Application Load Balancer" %}
-
 ## Cost
 
 It's important to note that there's a cost with running an ALB. It works out to about $20/mo as a baseline.
@@ -21,17 +19,15 @@ Well, API Gateway is **free** at low volume, but it can get **expensive** at hig
 
 Jets sets up reasonable defaults, but you can always customize them if you need to. Here's a small example.
 
-config/deploy.rb
+config/jets/deploy.rb
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   config.alb.enable = true
   config.alb.load_balancer.subnets = subnet_ids("dev-subnet-1", "dev-subnet-2")
   config.alb.load_balancer.security_groups = security_group_ids("my-security-group")
 end
 ```
-
-{% include pro/helper.md helper_name="subnet_ids" %}
 
 **Important**:
 

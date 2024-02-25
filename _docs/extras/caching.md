@@ -31,7 +31,7 @@ To enable caching:
 config/enviroments/development.rb
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   config.controller.perform_caching = true
   config.cache_store = :memory_store
 end

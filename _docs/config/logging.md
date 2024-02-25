@@ -11,7 +11,7 @@ The default logger foramtter does not prefix a timestamp. This is pretty much th
 config/environments/development.rb
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   config.logger.formatter = ActiveSupport::Logger::SimpleFormatter.new
   config.logging.event = false # dont show large event in local development logging
 end
@@ -24,7 +24,7 @@ That being said, if you want a timestamp to be prefixed, you can use this:
 config/environments/development.rb
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   config.logger.formatter = Logger::Formatter.new # has timestamps
   config.logging.event = false # dont show large event in local development logging
 end

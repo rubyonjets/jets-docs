@@ -7,16 +7,14 @@ order: 2
 
 Jets can automatically create a Route53 record pointing to the managed CloudFront domain.
 
-{% include pro/feature.md feature_name="Lambda URL CloudFront" %}
-
 ## Enabling
 
 To enable the Route53 record creation:
 
-config/deploy.rb
+config/jets/deploy.rb
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   config.lambda.url.cloudfront.enable = true
   config.lambda.url.cloudfront.cert = acm_cert_arn("domain.com", region: "us-east-1")
   config.lambda.url.cloudfront.domain = "domain.com"
@@ -36,10 +34,10 @@ The `config.lambda.url.cloudfront.dns.name` is optional. Instead, it's recommend
 
 Jets can also automatically sets up route53 records for all aliases.
 
-config/deploy.rb
+config/jets/deploy.rb
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   config.lambda.url.cloudfront.enable = true
   config.lambda.url.cloudfront.cert = acm_cert_arn("domain.com", region: "us-east-1")
   config.lambda.url.cloudfront.domain = "domain.com"

@@ -38,7 +38,7 @@ end
 ## Application-wide IAM policy
 
 ```ruby
-Jets.application.configure do |config|
+Jets.deploy.configure do |config|
   config.iam_policy = ["logs"]
 end
 ```
@@ -90,7 +90,7 @@ So the IAM policies are **additive**.
 If you would like to override the default Application-wide IAM policy in `config/application.rb` and still use the Jets default application IAM policy, then set `config.iam_policy`:
 
 ```ruby
-Jets.application.configure do |config|
+Jets.deploy.configure do |config|
   config.iam_policy = [
     {
       action: ["dynamodb:*"],
@@ -108,7 +108,7 @@ This **adds** to the Jets default application IAM policy. This is useful because
 If you wish to override the Jets default application IAM policy entirely, then set `config.default_iam_policy`:
 
 ```ruby
-Jets.application.configure do |config|
+Jets.deploy.configure do |config|
   config.default_iam_policy = [
     {
       action: ["logs:*", "s3:*"],

@@ -30,7 +30,7 @@ The default cookies session storage can be configured and changed.
 Here's an example configuring the default cookie storage backend.
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   config.session_options = { key: 'rack.session',
                              domain: 'foo.com',
                              path: '/',
@@ -60,7 +60,7 @@ config/application.rb:
 ```ruby
 require "rack/session/dalli"
 
-Jets.application.configure do
+Jets.deploy.configure do
   # ...
   config.session_store = Rack::Session::Dalli
   config.session_options = { memcache_server: "localhost:11211",

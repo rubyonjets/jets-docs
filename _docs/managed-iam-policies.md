@@ -35,7 +35,7 @@ end
 ## Application-wide Managed IAM policy
 
 ```ruby
-Jets.application.configure do |config|
+Jets.deploy.configure do |config|
   config.managed_iam_policy = %w[
     AWSCloudTrailReadOnlyAccess
     IAMReadOnlyAccess
@@ -63,7 +63,7 @@ class_iam_policy("AmazonS3ReadOnlyAccess", "CloudFrontReadOnlyAccess")
 Managed IAM policies defined at lower levels of precedence inherit and include the policies from the higher levels of precedence. This is done so you do not have to duplicate your IAM policies when you only need to add a simple additional permission. For example, if you've configured the application-wide Managed IAM policy to look something like this:
 
 ```ruby
-Jets.application.configure do |config|
+Jets.deploy.configure do |config|
   config.managed_iam_policy = %w[IAMReadOnlyAccess]
 end
 ```

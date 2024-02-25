@@ -27,7 +27,7 @@ Here's an [Application-wide IAM policy]({% link _docs/iam-policies.md %}/#applic
 config/application.rb
 
 ```ruby
-Jets.application.configure do |config|
+Jets.deploy.configure do |config|
   config.iam_policy = [
     {
       action: ["dynamodb:*"],

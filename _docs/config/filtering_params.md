@@ -8,7 +8,7 @@ By default, all params and event payload will be logged to CloudWatch in every r
 filter out sensitive information and mask it as FILTERED within the request log.
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   config.controllers.filtered_parameters += [:password, :credit_card]
 end
 ```

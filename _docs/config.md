@@ -11,7 +11,7 @@ You can set application-wide configurations in the `config/application.rb` file.
 `config/application.rb`:
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   config.project_name = "demo"
 
   # config.prewarm.rate = '30 minutes' # default is '30 minutes'
@@ -51,7 +51,7 @@ You can set specific configs for different JETS_ENV in the `config/environments`
 config/environments/development.rb:
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   config.function.memory_size = 1536
 end
 ```
@@ -59,7 +59,7 @@ end
 config/environments/production.rb:
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   config.function.memory_size = 2048
 end
 ```

@@ -13,7 +13,7 @@ You can add, swap, and delete middleware from the Jets stack.  Here are some con
 `config/application.rb`:
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   config.middleware.use(new_middleware, args)
   config.middleware.insert_before(existing_middleware, new_middleware, args)
   config.middleware.insert_after(existing_middleware, new_middleware, args)

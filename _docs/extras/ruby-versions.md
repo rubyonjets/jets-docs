@@ -27,7 +27,7 @@ Jets checks your current ruby version and makes sure its a version that Jets sup
 config/appplication.rb
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   config.ruby.check = false
 end
 ```

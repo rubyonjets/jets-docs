@@ -50,7 +50,7 @@ require "blorgh/engine" if defined?(Jets::Engine)
 ## Mount
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   mount "/blog" => Blorgh
 end
 ```

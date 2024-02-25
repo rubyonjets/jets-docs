@@ -50,7 +50,7 @@ Jets Pro provides access to precompiled gems for AWS Lambda.  Some example gems 
 If you want to disable Jets Pro, you can configure
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   config.pro.disable = true
 end
 ```

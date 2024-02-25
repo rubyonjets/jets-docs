@@ -10,7 +10,7 @@ You can configure email with [initializers]({% link _docs/engines/initializers.m
 config/environments/production.rb:
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   config.action_mailer.show_previews = false # default: false
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp

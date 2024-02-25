@@ -22,7 +22,7 @@ That being said, if you need to use AWS Lambda with a VPC, feel free to.
 To have your Lambda functions use a VPC, simply define its [Function Properties]({% link _docs/function-properties.md %}). Here's how you configure vpc_config as an application-wide function property:
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   config.function.vpc_config = {
     SecurityGroupIds: %w[sg-1 sg-2],
     SubnetIds: %w[subnet-1 subnet-2],

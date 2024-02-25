@@ -133,7 +133,7 @@ authorizer(
 The only required option for the `authorizer` method is `name`.  Also, the default `identity_source` can be configured with `config.api.authorizers.default_token_source`.
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   config.api.authorizers.default_token_source = "Auth" # method.request.header.Auth
 end
 ```

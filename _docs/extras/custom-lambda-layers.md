@@ -9,7 +9,7 @@ You can include and use your own [Custom Lambda Layers](https://docs.aws.amazon.
 config/application.rb:
 
 ```ruby
-Jets.application.configure do
+Jets.deploy.configure do
   config.lambda.layers = [
     "arn:aws:lambda:us-west-2:112233445566:layer:my-layer:2",
     "arn:aws:lambda:us-west-2:112233445566:layer:another-layer:8",
