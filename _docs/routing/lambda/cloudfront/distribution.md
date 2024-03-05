@@ -5,7 +5,7 @@ category: routing-lambda-cloudfront
 order: 1
 ---
 
-You can put CloudFront in of the Lambda Function URL to provide a user-friendly URL endpoint instead of the random endpoint.
+You can put CloudFront in front of the Lambda Function URL to provide a user-friendly URL endpoint.
 
 ## Enabling
 
@@ -17,11 +17,21 @@ config/jets/deploy.rb
 Jets.deploy.configure do
   config.lambda.url.cloudfront.enable = true
   config.lambda.url.cloudfront.cert = acm_cert_arn("domain.com", region: "us-east-1")
-  config.lambda.url.cloudfront.domain = "domain.com"
+
+  # config.lambda.url.cloudfront.dns.enable = true
 end
 ```
 
-Note `region: "us-east-1"` is required since CloudFront operates out of us-east-1. The ACM cert must be in us-east-1.
+The ACM cert must already exist. The cert also much be in region `us-east-1` since CloudFront operates out of us-east-1.
+
+The `acm_cert_arn` helper method looks up the ARN with the domain name. You can also just hard code the ARN. Example:
+
+```ruby
+Jets.deploy.configure do
+  # ...
+  config.lambda.url.cloudfront.cert = "arn:aws:acm:us-east-1:112233445566:certificate/14621e4a-00e9-422a-adec-935a8EXAMPLE"
+end
+```
 
 ## Aliases
 

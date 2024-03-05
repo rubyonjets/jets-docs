@@ -17,46 +17,22 @@ config/jets/deploy.rb
 Jets.deploy.configure do
   config.lambda.url.cloudfront.enable = true
   config.lambda.url.cloudfront.cert = acm_cert_arn("domain.com", region: "us-east-1")
-  config.lambda.url.cloudfront.domain = "domain.com"
 
   config.lambda.url.cloudfront.dns.enable = true # <= ENABLE
-  # config.lambda.url.cloudfront.dns.name = "my.domain.com" # optional, recommend conventional name instead
+  # additional aliases
+  config.lambda.url.cloudfront.aliases = [
+    "www.domain.com"
+  ]
+  # config.lambda.url.cloudfront.conventional_alias = true # IE: demo-dev.domain.com
 end
 ```
 
-The `config.lambda.url.cloudfront.dns.name` is optional. Instead, it's recommended you let Jets set a conventional DNS name. Jets can does this using the the `config.lambda.url.cloudfront.domain` value.  The convention is `APP-ENV.domain.com`. For example:
-
-    config.lambda.url.cloudfront.domain => "domain.com" => "demo-dev.domain.com"
+* A conventional alias is created by default with the Jets project name and env. IE: `project: demo` and `Jets.env: dev` => demo-dev.domain.com. You can control this behavior with `config.lambda.url.cloudfront.conventional_alias = false`
+* The conventional alias domain is inferred by using acm.describe_certificate and using the ACM Cert domain value.
 
 {% include lambda/cloudfront/deploy-extra.md %}
 
-## Aliases
-
-Jets can also automatically sets up route53 records for all aliases.
-
-config/jets/deploy.rb
-
-```ruby
-Jets.deploy.configure do
-  config.lambda.url.cloudfront.enable = true
-  config.lambda.url.cloudfront.cert = acm_cert_arn("domain.com", region: "us-east-1")
-  config.lambda.url.cloudfront.domain = "domain.com"
-
-  config.lambda.url.cloudfront.domain.aliases = ["name1.domain.com", "name2.domain.com"]
-
-  config.lambda.url.cloudfront.dns.enable = true # <= ENABLE
-  config.lambda.url.cloudfront.dns.name = "my.domain.com" # optional, recommend the conventional name instead
-end
-```
-
-For the above, there will be Route53 records created for:
-
-    demo-dev.domain.com # from config.lambda.url.cloudfront.domain
-    name1.domain.com    # from config.lambda.url.cloudfront.domain.aliases
-    name2.domain.com    # from config.lambda.url.cloudfront.domain.aliases
-    my.domain.com       # from config.lambda.url.cloudfront.dns.name
-
-They will all point to the CloudFront Distribution domain name. Example:
+All route53 DNS aliases have the same TTL values and point to the same CloudFront Distribution domain name. Example:
 
     demo-dev.domain.com => https://d1cfl6s9mcuypm.cloudfront.net
     name1.domain.com    => https://d1cfl6s9mcuypm.cloudfront.net
