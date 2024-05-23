@@ -21,6 +21,6 @@ A SQS Queue and Job Processor (Lambda) is created upon jets deployment.
 
 When `config.job.enable = true`, Jets will automatically adds the necessary SQS IAM permission so that your Lambda functions can send messages to the SQS queue that Jets creates as part of deployment.
 
-{% include config/reference/header.md %}
-{% include config/reference/job.md %}
-{% include config/reference/footer.md %}
+{% include reference/config/header.md %}
+{% include reference/config/deploy/job.md %}
+{% include reference/config/footer.md %}

@@ -74,6 +74,6 @@ end
 
 This allows you to re-use the same SSM parameters for multiple projects and makes easier to manage and rotate them.
 
-{% include config/reference/header.md %}
-{% include config/reference/dotenv.md %}
-{% include config/reference/footer.md %}
+{% include reference/config/header.md %}
+{% include reference/config/bootstrap/dotenv.md %}
+{% include reference/config/footer.md %}

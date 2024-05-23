@@ -39,6 +39,6 @@ end
 
 The Jets WAF is always deployed to **us-east-1** because that's a CloudFront requirement. CloudFront operates out of `us-east-1`, so the WAF must also reside there. Regardless of what you set your AWS_REGION to, Jets will switch and use `us-east-1` for the WAF standalone stack. The CloudFormation stack can be found in `us-east-1`.
 
-{% include config/reference/header.md %}
-{% include config/reference/waf.md %}
-{% include config/reference/footer.md %}
+{% include reference/config/header.md %}
+{% include reference/config/deploy/waf.md %}
+{% include reference/config/footer.md %}

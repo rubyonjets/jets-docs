@@ -22,7 +22,7 @@ The Image Package Type is recommended and is the default. This is because CloudF
 
 For the Zip Package Type, docker build gem dependencies simpily.
 
-{% include config/reference/header.md %}
-{% include config/reference/docker.md %}
-{% include config/reference/footer.md %}
+{% include reference/config/header.md %}
+{% include reference/config/deploy/docker.md %}
+{% include reference/config/footer.md %}
 

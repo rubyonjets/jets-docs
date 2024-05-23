@@ -1,0 +1,1 @@
+runtime.ruby | 3.2 | The default AWS Lambda Runtime to use. This is really only applicable for "simple functions" or internal functions when using the package type zip. In general, you do not set this because Jets determines your [Ruby Version]({% link _docs/config/ruby-version.md %}) from your project. This setting may be removed in the future.

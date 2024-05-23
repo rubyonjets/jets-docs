@@ -59,6 +59,6 @@ On initial creation of the Assets, CloudFront Distribution assets may appear "mi
 
 {% include cloudfront/related.md %}
 
-{% include config/reference/header.md %}
-{% include config/reference/lambda/cloudfront.md config_path="assets" %}
-{% include config/reference/footer.md %}
+{% include reference/config/header.md %}
+{% include reference/config/deploy/lambda/cloudfront.md config_path="assets" %}
+{% include reference/config/footer.md %}

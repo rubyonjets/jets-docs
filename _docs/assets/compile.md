@@ -56,6 +56,6 @@ Jets will upload the assets files to s3 and configure JETS_ASSET_HOST to point t
 
 As of Rails 7, nodejs is no longer required to compile assets. See: [Rails 7 will have three great answers to JavaScript in 2021+](https://world.hey.com/dhh/rails-7-will-have-three-great-answers-to-javascript-in-2021-8d68191b). If you need nodejs, see: [Assets Nodejs]({% link _docs/assets/nodejs.md %})
 
-{% include config/reference/header.md %}
-{% include config/reference/assets.md %}
-{% include config/reference/footer.md %}
+{% include reference/config/header.md %}
+{% include reference/config/deploy/assets.md %}
+{% include reference/config/footer.md %}

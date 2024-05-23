@@ -12,7 +12,7 @@
   # config.release.phase.command = "bundle exec rails db:migrate"
 
   # Scaling https://docs.rubyonjets.com/docs/config/concurrency/
-  # config.lambda.controller.provisioned_concurrency = 1  # costs money, no cold start
+  # config.lambda.controller.provisioned_concurrency = 1  # costs money, always running lambda
   # config.lambda.controller.reserved_concurrency = 25    # free and limits scaling
 
   # IAM https://docs.rubyonjets.com/docs/iam/app/iam-policies/

@@ -2,7 +2,7 @@
 title: Jets Prewarming
 nav_text: Prewarming
 category: config
-order: 2
+order: 7
 ---
 
 Jets supports prewarming by periodically hitting the controller Lambda function with a noop prewarm request. This mitigates the Lambda cold-start issue and can be a more cost-effective way of avoiding the Lambda cold-start than using [Provisioned Concurrency]({% link _docs/config/concurrency.md %}). It's a smart or poor man's version of Provisioned Concurrency.
@@ -13,10 +13,10 @@ config/jets/deploy.rb
 
 ```ruby
 Jets.deploy.configure do
- config.prewarm.enable = true # default: enabled
- config.prewarm.rate = "30m" # default: 30 minutes
+ config.prewarm.enable = true # default: true
+ config.prewarm.rate = "1m"   # default: 1 minute
  # config.prewarm.cron = "0 */12 * * ? *" # when configured takes higher precedence than prewarm.rate
- # config.prewarm.threads = 1 # default: 1
+ # config.prewarm.threads = 2 # default: 2
 end
 ```
 
@@ -48,14 +48,14 @@ After a deployment finishes, Jets automatically prewarms the app immediately. Th
 
 Jets appends an `x-jets-prewarm-*` headers to the response to help you see if the lambda function was prewarmed. The headers looks something like this:
 
- x-jets-boot-at: 2024-04-17 18:08:45 UTC
- x-jets-prewarm-at: 2024-04-17 18:31:22 UTC
- x-jets-prewarm-count: 22
- x-jets-gid: cb205b47
+    x-jets-boot-at: 2024-04-17 18:08:45 UTC
+    x-jets-prewarm-at: 2024-04-17 18:31:22 UTC
+    x-jets-prewarm-count: 22
+    x-jets-gid: cb205b47
 
 Here's a curl command that is useful to see this info:
 
- curl -svo /dev/null <REPLACE_URL> 2>&1 | grep 'x-jets'
+    curl -svo /dev/null <REPLACE_URL> 2>&1 | grep 'x-jets'
 
 We can see that the Lambda function had been prewarmed, and the boot-at header shows the last time AWS Lambda recycled the Lambda function.
 
@@ -88,6 +88,6 @@ The devil is in the details, as Provisioned Concurrency requests cost less than 
 
 **Note**: AWS updates their pricing periodically, so always check the numbers yourself. These calculations will likely be out-of-date.
 
-{% include config/reference/header.md %}
-{% include config/reference/prewarm.md %}
-{% include config/reference/footer.md %}
+{% include reference/config/header.md %}
+{% include reference/config/deploy/prewarm.md %}
+{% include reference/config/footer.md %}

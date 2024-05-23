@@ -2,7 +2,7 @@
 title: "Jets Config: Shim"
 nav_text: Jets Shim
 category: config
-order: 9
+order: 12
 ---
 
 You can configure the Jets Shim settings with.

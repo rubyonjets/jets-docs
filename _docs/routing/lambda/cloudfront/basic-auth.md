@@ -130,15 +130,15 @@ end
 
 ## Why CloudFront for Basic Auth?
 
-Why does Jets use CloudFront to handle Basic Auth instead of the traditional handling at app level?
+Why does Jets use CloudFront to handle Basic Auth instead of the traditional handling at the app level?
 
-This is because Lambda Function URLs will remap the `WWW-Authenticate` response header sent from your app to `X-Amzn-Remapped-WWW-Authenticate`. This is a known limitation of Lambda URLs. See:
+It's because Lambda Function URLs will remap the `WWW-Authenticate` response header sent from your app to `X-Amzn-Remapped-WWW-Authenticate`. This is a known limitation of Lambda URLs. See:
 
 * [Amazon API Gateway Known Issues](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-known-issues.html): Also applies to Lambda Function URLs.
 * [Getting "x-amzn-Remapped-WWW-Authenticate instead of WWW-Authenticate and jetty client not able to recognise](https://stackoverflow.com/questions/58037317/getting-x-amzn-remapped-www-authenticate-instead-of-www-authenticate-and-jetty)
 * Also, sending a `www-authenticate` header (CloudFront headers are lowercase) to CloudFront results in it not calling any custom viewer-response CloudFront Function at all. So you have to do some trickery with mapping to a `custom-www-authenticate` and then mapping it back in the viewer-response CloudFront Function. It's complex.
 * People have been able to use Lambda@Edge but those functions introduce another layer of complexity. IE: They can only be deployed to us-east-1.
 
-Note, all the points above means you cannot use Rails Basic Auth [http_basic_authenticate_with](https://api.rubyonrails.org/classes/ActionController/HttpAuthentication/Basic.html). AWS Lambda URLs and CloudFront won't work with it. Instead, use the Jets provide Basic Auth support config.
+Note that all the points above mean you cannot use Rails Basic Auth [http_basic_authenticate_with](https://api.rubyonrails.org/classes/ActionController/HttpAuthentication/Basic.html). AWS Lambda URLs and CloudFront won't work with it. Instead, use the Jets-provided Basic Auth support config.
 
-Jets uses a view-request CloudFront Function to handle it at the point of entry into CloudFront. If the Basic Auth credentials provided by the user is not correct, it **never** hits your origin or Lambda Function. This is actually ideal anyway.
+Jets uses a view-request CloudFront Function to handle it at the point of entry into CloudFront. If the Basic Auth credentials provided by the user is incorrect, it **never** hits your origin or Lambda Function, which is ideal.

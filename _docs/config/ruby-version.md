@@ -68,7 +68,7 @@ Jets.deploy.configure do
   config.dockerfile.image_package.from_base.image_variant = nil
 end
 ```
-{% include config/reference/header.md %}
-{% include config/reference/image_package.md %}
-{% include config/reference/footer.md %}
+{% include reference/config/header.md %}
+{% include reference/config/deploy/dockerfile.md %}
+{% include reference/config/footer.md %}
 

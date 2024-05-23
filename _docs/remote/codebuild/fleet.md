@@ -53,6 +53,6 @@ They are not thrown away after each run; they are always running. Hence they hav
 * Other instance types cost more money. See [CodeBuild Pricing](https://aws.amazon.com/codebuild/pricing/).
 * If you are only running one instance in the fleet, other jobs will be stuck in the queue waiting.
 
-{% include config/reference/header.md %}
-{% include config/reference/codebuild/fleet.md %}
-{% include config/reference/footer.md %}
+{% include reference/config/header.md %}
+{% include reference/config/deploy/codebuild/fleet.md %}
+{% include reference/config/footer.md %}

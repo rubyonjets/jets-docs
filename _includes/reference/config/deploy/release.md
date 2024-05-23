@@ -1,0 +1,1 @@
+release.phase.command | nil | The command to run during the "release phase" of the deploy. IE: `bundle exec rails db:migrate`

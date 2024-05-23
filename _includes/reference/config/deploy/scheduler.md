@@ -1,0 +1,2 @@
+scheduler.enable | true | Whether or not to create the CloudWatch Scheduled Rules that correspond to the `schedule` key in your `config/sidekiq.yml`. Jets will only create Scheduled Rules for found items with the `schedule` key.
+scheduler.translate.on_deploy | true | Whether or not to translate on `jets deploy`, IE: on-the-fly. You can also translate the schedule ahead of time from a `config/sidekiq.yml` => `config/jets/schedule.yml`. This saves some deploy time.

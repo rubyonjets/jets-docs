@@ -37,6 +37,6 @@ end
 
 If you want faster builds, consider using a [Remmote Docker Host]({% link _docs/remote/codebuild/docker-host.md %}) or [CodeBuild Fleets]({% link _docs/remote/codebuild/fleet.md %}).
 
-{% include config/reference/header.md %}
-{% include config/reference/codebuild.md %}
-{% include config/reference/footer.md %}
+{% include reference/config/header.md %}
+{% include reference/config/deploy/codebuild.md %}
+{% include reference/config/footer.md %}

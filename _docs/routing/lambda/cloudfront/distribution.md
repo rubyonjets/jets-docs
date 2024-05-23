@@ -63,6 +63,6 @@ Jets will create some conventional aliases when not set explicitly. The `config.
 
 {% include cloudfront/related.md %}
 
-{% include config/reference/header.md %}
-{% include config/reference/lambda/cloudfront.md config_path="lambda.url" %}
-{% include config/reference/footer.md %}
+{% include reference/config/header.md %}
+{% include reference/config/deploy/lambda/cloudfront.md config_path="lambda.url" %}
+{% include reference/config/footer.md %}

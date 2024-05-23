@@ -1,7 +1,7 @@
 ---
 title: Logging
 category: config
-order: 10
+order: 11
 ---
 
 When your app is deployed to AWS Lambda, logging to stdout logs are sent to CloudWatch logs. You can configure the log verbosity level Lambda writes to CloudWatch logs. These are the Jets defaults.

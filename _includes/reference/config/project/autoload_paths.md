@@ -1,0 +1,1 @@
+autoload_paths | see desc | The paths that Jets will autoload after a `Jets.boot`. Default: %w[app/events app/extensions shared/resources shared/extensions]

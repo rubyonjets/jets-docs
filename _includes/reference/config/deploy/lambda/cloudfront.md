@@ -1,6 +1,6 @@
 {{ include.config_path }}.cloudfront.cert.arn | nil | ACM Cert ARN. Required when using `{{ include.config_path }}.cloudfront.enable = true`.  Must be in `us-east-1` since it's for CloudFront. This helper method is useful: `acm_cert_arn(domain: "example.com", region: "us-east-1")`
 {{ include.config_path }}.cloudfront.cert.minimum_protocol_version | TLSv1.2_2021 | The `TLSv1.2_2021` has been the Cloudfront console default as of 12/24/23.
-{{ include.config_path }}.cloudfront.cert.ssl_support_method | sni-only | he distribution accepts HTTPS connections from only viewers that support server name indication (SNI). This is recommended. Most browsers and clients support SNI.
+{{ include.config_path }}.cloudfront.cert.ssl_support_method | sni-only | The distribution accepts HTTPS connections from only viewers that support server name indication (SNI). This is recommended. Most browsers and clients support SNI.
 {{ include.config_path }}.cloudfront.default_cache_behavior.allow_methods | {% if include.config_path == "assets" %}%w[HEAD GET]{% else %}%w[HEAD DELETE POST GET OPTIONS PUT PATCH]{% endif %} | Allow methods for the distribution.
 {{ include.config_path }}.cloudfront.default_cache_behavior.properties | {} | Default cache behavior properties to merge. Allows overriding the propertes in a general way.
 {{ include.config_path }}.cloudfront.default_cache_behavior.viewer_protocol_policy | redirect-to-https | How CloudFront should handle http requests. The default is to redirect http to https. IE: A https upgrade.

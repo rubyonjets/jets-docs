@@ -1,0 +1,1 @@
+cfn.resource_tags | {} | Add tags to all resources. IE: {Env: "prod"}

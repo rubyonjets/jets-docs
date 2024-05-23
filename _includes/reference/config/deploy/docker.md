@@ -10,4 +10,4 @@ dockerfile.commands.bootsnap | nil | For Rails, `bundle exec bootsnap precompile
 dockerfile.custom | false | Allows you to use your own custom Dockerfile. Note, the Dockefile must be compatiable with Jets and Lambda. You are responsible for maintaining and updating it.
 dockerfile.gemfile.force_ruby_platform | false | Adds a `RUN bundle config set force_ruby_platform true` before the `bundle install` in the Gemfile. Sometimes this helps fix some gem issues. This makes `bundle install` much slower. IE: 90s vs 20s.
 dockerfile.install.awscli | true | Install the AWS CLI within the `docker build`.
-{% include config/reference/docker-packages.md %}
+{% include reference/config/deploy/dockerfile.md %}

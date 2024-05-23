@@ -1,0 +1,1 @@
+uploads.cloudfront.default_cache_behavior.cache_policy_id | Managed-CachingOptimized | The cache policy id to use. The default is Managed-CachingOptimized which is 658327ea-f89d-4fab-a63d-7e88639e58f6.

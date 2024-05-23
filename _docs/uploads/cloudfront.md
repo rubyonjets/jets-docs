@@ -132,6 +132,6 @@ Note this is meta-data added to the s3 object. So if you want to change the cach
 
 For more info see [ActiveStorage Docs](https://edgeguides.rubyonrails.org/active_storage_overview.html#s3-service-amazon-s3-and-s3-compatible-apis)
 
-{% include config/reference/header.md %}
-{% include config/reference/lambda/cloudfront.md config_path="assets" %}
-{% include config/reference/footer.md %}
+{% include reference/config/header.md %}
+{% include reference/config/deploy/lambda/cloudfront.md config_path="assets" %}
+{% include reference/config/footer.md %}

@@ -82,7 +82,7 @@ It seems like some npm package is upgraded every couple of months, which happens
 Thus, we may change the default node version more liberally than other components. If you need specific versions, you should explicitly set them. You can also precompile your assets locally and add them to git before deployment.
 
 
-{% include config/reference/header.md %}
-{% include config/reference/assets.md %}
-{% include config/reference/footer.md %}
+{% include reference/config/header.md %}
+{% include reference/config/deploy/assets.md %}
+{% include reference/config/footer.md %}
 

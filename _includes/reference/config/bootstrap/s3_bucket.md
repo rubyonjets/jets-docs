@@ -1,0 +1,1 @@
+s3_bucket.cors_configuration | see desc | The Jets managed S3 bucket cors config. Default: `{CorsRules: [{AllowedHeaders: ["*"], AllowedMethods: ["GET"], AllowedOrigins: ["*"], ExposedHeaders: []}]}`

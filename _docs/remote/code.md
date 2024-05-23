@@ -38,6 +38,6 @@ The `rsync` strategy probably the best strategy.
 
 If you set `config.code.copy.strategy`, it overrides the default auto behavior and you can use strategies that auto does not consider.
 
-{% include config/reference/header.md %}
-{% include config/reference/remote/code-copy.md %}
-{% include config/reference/footer.md %}
+{% include reference/config/header.md %}
+{% include reference/config/deploy/remote/code-copy.md %}
+{% include reference/config/footer.md %}

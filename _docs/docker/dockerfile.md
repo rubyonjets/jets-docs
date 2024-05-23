@@ -43,9 +43,9 @@ You can also use a prebuilt Docker image. This can be useful if you already have
 
     JETS_DOCKER_IMAGE=my/image:v1 jets deploy
 
-The Docker build process will be skipped. Jets will push the image to ECR, though. This is that Lambda has access to the image and it's faster to pull down within the AWS network.
+The Docker build process will be skipped. Jets will push the image to ECR, though. This is what Lambda has access to the image and it's faster to pull down within the AWS network.
 
-{% include config/reference/header.md %}
-{% include config/reference/docker.md %}
-{% include config/reference/footer.md %}
+{% include reference/config/header.md %}
+{% include reference/config/deploy/docker.md %}
+{% include reference/config/footer.md %}
 
