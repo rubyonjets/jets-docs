@@ -5,6 +5,8 @@ category: learn-rails
 order: 7
 ---
 
+{% include videos/learn/getting-started/rails.md %}
+
 {% include learn/jets-account.md %}
 
 ## Deploy

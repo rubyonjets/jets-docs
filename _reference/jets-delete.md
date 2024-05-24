@@ -5,13 +5,13 @@ reference: true
 
 ## Usage
 
-    jets delete [options]
+    jets delete
 
 ## Description
 
-Delete the Jets project and all its resources
+Delete stack
 
-This deletes the all the contents in the internal s3 bucket that jets uses and the associated CloudFormation stacks.
+Deletes the Jets deployment and all resources associated with it.
 
 ## Examples
 
@@ -19,7 +19,7 @@ This deletes the all the contents in the internal s3 bucket that jets uses and t
     Deleting project...
     Are you sure you want to want to delete the 'demo-dev' project? (y/N)
     y
-    First, deleting objects in s3 bucket demo-dev-s3bucket-89jrrj60c7bj
+    Emptying s3 bucket demo-dev-s3bucket-89jrrj60c7bj
     Deleting demo-dev...
     05:14:09AM DELETE_IN_PROGRESS AWS::CloudFormation::Stack demo-dev User Initiated
     ...
@@ -30,16 +30,14 @@ This deletes the all the contents in the internal s3 bucket that jets uses and t
     Project demo-dev deleted!
     $
 
-You can bypass the are you sure prompt with the `--yes` flag.
+You can bypass the are you sure prompt with the `-y` flag.
 
-    $ jets delete --yes
+    $ jets delete --y
 
 
 ## Options
 
 ```
--y, [--yes], [--no-yes]    # Skip are you sure prompt.
-    [--wait], [--no-wait]  # Wait for stack deletion to complete.
-                           # Default: true
+-y, [--yes], [--no-yes], [--skip-yes]  # Skip are you sure prompt
 ```
 

@@ -78,4 +78,4 @@ Both the `rate` and `cron` expressions are supported.
 * The only required field is a scheduling expression field, IE: `rate` or `cron`.
 * The class name can be inferred by the top-level key or explicitly by the `class` field. Example: `GreetJob` (inferred) and `class: CleanupJob` (explicit).
 * The `args` field is optional. If you need the args to be splatted, you can use `splat_args: true`. This removes the `[]` brackets for Array arguments and `{}` brackets for Hash arguments.
-* An interesting note: There is no need for a queue with the Jets Scheduler implementation. The CloudWatch Schedule Event Rule triggers the Lambda Function directly.
+* An interesting note: The CloudWatch Schedule Event Rule triggers a Jets ScheduledEvent Lambda function that calls your Job's `perform_later` method, which writes to the Jets Queue. Each Jets Queue's Lambda function handles the processing.

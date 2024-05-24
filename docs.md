@@ -19,7 +19,7 @@ The steps to deploy your app are minimal. Add this to your Gemfile.
 Gemfile
 
     gem "jets", ">= 6.0"
-    gem "jets-rails", ">= 1.0"
+    gem "jets-rails", ">= 1.1"
 
 And run
 

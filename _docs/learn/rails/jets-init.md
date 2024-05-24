@@ -5,6 +5,8 @@ category: learn-rails
 order: 3
 ---
 
+{% include videos/learn/getting-started/rails.md %}
+
 ## Jets Install
 
 To install jets for Rails add these to gems to your `Gemfile`
@@ -12,7 +14,7 @@ To install jets for Rails add these to gems to your `Gemfile`
 Gemfile
 
 ```ruby
-gem "jets-rails", ">= 1.0"
+gem "jets-rails", ">= 1.1"
 gem "jets", ">= 6.0"
 ```
 

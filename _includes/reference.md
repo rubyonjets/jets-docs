@@ -1,1 +1,1 @@
-Jets is a framework that allows you to create serverless applications with a beautiful language: Ruby. It includes everything required to build an application and deploy it to AWS Lambda. Jets makes serverless accessible to everyone.
+Jets is a Deployment Service. Jets makes it easy to deploy and run your app on Serverless. It packages up your code and runs it on AWS Lambda. Jets can deploy Rails, Sinatra, Hanami, and any Rack app.

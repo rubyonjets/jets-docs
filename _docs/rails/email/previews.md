@@ -27,7 +27,7 @@ Here's an example showing how to use email previews.
 
 Then create a preview model with a naming convention in the `app/previews` folder like so.
 
-app/previews/user_mailer_preview.rb:
+app/previews/user_mailer_preview.rb
 
 ```ruby
 class UserMailerPreview < ActionMailer::Preview

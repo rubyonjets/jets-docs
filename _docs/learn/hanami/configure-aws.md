@@ -1,5 +1,6 @@
 ---
 title: Configure AWS
+search_title: Configure AWS Hanami
 category: learn-hanami
 order: 4
 ---

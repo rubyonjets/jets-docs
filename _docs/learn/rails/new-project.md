@@ -6,6 +6,8 @@ category: learn-rails
 order: 1
 ---
 
+{% include videos/learn/getting-started/rails.md %}
+
 Let's `rails new` to generate a new Rails project.
 
     rails new demo --database mysql

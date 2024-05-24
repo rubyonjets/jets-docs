@@ -1,5 +1,6 @@
 ---
 title: Configure AWS
+search_title: Configure AWS Sinatra
 category: learn-sinatra
 order: 4
 ---

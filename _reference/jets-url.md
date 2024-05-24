@@ -5,11 +5,11 @@ reference: true
 
 ## Usage
 
-    jets url [options]
+    jets url
 
 ## Description
 
-App url if routes are defined
+App url
 
 If routes have been configured and an API Gateway was created for the app, this provides the application's url.
 
@@ -22,7 +22,7 @@ If routes have been configured and an API Gateway was created for the app, this 
 ## Options
 
 ```
--f, [--format=FORMAT]  # Output format: json or text
-                       # Default: text
+[--format=FORMAT]  # Output format: csv, dotenv, equal, info, json, markdown, space, tab, table
+                   # Default: space
 ```
 

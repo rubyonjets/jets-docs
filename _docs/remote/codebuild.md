@@ -30,7 +30,7 @@ end
 ```
 
 * You can use different ComputeType instance sizes with different costs.
-* Jets supports Docker-capable CodeBuild Images. This is because there are limitations to the Docker Lambda Compute types. IE: You cannot use `yum install`, `apt install` or `docker build` with Lambda Compute types vs Linux compute types.
+* Jets mainly uses the EC2 CodeBuild ComputeType. This is because the Docker Lambda Compute types have limitations. For example, you cannot use `yum install`, `apt install`, or `docker build` with Lambda Compute types compared to Linux compute types.
 * You can configure environment variables that should be set on the remote runner.
 
 ## Faster Builds

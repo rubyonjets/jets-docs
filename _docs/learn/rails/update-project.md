@@ -5,6 +5,8 @@ category: learn-rails
 order: 9
 ---
 
+{% include videos/learn/getting-started/rails.md %}
+
 ## Code Changes
 
 Let's update the code and deploy again. We'll add a `puts "debug 1"`.

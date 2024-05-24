@@ -5,7 +5,7 @@ reference: true
 
 ## Usage
 
-    jets stacks [options]
+    jets stacks
 
 ## Description
 
@@ -22,10 +22,14 @@ List deployed stacks
 ## Options
 
 ```
--p, [--page=N]                             # Page number
-    [--order=ORDER]                        # Order: asc or desc
-                                           # Default: asc
-    [--all-projects], [--no-all-projects]  # Show all stacks across all projects
-                                           # Default: false
+-l, [--limit=N]                                                   # Per page limit
+                                                                  # Default: 25
+-o, [--order=ORDER]                                               # Order: asc or desc
+                                                                  # Default: asc
+-p, [--page=N]                                                    # Page number
+    [--all-projects], [--no-all-projects], [--skip-all-projects]  # Show all stacks across all projects
+                                                                  # Default: false
+    [--format=FORMAT]                                             # Output format: csv, dotenv, equal, info, json, markdown, space, tab, table
+                                                                  # Default: space
 ```
 

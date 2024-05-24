@@ -6,7 +6,6 @@ config/jets/deploy.rb
 Jets.deploy.configure do
   config.lambda.url.cloudfront.enable = true
   config.lambda.url.cloudfront.cert.arn = acm_cert_arn(domain: "example.com", region: "us-east-1")
-  config.lambda.url.cloudfront.domain = "example.com"
 
   config.lambda.url.cloudfront.web_acl_id = web_acl_arn("prod")
 end

@@ -5,6 +5,8 @@ category: learn-rails
 order: 2
 ---
 
+{% include videos/learn/getting-started/rails.md %}
+
 ## Start Server
 
 You can test locally with `rails server`.

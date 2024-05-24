@@ -1,6 +1,6 @@
 ---
 title: Configure AWS
-search_title: Configure AWS Job
+search_title: Configure AWS Events
 category: learn-events
 order: 5
 ---

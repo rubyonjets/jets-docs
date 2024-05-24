@@ -45,7 +45,6 @@ config/jets/deploy.rb
 Jets.deploy.configure do
  config.lambda.url.cloudfront.enable = true
  config.lambda.url.cloudfront.cert.arn = acm_cert_arn(domain: "example.com", region: "us-east-1")
- config.lambda.url.cloudfront.domain = "example.com"
  config.lambda.url.cloudfront.aliases = [
     "name1.example.com",
     "name2.example.com"
@@ -57,7 +56,7 @@ This overrides the conventional aliases.
 
 ## Conventional Aliases
 
-Jets will create some conventional aliases when not set explicitly. The `config.lambda.url.cloudfront.domain = "example.com"` results in a conventional `demo-dev.example.com` Cloudfront alias.
+Jets will create some conventional aliases when not set explicitly. For example, here's a conventional `demo-dev.example.com` Cloudfront alias.
 
 {% include lambda/cloudfront/conventional-aliases.md %}
 

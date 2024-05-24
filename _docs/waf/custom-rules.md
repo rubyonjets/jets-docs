@@ -5,7 +5,7 @@ category: waf
 order: 4
 ---
 
-Jets provides some Custom Rules that are customizable.
+Jets provides Custom Rules with reasonable defaults.
 
 ## Config
 
@@ -30,15 +30,21 @@ Jets.deploy.configure do
 end
 ```
 
+The custom rules and settings are overridable.
+
 **Note**: Jets Custom Rules are different from AWS Managed rules. A Jets Custom Rule is a rule that Jets builds and maintains.
 
 ## Blanket Rate Limiter
 
-The Blanker Rate Limiter rule protects your entire application by limiting requests from any IP address. Example: Blocks IPs making over 1,000 requests in 5 minutes. It's a fundamental rule for DDoS protection.
+The Blanker Rate Limiter rule protects your entire application by limiting requests from any IP address. Example: It blocks IPs making over 1,000 requests in 5 minutes. It's a fundamental rule for DDoS protection.
 
 ## URI Rate Limiter
 
 The URI Rate Limiter rule can be used to apply stricter limits to specific urls. Example: Limits login page requests to 100 per 5 minutes to prevent brute force attacks. Slow-performing and expensive URIs can have even lower thresholds to maintain performance.
+
+## Protection Before Lambda
+
+It's important to note that the WAF protection is logical at the CloudFront CDN Layer. This means the request is blocked before it ever gets a chance to hit your Lambda function.
 
 ## Window vs Frequency
 
@@ -48,5 +54,5 @@ The evaluation window vs frequency at which AWS WAF checks the rate limit differ
 
 > This setting doesn't determine how often AWS WAF checks the rate, but how far back it looks each time it checks. AWS WAF checks the rate frequently, with timing that's independent of the evaluation window setting.
 
-It's easy to mistakenly think that setting it to a lower value like 60 instead of 300 will result in the WAF service checking more frequently. The window has zero bearing over the frequency at which the WAF service checks. In fact, if you set it to 60, then an attacker only has to wait 60s vs 300s before their "rate limit quota" resets and they can try again.
+It's easy to mistakenly think that setting it to a lower value, like 60 instead of 300, will result in the WAF service checking more frequently. The window has zero bearing over the frequency at which the WAF service checks. If you set it to 60, an attacker has to only wait for the 60s vs. 300s before their "rate limit quota" resets, and they can try again. So, it has the opposite effect of what you may think.
 

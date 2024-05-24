@@ -5,6 +5,8 @@ category: learn-rails
 order: 10
 ---
 
+{% include videos/learn/getting-started/rails.md %}
+
 Now that we've seen how to deploy a Jets project let's clean up and delete the resources. To delete everything, run:
 
     jets delete
