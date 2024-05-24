@@ -107,6 +107,9 @@ The Lambda functions `vpc_config` need to contain private subnets that have a NA
 
 ![](/img/docs/considerations/vpc-config-nat-gateway.png)
 
+For detailed guidance on setting up internet access for your Lambda function in a VPC, see [How do I give internet access to a Lambda function that's connected to an Amazon VPC](https://repost.aws/knowledge-center/internet-access-lambda-function).
+
+
 ## Slow Function Deletion: VPC ENI Deletion is Slow
 
 An additional disadvantage of VPC with Lambda is that deleting the network card takes a while. Some have reported up to 40m! [VPC Lambda ENI - Stack Deletion Bug](https://forums.aws.amazon.com/message.jspa?messageID=734756) In my own testing, it took about 25m. CloudFormation waits for the ENI deletion to complete, so it slows down the deploy.
