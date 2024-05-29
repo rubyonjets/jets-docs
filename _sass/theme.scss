@@ -468,3 +468,32 @@ ul.toc {
     color: #a8d7ff;
   }
 }
+
+/* Ensure code blocks take full width and are not restricted */
+.highlight {
+  position: relative;
+  width: 100%;
+  padding-right: 50px;
+  /* Add some padding to the right to make space for the button */
+}
+
+/* Style the copy button */
+.clipboard-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: #7a8087;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 12px;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+/* Hover effect for the copy button */
+.clipboard-button:hover {
+  opacity: 1;
+}
