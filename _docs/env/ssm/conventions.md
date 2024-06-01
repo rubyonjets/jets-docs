@@ -40,5 +40,5 @@ end
 It can be any object that responds to `.call` and is passed the ssm_leaf_name as an argument.
 
 {% include reference/config/header.md %}
-{% include reference/config/bootstrap/dotenv.md %}
+{% include reference/config/project/dotenv.md %}
 {% include reference/config/footer.md %}

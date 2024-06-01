@@ -56,11 +56,11 @@ class Jets::ScheduleEvent < Jets::Event::Base
   class_timeout 15.minutes.to_i
   rate "1 minute"
   def greeting_job
-    GreetingJob.perform_now
+    GreetingJob.perform_later
   end
   rate "12 hours"
   def cleanup_job_desk
-    CleanupJobDesk.perform_now("desk","room")
+    CleanupJobDesk.perform_later("desk","room")
   end
 end
 ```

@@ -1,0 +1,19 @@
+codebuild.project.compute_type | see desc | Default: `{ComputeType: "BUILD_GENERAL1_SMALL", Image: "aws/codebuild/amazonlinux2-aarch64-standard:3.0", Type: "ARM_CONTAINER"}`
+codebuild.project.env.vars | {} | Environment variables for the CodeBuild project.
+codebuild.project.env.pass | [] | Your custom Environment variables that are automatically "passed through" or exported from your local machine to the CodeBuild remote runner environment when the run starts.
+codebuild.project.env.default_pass | see desc | Default environment variables that are automatically "passed through" or exported from your local machine to the CodeBuild remote runner environment when the run starts. Default: `%w[JETS_API JETS_DOCKER_IMAGE JETS_ENV JETS_EXTRA JETS_PROJECT`
+codebuild.project.env.block | [] | Environment variables to block and not pass through regardless of the `pass` config. The block rules always win over pass rules.
+codebuild.project.environment | {} | CodeBuild environment properties or settings. This directly maps to [AWS::CodeBuild::Project Environment](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-environment.html). In general, `.env.vars` should suffice and is recommended over this more complex structure.
+codebuild.project.fleet_override | see desc | The fleet arn override to use. This is one way to use an existing CodeBuild fleet for your CodeBuild remote runner. Default: `ENV["JETS_CODEBUILD_FLEET_OVERRIDE"]`
+codebuild.project.timeout_in_minutes | 60 | CodeBuild Timeout in minutes.
+codebuild.lambda.enable | false | Whether or not to also create an additional CodeBuild remote runner that uses the Compute Type of Lambda. Some jets commands, that don't require docker, can leverage the [Lambda Compute Type]({% link _docs/remote/codebuild/compute-type.md %}#lambda-compute-type)
+codebuild.lambda.project.compute_type | see desc | The compute type to use. IE: EC2 Instance Size, Image, and OS Arch. Default: `{ComputeType: "BUILD_LAMBDA_1GB", Image: "aws/codebuild/amazonlinux-aarch64-lambda-standard:ruby3.2", Type: "ARM_LAMBDA_CONTAINER"}`
+codebuild.fleet.base_capacity | 1 | The number of EC2 instances to run in the CodeBuild fleet when `fleet.enable = true`.
+codebuild.fleet.enable | false | Whether or not to create a dedicated [Codebuild Fleet]({% link _docs/remote/codebuild/fleet.md %}). This speeds up the deploy but comes with additional costs. Default: `ENV["JETS_CODEBUILD_FLEET_ENABLE"]`
+codebuild.logging.final_phases | false | Whether or not to show the final Code Build phases status messages. It's `false` by default to help reduce noise.
+codebuild.logging.show | filtered | Controls what to show from the Codebuild logs in the jets cli. By default, jets filters some output to help increase the signal to noise.
+codebuild.iam.policy | [] | The additional custom IAM policy permissions you want to add for the CodeBuild remote runner.
+codebuild.iam.managed_policy | [] | The additional custom managed IAM policy permissions you want to add for the CodeBuild remote runner.
+codebuild.iam.default_policy | see desc | The Jets default IAM policies use for the CodeBuild remote runner. default: `%w[apigateway cloudformation cloudfront codebuild dynamodb ecr ecr-public events iam lambda logs route53 s3 sns sqs sts:GetServiceBearerToken waf wafv2]`. You can override this but be careful, it may remove necessary permissions for Jets to deploy.
+codebuild.iam.default_managed_policy | see desc | The Jets default managed IAM policies used for the CodeBuild remote runner. deafult: `%w[AmazonSSMReadOnlyAccess AWSCertificateManagerReadOnly]`
+codebuild.iam.default_vpc_policy | see desc | When a VpcConfig is used, Jets will also use this default policy for the codebuild remote runner. default: `%w[ec2]`
