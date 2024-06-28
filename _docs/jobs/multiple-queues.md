@@ -18,7 +18,7 @@ Jets.deploy.configure do
 
   config.job.default_queue.lambda.reserved_concurrency = 5
 
-# Add additional queues. Note: default queue is always created
+  # Add additional queues. Note: default queue is always created
   config.job.additional_queues = %w[urgent low_priority]
 
   # Adjust settings for each queue
