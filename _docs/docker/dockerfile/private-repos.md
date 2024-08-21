@@ -15,9 +15,9 @@ config/jets/bootstrap.rb
 
 ```ruby
 Jets.bootstrap.configure do
- config.codebuild.project.env.vars = {
- BUNDLE_GITHUB__COM: "SSM:/#{ssm_env}/BUNDLE_GITHUB__COM",
- }
+  config.codebuild.project.env.vars = {
+  BUNDLE_GITHUB__COM: "SSM:/#{ssm_env}/BUNDLE_GITHUB__COM",
+}
 ```
 
 Jets will use the `BUNDLE_GITHUB__COM` so that the `bundle install` can fetch the private repos.
@@ -30,8 +30,8 @@ To create an SSM parameter with the AWS CLI
 
 Commands to get the parameter for confirmation.
 
- aws ssm describe-parameters | jq '.Parameters[].Name' | grep BUNDLE_GITHUB__COM
- aws ssm get-parameters --names /dev/BUNDLE_GITHUB__COM | jq '.Parameters[].Value'
+    aws ssm describe-parameters | jq '.Parameters[].Name' | grep BUNDLE_GITHUB__COM
+    aws ssm get-parameters --names /dev/BUNDLE_GITHUB__COM | jq '.Parameters[].Value'
 
 ## More Examples
 
@@ -41,11 +41,11 @@ config/jets/bootstrap.rb
 
 ```ruby
 Jets.bootstrap.configure do
- config.codebuild.project.env.vars = {
- BUNDLE_GITHUB__COM: "SSM:/#{ssm_env}/BUNDLE_GITHUB__COM",
- BUNDLE_GEM__FURY__IO: "SSM:/#{ssm_env}/GEM_FURY_IO_TOKEN",
- BUNDLE_GEMS__CONTRIBSYS__COM: "SSM:/#{ssm_env}/GEMS_CONTRIBSYS_COM_TOKEN",
- }
+  config.codebuild.project.env.vars = {
+    BUNDLE_GITHUB__COM: "SSM:/#{ssm_env}/BUNDLE_GITHUB__COM",
+    BUNDLE_GEM__FURY__IO: "SSM:/#{ssm_env}/GEM_FURY_IO_TOKEN",
+    BUNDLE_GEMS__CONTRIBSYS__COM: "SSM:/#{ssm_env}/GEMS_CONTRIBSYS_COM_TOKEN",
+}
 ```
 
 ## Security Note
@@ -56,7 +56,7 @@ Example of a **bad** Gemfile.
 
 ```Gemfile
 source "https://#{ENV['TOKEN']}:@gems.contribsys.com/"" do
- gem 'sidekiq-pro'
+  gem 'sidekiq-pro'
 end
 ```
 
@@ -64,7 +64,7 @@ Example of a **good** Gemfile.
 
 ```Gemfile
 source 'https://gems.contribsys.com/' do
- gem 'sidekiq-pro'
+  gem 'sidekiq-pro'
 end
 ```
 
