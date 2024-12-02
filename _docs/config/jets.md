@@ -11,7 +11,7 @@ The `config/jets` folder has your Jets settings. It tells Jets how to deploy.
 
 ## Config Project
 
-{% include learn/config-jets-bootstrap.md %}
+{% include learn/config-jets-project.md project="demo" %}
 
 ## Config Bootstrap
 
