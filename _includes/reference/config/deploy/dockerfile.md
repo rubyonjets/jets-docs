@@ -8,6 +8,7 @@ dockerfile.image_package.from_base.image_name | "ruby" | Base image name without
 dockerfile.image_package.from_base.image_tag | nil | Auto-detected by default. IE: `3.2.3`
 dockerfile.image_package.from_base.image_variant | "slim" | Image variant.
 dockerfile.image_package.from_base.ruby_version | nil | Auto-detected by default. IE: `3.2.3`
+dockerfile.image_package.normalize_permissions | true | Normalize permissions for all files and directories in the Docker image. Avoids issues with Lambda not being able to read files. Can happen when Jets deploying from Heroku release phase hook.
 dockerfile.yum.packages.all_stages | [] | Additional yum packages to install for all Docker stages.
 dockerfile.yum.packages.build_stage | [] | Additional yum packages to install during the build Docker stage.
 dockerfile.yum.packages.deployment_stage | [] | Additional yum packages to install during the deployment Docker stage
